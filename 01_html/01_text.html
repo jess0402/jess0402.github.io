@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text관련 태그</title>
+</head>
+<body>
+    <h1>Text관련 태그</h1>
+    <!--
+        emmet
+        태그 자동완성 기능
+    -->
+
+    <!-- header태그 -->
+    <!-- h${Hello World}*6 하고 엔터치거나 탭 키 누르면 6개 만들어진다. -->
+    <h1>Hello World</h1>
+    <h2>Hello World</h2>
+    <h3>Hello World</h3>
+    <h4>Hello World</h4>
+    <h5>Hello World</h5>
+    <h6>Hello World</h6>
+
+    <!-- p태그 : 문단(단락) -->
+    <p>hello</p>
+    <p>world</p>
+    <p>byebye</p>
+    <p>world</p>
+
+    <!-- p>lorem : Lorem Ipsum = 채우기텍스트! 그냥 임의의 글로 채워지는 것. 큰 의미는 없음. -->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab blanditiis sequi omnis quis. Impedit neque placeat saepe vero quaerat earum laboriosam, culpa eveniet, consequuntur nisi doloribus. Quia ad laboriosam cum!</p>
+    
+
+    <hr> <!-- 수평줄 -->
+    <!-- html에서 개행문자 혹은 공백문자는 모두 하나의 공백문자로 처리된다.-->
+    <!-- br태그로 개행, &nbsp;로 공백처리 -->
+    hello                                       world <br>  <!-- 이렇게 hello와 world 사이에 공백이 넓어도 결과를 보면 공백한칸임.-->
+    hello &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world <br>
+    byebye <br>
+    world <br>
+
+    <!-- pre 태그 : pre-formatted 개행, 공백, 들여쓰기 모두 시각화처리 -->
+    <pre>
+        안녕            잘가
+        반가워          고마워
+    </pre>
+    
+    <!-- 특수문자 표현: &문자 -->
+    <!-- <p>"특수문자는 &문자로 처리"</p> 즉 <p>도 화면에 나오게 하고 싶으면 아래처럼-->
+    <p>"특수문자는 &문자로 처리"</p> <br>
+    &lt;p>"특수문자는 &문자로 처리"&lt;/p> <br>      <!-- 여는 꺽쇠: less then -> lt -->
+    &lt;p&gt;"특수문자는 &문자로 처리"&lt;/p&gt; <br>  <!-- 닫는 꺽쇠 : greater than -> gt -->
+    &lt;p&gt;&quot;"특수문자는 &amp;문자로 처리"&quot;&lt;/p&gt; <br>
+    &lt; &gt; &quot; &amp;
+
+    <!-- 시맨틱(Semantic) 태그 -->
+    <blockquote cite = "https://naver.com">너 자신을 알라</blockquote>  <!-- 인용 --> 
+    
+    <p><strike>HTML4</strike> 대신 <abbr title="Hyper Text Markup Language">HTML5</abbr>를 사용합시다.</p> 
+    <!-- strike = 취소선 |  abbr = 머리글자(마우스 호버했을 때 내용이 보임)-->
+
+    <code>System.out.println("Hello world");</code> <!-- 단순 텍스트가 아닌 코드라는 것을 알려주기 위해. (문서판독기가 정확히 해독할 수 있음)-->
+
+    <strong>굵은 글자체로 강조</strong> <!-- 굵은 글자 효과 -->
+    <del><b>b태그로 굵은 글자체로 강조</b></del>
+    <em>기울여서 강조 </em>  <!-- em = 기울여서 강조 효과 -->
+    <del><i>i태그로 기울여 강조</i></del> 
+    <!-- <b>와 <i>는 시각적으로 강조하는 효과는 똑같지만 strong과 em을 사용해야 문서판독기가 해독할 수 있기 때문에 
+        <b> <i>를 사용하기 보단 <strong>과 <em>을 사용해라 -->
+    <mark>형광펜 효과로 강조</mark> <!-- 형광펜 강조 효과 -->
+    <ins>밑줄 효과</ins> <!-- 밑줄 강조 효과 -->
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
