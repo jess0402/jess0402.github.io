@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼관련태그</title>
+</head>
+<body>
+    <h1>폼관련태그</h1>
+    <h2>form</h2>
+    <!-- 
+        form
+        사용자 입력값을 서버로 전송하기 위한 태그
+        - action: 전송할 서버주소. 아무것도 작성하지 않았다면, 현재 페이지주소로 제출
+        - method: 전송 방식. GET(기본값)/POST
+            - GET: 사용자 입력값이 요청 url 맨 뒤에 붙어서 전송됨 (기본값)
+            - POST: 사용자입력값을 숨김처리(전송메세지 body에 작성)
+    -->
+    <form action="" method="POST">
+        <label for="userId">아이디 : </label> <!-- label의 for속성이 input태그의 id속성과 연결되어야 함. -->
+        <input type="text" id="userId" name="userId" value="honggd" placeholder="아이디를 입력하세요"/>
+        <!-- input의 name 속성이 있어야 서버로 전송된다.-->
+        <!-- input에서 name 속성을 지우고 form에서 method 속성을 지우고 GET방식으로 돌아와서 페이지에서 제출버튼 눌러보면
+             원래라면 제출 눌렀을 때 url에 제출된 id가 떠야하는데 뜨지 않는 것을 확인 가능.-->
+        <!-- id속성은 페이지내 태그의 고유식별값이다. 페이즈 내 id는 중복될 수 없다. -->
+        <!-- placeholder는 value값이 비었을 때 그 자리에 보여질 텍스트를 설정하는 속성이다. -->
+        <!-- <input type="text" id="userId" name="userId" value="honggd"/> -->
+        <!-- 사용자가 입력하는 값이 저 value 속성. 만약에 내가 저기에 위와같이 값을 넣어두면 화면에 그게 보인다.-->
+        <!-- 하지만 값을 넣어두지 않으면 사용자가 입력하고 제출 누르면 value 속성에 들어가는 것.-->
+        <br>
+        <input type="submit" value="제출">
+    </form>
+
+
+    <h2>input</h2>
+    <!-- 
+        fieldset: form 하위에서 영역을 구분하는 태그
+        legend: fieldset의 title 
+    -->
+    <form action="">
+        <fieldset> <!-- 폼 안에서 영역을 구분해주는 역할-->
+            <legend>text관련 input태그</legend>  <!-- 영역의 이름표 -->
+            <label for="userName">이름: </label>
+            <input type="text" id = "userName" name = "userName" readonly> 
+            <!-- required = "required"에서 부등호 기준 양쪽이 같으면 뒤에를 생략할 수 있음.-->
+            <!-- required는 반드시 입력이 되어야 제출될 수 있게 하는 속성 -->
+            <!-- readonly는 편집이 불가능한, 오로지 읽기만 할 수 있게 하는 속성-->
+            <br>
+            <!-- label+input[type=passowrd] -->
+            <!-- label+input:passowrd -->
+            <label for="userPassword">비밀번호 : </label>
+            <input type="password" name="userPassword" id="userPassword" maxlength="16">
+            <!-- maxlength는 16자까지만 허용한다. max 16자리로 설정하는 속성 -->
+            <br>
+            <!-- label+input:email -->
+            <label for="userEmail"> 이메일: </label>
+            <input type="email" name="userEmail" id="userEmail">
+            <br>
+            <label for="homepage">홈페이지: </label>
+            <input type="url" name="homepage" id="homepage" value="https://">
+            <!-- 홈페이지에 입력하는 값은 반드시 http나 https로 입력해야 한다. -->
+            <!-- 그래서 사용자가 작성할때 편하도록 뒤에 value="https://" 속성을 줘서 미리 https:// 나와있도록 하게 함.-->
+            <br>
+            <label for="phone">전화번호: </label>
+            <input type="tel" name="phone" id="phone">
+            <br>
+            <label for="memo">메모: </label>
+            <textarea name="memo" id="memo" cols="30" rows="10" style="resize:none;">abc def </textarea>
+            <!-- textarea는 개행이 있는 텍스트를 처리할 수 있음. -->
+            <!-- style="resize:none;" 속성을 주면 메모박스 사이즈 변경이 불가능해짐. -->
+        </fieldset>
+
+        <fieldset>
+            <legend>숫자관련 input 태그</legend>
+            <label for="score">점수: </label>
+            <input type="number" name="score" id="score" min="0" max="100" step="5">
+            <!-- 최소 입력은 0 최대 입력은 100 점수는 5점단위로 입력(타이핑하면 들어가긴 하지만 옆에 버튼 사용하면 0~100까지 5단위씩 증감함.)-->
+            <br>
+            <label for="numRange">범위: </label>
+            <input type="range" name="numRange" id="numRange" min="-100" max="100" step="10">
+        </fieldset>
+
+
+        <fieldset>
+            <legend>선택관련 태그</legend>
+            <label for="nation">국적: </label>
+            <select name="nation" id="nation">
+                <option value="">선택</option>
+                <option value="ko" selected>한국</option>
+                <option value="ch">중국</option>
+                <option value="jp">일본</option>
+            </select>
+        </fieldset>
+
+
+        
+        <input type="submit" value = "제출">
+    </form>
+
+
+</body>
+</html>

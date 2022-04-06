@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지관련</title>
+</head>
+<body>
+    <h1>이미지관련</h1>
+    <img src="./images/flower1.PNG" style="width: 200px;">  <!-- 상대경로 -->
+    <img src="../sample/image/flower2.PNG" style="width: 200px;"> <!-- 상대경로 -->
+    <img src="/sample/image/flower3.PNG" style="width: 200px;"> <!-- 절대경로 -->
+    <img src="http://192.168.0.11:5500/sample/image/flower3.PNG" style="width: 200px;"> <!-- 절대경로 -->
+    <img src="https://w.namu.la/s/df9e0491ae093a061cdfcfe5e2e4212fc952379a3458b7c3eb2d0dadd755ec5af0249084f230644d6e9fa6e2e869e61ea9751af003d4940d4a716999fd197e916c9aa4e60a22a2f7f2a83b91d315196f" style="width: 200px;"> <!-- 절대경로 -->
+    <!-- 바로 위 img는 인터넷에서 이미지 찾아서 이미지 주소복사한 뒤에 src에 붙여넣은것. 이렇게 인터넷에 있는 이미지를 가져올수도 있음. -->
+    <img src="C:\Workspaces\webclient_workspace\sample\image\hyunta.jpg" alt="현타온 개사진">
+
+    <!--
+        src: 이미지파일경로
+
+        - 상대경로: 현재페이지 기준으로 파일검색 
+            ./ : 현재디렉토리(생략가능) -> 위 flower1.PNG도 앞에 ./가 생략된 것. 원래는 ./flower1.PNG임.
+            ../ : 부모디렉토리
+        - 절대경로: 루트디렉토리 기준으로 파일검색 
+            /(슬래쉬) 나 c:\ 이나 http:// 로 시작하면 절대경로
+            서버이용시 / -> http://192.168.0.11:5500/
+                <img src="/sample/image/flower3.PNG" style="width: 200px;"> 여기서 맨 앞 슬래쉬가
+                위 5500/ 슬래쉬랑 이어지는 것.
+            서버환경에서는 c:\ 사용불가
+
+        style 너비/높이 조정 
+        너비/높이 하나만 지정시 이미지의 원래 비율을 유지한채로 변경
+
+        alt 대체텍스트 속성
+        - 이미지를 못찾은 경우 화면에 표시할 텍스트
+        - 시각장애인들의 화면낭독시(스크린리더)에 해석될 텍스트 
+    -->
+
+    <!--
+        절대크기 단위 : px (어떤 디바이스든 항상 고정된 크기)
+        상대크기 단위 : % em (부모요소기준으로 길이를 측정)
+    -->
+    <!-- div>img[src=../sample/image/flower$.PNG]*5 -->
+    <div>
+        <img src="../sample/image/flower1.PNG" alt="꽃이미지" style="width: 18%;">
+        <img src="../sample/image/flower3.PNG" alt="꽃이미지" style="width: 18%;">
+        <img src="../sample/image/flower2.PNG" alt="꽃이미지" style="width: 18%;">
+        <img src="../sample/image/flower4.PNG" alt="꽃이미지" style="width: 18%;">
+        <img src="../sample/image/flower5.PNG" alt="꽃이미지" style="width: 18%;">
+    </div>
+</body>
+</html>

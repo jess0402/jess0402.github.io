@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display 속성</title>
+</head>
+<body>
+    <h1>태그별 display 속성</h1>
+    <!--
+        태그별 css의 display 속성
+        - block 요소
+            -> 한 줄을 다 차지해서 다음 요소는 다음줄에 표시(자동 개행 되는 것.)
+            -> div, table, h1~h6, p ...
+        - inline 요소
+            -> 태그 내용만큼만 자리를 차지해서 다음요소는 옆에 표시됨(자동 개행이 되지 않음.)
+            -> span, em, mark, del, a, img ...
+            -> width, height 적용 불가(무시해버림)
+    -->
+    <div style="background-color: navajowhite;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquam quos ipsum inventore quasi rerum accusantium facere magni amet, illum eum ipsam nemo aspernatur soluta cumque provident fuga reprehenderit ut.
+    </div>
+
+    <span style="background-color:darkseagreen;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium assumenda asperiores omnis ullam aut quo, soluta culpa vitae accusantium harum esse laboriosam quasi qui enim nesciunt hic magnam? Necessitatibus, illum.</span>
+    <span style="background-color: darkgray;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quibusdam ad, sed magnam repudiandae ea. Recusandae ab beatae quod deleniti tenetur suscipit mollitia exercitationem nulla, porro voluptatem adipisci ad repudiandae.</span>
+
+    <ul> <!-- ul태그 : block -->
+        <li>안녕 <span>Hello</span></li> <!-- li태그: block -->
+        <li>잘가</li>
+    </ul>
+</body>
+</html>

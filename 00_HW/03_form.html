@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>220406 실습문제 - form</title>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <ol>
+                <li>
+                    <label for="userName">납품자명(필수) : </label>
+                    <input type="text" name="userName" id="userName" required>
+                </li><br>
+                <li>
+                    <label for="userEmail">email(필수) : </label>
+                    <input type="email" name="userEmail" id="userEmail" required placeholder="answer@naver.com">
+                </li><br>
+                <li>
+                    <label for="homepage">홈페이지 : </label>
+                    <input type="url" name="homepage" id="homepage" value="http://">
+                </li><br>
+                <li>
+                    <label for="region">지역 : </label>
+                    <select name="region" id="region">
+                        <option value="busan" selected>부산</option>
+                        <option value="seoul">서울</option>
+                        <option value="gyeonggi">경기</option>
+                    </select>
+                </li><br>
+            </ol>
+        </fieldset>
+    
+        <fieldset>
+            <legend>납품 정보</legend>
+            <ul>
+                <li>
+                    <label for="productName">상품명(필수) : </label>
+                    <input type="text" name="productName" id="productName" required>
+                </li><br>
+                <li>
+                    <label for="quantity">납품수량(필수) : </label>
+                    <input type="number" name="quantity" id="quantity" min="100" placeholder="최소 100" required>
+                </li><br>
+                <li>
+                    <label for="level">납품등급(필수): </label>
+                    <input type="range" name="level" id="level" min="0" max="100" step="5" required>
+                </li><br>
+                <li>
+                    <label for="memo">기타사항 : </label>
+                    <textarea name="memo" id="memeo" cols="30" rows="3"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" value="send message">
+    </form>
+</body>
+</html>
