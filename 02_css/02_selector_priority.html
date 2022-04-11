@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자 우선순위</title>
+</head>
+<body>
+    <h1>선택자 우선순위</h1>
+    <!--
+        a부터 우선순위가 높은 것. 
+        
+        !important 최우선
+        
+        인라인
+        a #id
+        b .class 속성
+        c tag 상태
+
+        * 우선순위 없음
+    -->
+    <!-- p>lorem -->
+    <p id="myp" class="text" title="오늘의 한문장" style="color: cyan;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam tempora dolor tenetur earum ipsam pariatur nam, corporis, fuga nobis quibusdam. Veniam ducimus eaque expedita nulla provident id, harum autem.</p>
+    <style>
+        /* devtool 들어가서 비교해가면서 보기 */ 
+        p {color: violet;}
+        .text {color: yellow !important;}  
+        /* 우선순위는 인라인보다 낮지만, !important가 되어있기 때문에 .text가 가장 최우선이 되어 스타일이 적용된다.  */
+        #myp {color: blueviolet;}
+        
+        /* p#myp body p.text 등 우선순위는 더 상세하게 적을수록 좋다.  */
+    </style>
+</body>
+</html>
