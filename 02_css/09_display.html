@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<body>
+    <h1>display</h1>
+    <!--
+        inline 요소(display: inline) span, a, img... 
+        block 요소(display: block) div, h1, p...
+    -->
+    <div class="box inline">div1</div>
+    <div class="box inline">div2</div>
+    <div class="box inline">div3</div>
+    <hr>
+    <!-- span{span$}*3 -->
+    <span class="box block">span1</span>
+    <span class="box block">span2</span>
+    <span class="box block">span3</span>
+    <hr>
+    <div class="box inline-block">div1</div>
+    <div class="box inline-block">div2</div>
+    <div class="box inline-block">div3</div>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: goldenrod;
+            border: 3px solid #000;
+        }
+        
+        .inline-block {
+            display: inline-block;
+        }
+
+        .block {
+            display: block;
+        }
+
+        /* display inline값을 적용하는 것 */
+        .inline {
+            display: inline; /* 좌우배치 */
+        }
+    </style>
+
+    <h2>숨김처리</h2>
+    <div class="box display-none">display:none</div>
+    <hr>
+    <div class="box visibility-hidden">visibility:hidden</div>
+    <hr>
+    <div class="box opacity0">opacity:0</div>
+    <hr>
+    <style>
+        /* 원래부터 요소가 없었던 것처럼 없어짐 */ 
+        .display-none {display:none;}  
+
+        /* 요소가 차지하고 있던 영역은 그대로 유지하면서 요소만 없어짐 */
+        .visibility-hidden {visibility:hidden;}
+        
+        /* 요소가 차지하고 있던 영역은 그대로 유지하면서 요소만 없어짐 */
+        .opacity0 {opacity: 0;}
+
+        /* 
+            visibility는 hover하면 visible하게 하라고 설정해도 보이지 않지만, opacity는 보인다.
+            왜냐면 opacity는 아예 없어진 게 아닌 그냥 투명도만 조절해서 투명도 0이라 보이지 않았던 것일 뿐 거기에 요소는
+            그대로 있는 것이기 때문에 호버하면 투명도를 1로 해서 보이게 하라는 설정을 하면 보이게 되는 것.
+        */
+        .visibility-hidden:hover {visibility:visible;}
+        .opacity0:hover {opacity: 1;}
+
+    </style>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

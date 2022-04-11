@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>글꼴관련</title>
+</head>
+<body>
+    <h1>글꼴관련</h1>
+    <div>
+        <!-- p#p${abcdefg 1234567890 가나다라마바사}*3 -->
+        <p id="p1">abcdefg 1234567890 가나다라마바사</p>
+        <p id="p2">abcdefg 1234567890 가나다라마바사</p>
+        <p id="p3">abcdefg 1234567890 가나다라마바사</p>
+    </div>
+    <style>
+        /* 구체적 -> 보편적 Generic Family */
+        /* 
+            cursive 필기체
+            monospaced 동일간격 폰트
+            serif 글자 끝 장식이 있는 폰트 
+            sans-serif 글자 끝 장식이 없는 폰트
+        */
+        #p1 {
+            font-family: 궁서체, 휴먼모음T, 고딕체;
+        }  /* 앞에서부터 따져본 뒤 가능한 것이 사용이 되는 것. 
+              앞에서부터 우선순위를 가져서, 궁서체, 휴면모음T, 고딕체 순으로 적용이 되는데, 만약 궁서체가 없다?
+              그러면 휴먼모음T, 고딕체 순으로 적용이 되는 것.  */
+
+        #p2 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #p3 {
+            font-family: 'Do Hyeon', sans-serif;
+        }
+    </style>
+
+
+    <!-- div>ul>li*3 -->
+    <div id="wrapper">
+        <ul>
+            <li>절대단위 px</li>
+            <li>상대단위 em</li>
+            <li>상대단위 rem</li>
+            <li>상대단위 %</li>
+        </ul>
+    </div>
+    <style>
+        :root {font-size: 20px;}
+        div#wrapper {font-size: 10px;}  /* 기준(부모) */ 
+        div#wrapper li:first-of-type {font-size: 32px;} /* 그냥 고정으로 32px */
+        div#wrapper li:nth-of-type(2) {font-size: 2em;} /* 기준(부모) 대비 2배 -> 60px */
+        div#wrapper li:nth-of-type(3) {font-size: 2rem;} /* 루트 대비 2배 -> 40px */ 
+        div#wrapper li:last-of-type {font-size: 200%;}  /* 기준(부모) 대비 2배 -> 60px */ 
+    </style>
+    
+
+    <!-- div>(p>lorem)*2 -->
+    <div id="container">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto laboriosam sed, eveniet ratione minima optio soluta suscipit earum tenetur rerum voluptates reprehenderit numquam, ea sint aperiam unde repudiandae repellat nesciunt!</p>
+        <p>Aliquam beatae cum id perferendis! Ipsum quidem deserunt cumque dolorum earum recusandae harum, a, ab assumenda nulla veniam natus architecto rerum et nihil quod aperiam? Maiores commodi quisquam officia repellat.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium fugit, quo odio dolorem magni dignissimos quaerat in illo corporis soluta ipsum animi necessitatibus sunt maiores facere aliquam porro ipsam possimus.</p>
+    </div>
+    <style>
+        #container p:first-child {
+            font-family: 'Roboto', sans-serif;
+            font-weight: lighter;  
+            /* lighter나 bold 가능, 아니면 숫자로 지정하는 것도 가능 */ 
+            /* light(100) ~ normal(400) ~ bold(700) | 100 ~ 900 */
+        }
+         #container p:nth-child(2) {
+             /* 기울임체 적용 */ 
+             font-style: italic;
+             /* 한 줄 사이의 간격*/
+             line-height: 2em;
+         }
+
+         /* 아래와 같이 한번에 모아서 지정하는 것도 가능 */
+         #container p:last-child {
+             font: italic 700 24px/30px 'Roboto' 
+         }
+         /* font-size/line-height는 띄어쓰면 어떤 게 사이즈고 height인지 헷갈리기 때문에 위와 같이 
+            슬래쉬를 사이에 두고 사이즈/높이 <- 이렇게 써줘야 한다. */ 
+    </style>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
