@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>table</title>
+</head>
+<body>
+   <h1>table</h1>
+   <table>
+      <thead>
+         <tr> <!-- table row (태이블 행) 태그-->
+            <th>브라우저명ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ</th>  <!-- th는 제목으로 볼드체에 가운데 정렬-->
+            <th>제조사</th>
+            <th>홈페이지</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>크롬</td> <!-- td는 안에 속하는 내용으로 기본체에 좌측 정렬-->
+            <td>Google</td>
+            <td>https://google.com</td>
+         </tr>
+         <tr>
+            <td>사파리</td>
+            <td>apple</td>
+            <td>https://apple.com</td>
+         </tr>
+      </tbody>
+      <tfoot>
+         <tr>
+            <td colspan = "2">총 브라우저 수</td> <!-- colspan은 행 수 맞춰주는 것. -->
+            <td>2</td>
+         </tr>
+      </tfoot>
+   </table>
+   <style>
+      table {
+         border: 1px solid #000;
+         border-collapse: collapse;
+         /* 이걸 하면 테이블 테두리가 두줄인 게 한 줄로 나온다. */ 
+         /* separte이 기본값 */
+         
+         width: 500px;
+         height: 300px;
+         table-layout: fixed;
+         /* 테이블 길이는 무조건 지켜주세요. 고정해주세요.*/
+      }
+      th, td {
+         border: 1px solid #000;
+         
+         vertical-align: top;
+         /* top middle bottom 등이 있음. */
+         /* vertical 속성은 테이블 안에서만 먹는다. */
+
+         text-align: center;
+
+         overflow-x: scroll;
+         /* 크기를 넘치는 요소에 대해서 스크롤을 해서 보게 하겠다. */
+
+         white-space: nowrap;
+         /* 
+         개행처리를 빼는 옵션. width가 지정되어 있어도 nowrap이 있어서 결과를 보면 그냥 테이블이 주구장창 길어짐. 
+         하지만 위에 table-layout: fixed를 해두면 테이블 길이는 무조건 고정해야 하기 때문에 테이블이 길어지지 않고 
+         글씨가 그냥 넘친다. 
+         */
+      }
+   </style>
+
+   <div class="box">안녕</div>
+   <style>
+      .box {
+         width: 100px;
+         height: 100px;
+         background-color: greenyellow;
+         margin: 100px auto;
+         text-align: center;
+         /*
+         여기까지는 잘 먹히는데, 아래 vertical-align: middle;은 먹지 않는다.
+         왜냐면 vertical-align은 테이블일때만 쓸 수 있기 때문에
+         얘를 쓰려면 아래 div와 같이 하기.
+         */
+         vertical-align: middle;
+      }
+   </style>
+
+
+<!-- 안녕 글자를 중간에 배치하기 -->
+<div class="box">
+   <span>안녕</span>
+</div>
+<style>
+   .box {
+      width: 100px;
+      height: 100px;
+      background-color: greenyellow;
+      margin: 100px auto;
+      display: table;
+      text-align: center;
+   }
+   .box span {
+      display: table-cell;
+      vertical-align: middle;
+   }
+</style>
+
+<!-- 안녕 글자를 중간에 배치하는 또 다른 방법 -->
+<div class="square">
+   <span>안녕</span>
+</div>
+<style>
+   .square {
+      width: 100px;
+      height: 100px;
+      background-color: hotpink;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center; 
+      align-items: center;
+   }
+</style>
+
+
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

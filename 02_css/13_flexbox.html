@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>flexbox</title>
+</head>
+<body>
+   <h1>flexbox</h1>
+   <!--
+      부모요소 flex-container
+         - flex-direction: row 방향인지 col 방향인지 / row가 기본값
+                           중심축이 행이면 row, 중심축이 열이면 col
+         - justify-content: 메인축 정렬
+         - align-items: 크로스축 정렬
+
+         - flex-wrap : 줄바꿈여부 nowrap(기본값) | wrap
+         - align-content : 여러줄 flex-container 설정
+
+         - flex-flow
+         
+      자식요소 flex-item
+         - flex
+         - flex-grow
+         - flex-basis
+         - order
+
+   -->
+
+   <!-- ul.test.test1>li{$}*3 -->
+   <ul class="test test1">
+      <!-- li{$}*10 -->
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+   </ul>
+   <style>
+      ul.test {
+         display: flex;  
+         flex-direction: row;
+         /* 기본값이 row이므로, 중심축이 행이 되어(행 방향으로 오뎅꼬치 끼웠다고 생각하기) 요소들이 옆으로 나열되는 것. 
+            만약 flex-direction: column;이면 행 방향이 되어서 위에서 아래로 요소가 나열됨. */
+         
+         justify-content: center;
+         /* 요소들을 어떻게 정렬할 것인가. 지금은 center로 되어 있으니 요소들이 중간으로 감. 
+            다른 옵션들은 devtool에서 보면 편함. */
+
+         align-items: center;
+         /* 글로 설명하기 어렵기 때문에 devtools로 확인해보기 */
+
+         flex-wrap: wrap;
+         /*
+            nowrap이 기본값인데,(부모요소를 벗어나도 줄바꿈하지 않음.) wrap을 줌으로써 줄바꿈이 허용됨. 
+            역시 devtools에서 비교해가며 보기 
+         */
+
+         list-style: none;
+         border: 1px solid red;
+         background-color: lightgrey;
+         height: 70vh;
+         padding-left: 0;
+      }
+      
+      ul.test li {
+         width: 100px;
+         height: 100px;
+         background-color: orangered;
+         margin: 8px; 
+      }
+   </style>
+   
+
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

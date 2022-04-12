@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+</head>
+<body>
+    <!--
+        animation
+            - 두 개 이상의 상태를 부드럽게 연결해주는 속성
+
+    -->
+    <h1>animation</h1>
+    <div class="box"></div>
+    <hr>
+    <img class="dog-img" src="../sample/image/hyunta.jpg" alt="" >
+    <style>
+        .box {
+            width: 100px; 
+            height: 100px;
+            background-color: pink;
+            border: 1px solid #000;
+            margin: 100px;
+        }
+
+        .dog-img {
+            
+            width: 100px;
+            /* 테두리 둥글게 만들기 */
+            border-radius: 50%;
+
+            /* 얘는 어떤 상태에 따라 조건이 적용되는 것이 아니고 그냥 기본 상태에 애니메이션이 적용되었기 때문에 
+            창을 열면 바로 애니메이션이 시작된다.*/
+            animation-name: myframes;
+            animation-duration: 1s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-delay: 3s;
+            /* delay는 얼마 있다가 시작할 것인지 시간을 정하는 속성 */
+
+            /* 위에 다섯줄을 한번에 쓴 것이 아래줄*/
+            /* animation: myframes 1s 3s infinite alternate; */
+        }
+
+        body:hover .box {
+            animation-name: myframes;
+            animation-duration: 2s;
+
+            /* 반대로 처리하는 것*/
+            /* animation-direction: reverse; */
+
+            /* myframes를 한 번 수행했을 때가 count 1 */
+            animation-iteration-count: 2;
+            
+            /* 왔다갔다가 하는 것; animation-iteration-count가 2로 되어 있기 때문에 왔다가(1) 다시 돌아가게됨(1) -> 총 2!!*/
+            /* animation-iteration-count: infinite 면 끝도없이 왔다갔다 함. */
+            animation-direction: alternate;
+
+            /* timing 효과 넣기도 가능 */
+            animation-timing-function: linear;
+
+            /* 다 하고 나서 어디에 머물 것인지 정하는 속성 */
+            /* animation-fill-mode: forwards;  */
+            /* forwards는 앞으로 간 뒤 그 끝에서 멈추게 됨*/
+        }
+    
+    /* 여러 상태값을 보관하는 keyframes가 있어야 함 */
+    /* translate은 시작점 대비 상대위치로 작성할 것 */
+    @keyframes myframes {
+        25% {
+            /* 시작위치 기준으로 작성해줘야함.*/
+            transform: translate(100px, 0);
+            /* 100px을 0 이동해라 */
+        }
+
+        50% {
+            /* 시작점 기준으로 100만큼 오른쪽으로, 100만큼 아래로*/
+            transform: translate(100px, 100px);
+        }
+
+        75% {
+            transform: translate(0, 100px);
+        }
+
+        100% {
+            transform: translate(0, 200px);
+        }
+    }
+    </style>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -7,32 +7,28 @@
     <title>Selector</title>
 </head>
 <body>
-    <h2>숨김처리</h2>
-    <div class="box display-none">display:none</div>
-    <hr>
-    <div class="box visibility-hidden">visibility:hidden</div>
-    <hr>
-    <div class="box opacity0">opacity:0</div>
-    <hr>
+    <div id="wrapper5">
+		<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci iure possimus voluptatum, delectus reprehenderit vero dolore, veritatis, eligendi numquam deserunt maiores ducimus consectetur non aliquam quis beatae. Temporibus, molestias sint.</p>
+    </div>
 
     <style>
-        /* 원래부터 요소가 없었던 것처럼 없어짐 */ 
-        .display-none {display:none;}  
-
-        /* 요소가 차지하고 있던 영역은 그대로 유지하면서 요소만 없어짐 */
-        .visibility-hidden {visibility:hidden;}
-        
-        /* 요소가 차지하고 있던 영역은 그대로 유지하면서 요소만 없어짐 */
-        .opacity0 {opacity: 0;}
-
-        /* 
-            visibility는 hover하면 visible하게 하라고 설정해도 보이지 않지만, opacity는 보인다.
-            왜냐면 opacity는 아예 없어진 게 아닌 그냥 투명도만 조절해서 투명도 0이라 보이지 않았던 것일 뿐 거기에 요소는
-            그대로 있는 것이기 때문에 호버하면 투명도를 1로 해서 보이게 하라는 설정을 하면 보이게 되는 것.
-        */
-        .visibility-hidden:hover {visibility:visible;}
-        .opacity0:hover {opacity: 1;}
-
+        #wrapper5 {
+            border: 2px solid black;
+            background-color: lightgrey;
+            margin-top: 30px;  /* 다른 요소와의 여백 관리 */
+            width: 300px;
+            /* 줄바꿈속성 : nowrap - 감싸지 않겠다! */
+            white-space: nowrap; 
+    
+            /* 감싸지지 않은 것들은(넘쳐진 자식요소) 숨기겠다. 안나오게 하겠다. */
+            /* overflow: hidden;   */
+    
+            /* 넘쳐진 자식요소에 대해 스크롤만들어라 */
+            overflow: scroll;
+    
+            /* x축으로만 스크롤하게 해주세요*/
+            overflow-x: scroll;
+       }
     </style>
 
 </body>

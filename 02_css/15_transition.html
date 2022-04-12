@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>transition</title>
+</head>
+<body>
+   <!-- 
+      transition
+         -두 개의 상태가 있는데 그 상태들끼리의 전환을 부드럽게 연결해주는 것
+         - transition이 없으면 두 개의 상태가 뙇! 뙇! 나옴
+         - 단점: 두 개의 상태밖에 연결하지 못함. 즉 두 개 이상에 대해서는 쓸 수 없음. 
+      
+   -->
+   <h1>transition</h1>
+   <div class="box"></div>
+   <style>
+      .box {
+         width: 100px;
+         height: 100px;
+         background-color: tomato;
+         border: 2px solid #000;
+
+         /* 이 요소가 상태가 변한다면 1초동안 변하게 해주세요 */
+         transition-duration: 1s;
+
+         /* 모든 속성에 대해서 transition을 적용해주세요(기본값 - all) */
+         /* transition-property: all; */
+
+         /* transform에 대해서만 transition을 적용해주세요  */
+         transition-property: transform;
+         /* 이렇게 하면 color는 부드럽게 바뀌지 않고 뙇! 이렇게 바뀐다. */
+         /* 즉 transition이 없으면 효과가 뙇! 뙇! 이렇게 바뀌는 것. 그래서 transition을 사용하면 부드럽게 바뀜. */
+
+         /* 지연시간: 1초만 있다가 시작해주세요 */
+         /* transition-delay: 1s; */
+
+         /* 효과 - linear, ease, ease-in, ease-out */ 
+         transition-timing-function: ease-in;
+
+      }
+
+      /* .box를 hover 했을 때 */
+      .box:hover {
+         background-color: greenyellow;
+
+         /* 크기를 두 배 확장시켜 주세요 - 방법 1 */
+         /* width: 200px; */
+         /* height: 200px; */
+         
+         /* 크기를 두 배 확장시켜 주세요 - 방법 2 - 근데 좀 이상함ㅠㅠ */
+         transform: translate(200%, 0);
+      }
+   </style>
+
+   <!-- transition 예제 -->
+   <h2>Card</h2>
+   <!-- div.tile>h1+h2+p>lorem -->
+   <div class="tile">
+      <h1>Hello World</h1>
+      <h2 class="text-transition">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+      <p class="text-transition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores praesentium, nam doloremque ipsum autem sapiente ducimus labore?</p>
+   </div>
+   <style>
+      .tile {
+         width: 380px;
+         height: 380px;
+         margin: 10px;
+         padding: 30px;
+         background-color: #99aeff;
+
+         /* 손가락 모양 */
+         cursor: pointer;
+
+         box-shadow: 0px 35px 77px -17px rgba(0, 0, 0, .4);
+         color: white;
+
+         /* 부모영역 바깥으로 나온 애를 감출 때 */
+         overflow: hidden;
+      }
+
+      .tile h1 {
+         text-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
+      }
+
+      .tile h2 {
+         font-weight: lighter;
+         font-style: italic;
+         transform: translate(-380px);
+      }
+
+      .tile p {
+         line-height: 27px;
+         transform: translate(380px);
+
+         /* 흐리게 */
+         opacity: .7;
+
+         /* 글자들끼리의 시간차를 주기 위해 p태그에만 delay 속성을 2초로 줌 */
+         transition-delay: .2s;
+      }
+
+      .text-transition {
+         transition: all .6s;
+      }
+
+      .tile:hover .text-transition {
+         /* 좌 우로 나갔던 것들을 가운데(0) 제자리로 오게 해 주세요. */
+         transform: translateX(0); 
+
+         /* 그리고 투명한 것을 불투명하게 해주세요*/
+         opacity: 1;
+      }
+   </style>
+
+   <!-- 예제 2 -->
+   <div class="wrapper">
+      <img src="../sample/image/hyunta.jpg" alt="">
+   </div>
+   <style>
+      .wrapper {
+         border: 1px solid gray;
+         width: 300px;
+         height: 290px;
+         overflow: hidden;
+      }
+      .wrapper img {
+         width: 100%;
+         transition: .3s;
+      }
+      .wrapper:hover img {
+         transform: scale(1.1);
+      }
+   </style>
+
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
