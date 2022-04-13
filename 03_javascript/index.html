@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <script src="js/main.js"></script> <!-- 외부 js파일 가져오기-->
+    <script>
+        // 자바스크립트 작성 영역1 - head 태그 안
+        // const a = 123;
+        // alert(a);
+        function foo(){
+            console.log('foo 실행!');  // 브라우져 개발도구 console탭에 출력 
+        }
+        foo(); // 함수 호출!
+    </script>
+</head>
+<body>
+    <h1>Javascript</h1>
+
+    <h2>브라우저에서 javascript를 사용하는 세 가지 방법</h2>
+    <ul>
+        <li>내부 script 작성</li>
+        <li>
+            html 이벤트 속성
+            <!-- 아래 button의 onclick은 자바스크립트 영역, 세미콜론으로 이어서 여러줄을 호출할수도 있다. -->
+            <button onclick="alert('버튼 클릭함'); foo(); bar();">클릭미</button>
+        </li>
+        <li>외부 script 작성하고 가져와 사용하기</li>
+    </ul>
+
+    <ul>
+        <li><a href="01_datatype.html">자료형</a></li>
+        <li><a href="02_access_dom.html">DOM에 접근하기</a></li>
+        <li><a href="03_className_classList.html">클래스값으로 DOM 제어</a></li>
+    </ul>
+
+    <script>
+        // 자바스크립트 작성 영역2 - body 종료 태그 전
+        const b = 456;
+        alert(b);
+    </script>
+</body>
+</html>

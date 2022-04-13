@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selector</title>
-</head>
-<body>
-    <div id="wrapper5">
-		<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci iure possimus voluptatum, delectus reprehenderit vero dolore, veritatis, eligendi numquam deserunt maiores ducimus consectetur non aliquam quis beatae. Temporibus, molestias sint.</p>
-    </div>
-
-    <style>
-        #wrapper5 {
-            border: 2px solid black;
-            background-color: lightgrey;
-            margin-top: 30px;  /* 다른 요소와의 여백 관리 */
-            width: 300px;
-            /* 줄바꿈속성 : nowrap - 감싸지 않겠다! */
-            white-space: nowrap; 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>클래스값으로 DOM 제어</title>
+        <style>
+            table {
+                border: 1px solid black;
+                border-collapse: collapse; /* 두 줄을 한 줄로 만들겠다. */
     
-            /* 감싸지지 않은 것들은(넘쳐진 자식요소) 숨기겠다. 안나오게 하겠다. */
-            /* overflow: hidden;   */
-    
-            /* 넘쳐진 자식요소에 대해 스크롤만들어라 */
-            overflow: scroll;
-    
-            /* x축으로만 스크롤하게 해주세요*/
-            overflow-x: scroll;
-       }
-    </style>
-
-</body>
+            }
+            td, td {
+                border: 1px solid black;
+                text-align: center;
+                padding: 5px;
+            }
+            .on {
+                background-color: hotpink;
+                color: white;
+            }
+            .gungseo {
+                font-family : 궁서, 'serif';
+            }
+        </style>
+    </head>
+    <body>
+        <h1>클래스값으로 DOM 제어</h1>
+        <!-- table>thead>tr>th -->
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">수강신청</th>
+                </tr>
+            </thead>
+            <!-- tbody>tr>td -->
+            <tbody>
+                <tr>
+                    <td colspan="5">
+                        <!-- input:checkbox#checkAll -->
+                        <input type="checkbox" id="checkAll" onchange="checkAllChanged()">
+                        <label for="checkAll">전체선택/해제</label>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- tr>(td>input:checkbox[name=subject]#subject$+label[for=subject$])*5 -->
+                    <td class="gungseo"><input type="checkbox" name="subject" id="subject1" onchange="subjectChanged(this);"><label for="subject1">국어</label></td>
+                    <td class="gungseo"><input type="checkbox" name="subject" id="subject2" onchange="subjectChanged(this);"><label for="subject2">영어</label></td>
+                    <td class="gungseo"><input type="checkbox" name="subject" id="subject3" onchange="subjectChanged(this);"><label for="subject3">수학</label></td>
+                    <td class="gungseo"><input type="checkbox" name="subject" id="subject4" onchange="subjectChanged(this);"><label for="subject4">사회</label></td>
+                    <td class="gungseo"><input type="checkbox" name="subject" id="subject5" onchange="subjectChanged(this);"><label for="subject5">과학</label></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
 </html>

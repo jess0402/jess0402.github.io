@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료형</title>
+</head>
+<body>
+    <h1>자료형</h1>
+    <button onclick="test1();">test1</button>
+
+    <script>
+
+        /*
+        * 자료형
+        */
+        function test1(){
+            // 변수 선언 키워드 - let(변수선언) / const(상수선언)
+            let a;  // 변수 선언은 되었지만 자료형이 아직 지정되지 않음.
+            console.log(typeof a, a);  // undefined undefined
+
+            // 실제 값대입을 하면서 자료형이 정해짐 (즉 값을 통해 자료형을 지정) - Dynamic Typing
+            // a에다가 123을 대입하면 number형이 되는 것이고, "안녕"을 대입하면 string타입이 되는 것.
+            a = "안녕";
+
+            // 타입 확인
+            console.log(typeof a, a);
+
+            // 자료형
+            
+            // string - 문자열, 문자 구분하지 않고 string 하나임, 홑따옴표나 쌍따옴표로 감싸서 쓰면 됨.
+            const str = "abc";
+            console.log(typeof str, str);  // string abc
+
+            // number (정수, 실수 나누지 않음)
+            const num = 123;
+            console.log(typeof num, num);  // number 123
+
+            // boolean
+            const bool = false;
+            console.log(typeof bool, bool); // boolean false
+            
+            // object - 속성명(obj), 속성값(name, n, married) 써주면 됨
+            const obj = {
+                name: '홍길동',
+                n : 123.456,
+                married : true,
+                hobby : ['축구', '농구'], 
+                foo : function(){
+                    console.log('obj.foooooooooooooooooooooo');
+                },
+                friend : {
+                    name : '고길동'
+                }
+            };
+            console.log(typeof obj, obj);
+            console.log(obj.hobby);
+            console.log(obj.foo);
+            console.log(obj.friend);
+
+            const today = new Date();
+            console.log(typeof today, today); // object Wed Apr 13 2022 10:46:52 GMT+0900 (한국 표준시)
+
+            const arr = [1, 2, 3]; // 배열도 하나의 객체타입
+            console.log(typeof arr, arr); // object (3) [1, 2, 3]
+            console.log(arr[0], arr[1], arr[2]);
+
+            // function
+            function foo(){
+                console.log('fooooooooooooooooo');
+            }
+            console.log(typeof foo, foo); 
+            foo();  // 함수 호출 - fooooooooooooooooo가 출력됨
+
+
+            // undefined
+            let h;
+            console.log(typeof h, h);  // undefined undefined
+            
+            // undefined는 값을 비우기 위해 쓰기도 함
+            let m = 123;
+            m = undefined;
+            console.log(typeof m, m);
+
+        }
+    </script>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

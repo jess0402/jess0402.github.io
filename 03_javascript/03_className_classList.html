@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스값으로 DOM 제어</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse; /* 두 줄을 한 줄로 만들겠다. */
+
+        }
+        td, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+        }
+        .on {
+            background-color: hotpink;
+            color: white;
+        }
+        .gungseo {
+            font-family : 궁서, 'serif';
+        }
+    </style>
+</head>
+<body>
+    <h1>클래스값으로 DOM 제어</h1>
+    <!-- table>thead>tr>th -->
+    <table>
+        <thead>
+            <tr>
+                <th colspan="5">수강신청</th>
+            </tr>
+        </thead>
+        <!-- tbody>tr>td -->
+        <tbody>
+            <tr>
+                <td colspan="5">
+                    <!-- input:checkbox#checkAll -->
+                    <input type="checkbox" id="checkAll" onchange="checkAllChanged()">
+                    <label for="checkAll">전체선택/해제</label>
+                </td>
+            </tr>
+            <tr>
+                <!-- tr>(td>input:checkbox[name=subject]#subject$+label[for=subject$])*5 -->
+                <td class="gungseo"><input type="checkbox" name="subject" id="subject1" onchange="subjectChanged(this);"><label for="subject1">국어</label></td>
+                <td class="gungseo"><input type="checkbox" name="subject" id="subject2" onchange="subjectChanged(this);"><label for="subject2">영어</label></td>
+                <td class="gungseo"><input type="checkbox" name="subject" id="subject3" onchange="subjectChanged(this);"><label for="subject3">수학</label></td>
+                <td class="gungseo"><input type="checkbox" name="subject" id="subject4" onchange="subjectChanged(this);"><label for="subject4">사회</label></td>
+                <td class="gungseo"><input type="checkbox" name="subject" id="subject5" onchange="subjectChanged(this);"><label for="subject5">과학</label></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+
+        /**
+         * [name=subject]가 체크/체크해제되었을때 change 이벤트핸들러
+         *  - 어느 체크박스에서 호출한 것인지 확인하기 위해 id 매개변수가 같이 넘어와야 한다.
+         *  - this용법 1. inline 이벤트속성에 기술된 this는(위와 같은 경우) 태그 객체 자신이다.
+         *  - 
+         */
+        function subjectChanged_TEMP(subject){
+            // console.log("subjectChanged : ", id);
+            // const subject = document.querySelector("#" + id);
+            console.log('this', subject);
+            const parentTd = subject.parentElement;
+            // console.log(parentTd);
+            
+            // 아래와 같이 classList를 사용하면 특정 클래스에 대해서 제어가 가능함.
+            console.log(parentTd.classList);
+
+            // 체크했을 때 className을 on으로 바꿔줘
+            if(subject.checked){
+                // parentTd.className = "on gungseo";
+
+                // 아래와 같이 하면 on에 대해서만 추가하고
+                parentTd.classList.add("on"); 
+            }
+            else{
+                // parentTd.className = "gungseo";
+
+                // on에 대해서만 삭제할 수 있음
+                parentTd.classList.remove("on");
+            }
+
+        }
+
+        function subjectChanged(subject) {
+            // console.log("this", subject);
+            toggleClassOn(subject);
+
+            // 전체선택 체크박스 처리
+            // 과목이 모두 체크된 경우 전체선택/해제 버튼도 자동으로 체크되도록(#checkAll.checked = true)
+            // 하나라도 체크가 해제된 경우 전체선택/해제 버튼이 자동으로 체크해제 되도록(#checkedAll.checked = false)
+            const subjects = document.querySelectorAll('[name=subject]'); // 전체 과목 가져와주세요 
+            const checkedSubjects = document.querySelectorAll('[name=subject]:checked'); // 체크된 과목만 가져와주세요
+            const checkAll = document.querySelector("#checkAll");
+
+            // 길이 확인
+            // console.log(subjects, checkedSubjects);
+
+            // checkAll의 checked는 subjects.length와 checkedSubjects.length가 같으면 true
+            // 즉 subjects.length는 항상 5이고, checkedSubject.length는 체크된 과목의 수인데 전체 체크되면 5일테니까,
+            // 과목들이 전체체크되어서 subjects.length == checkedSubjects.length 가 5 == 5로 true가 나오면
+            // checkAll.checked = true; 가 되어 전체선택/해제 체크박스가 체크가 되는 것이다. 
+            checkAll.checked = (subjects.length == checkedSubjects.length);
+
+        }
+
+        // 위 subjectChanged_TEMP() 함수 정리본
+        function toggleClassOn(subject){
+            const parentTd = subject.parentElement;
+        
+            if(subject.checked){
+                parentTd.classList.add("on"); 
+            }
+            else{
+                parentTd.classList.remove("on");
+            }
+        }
+
+
+        /**
+         * #checkAll 체크/체크해제했을 때 change 이벤트 핸들러
+         */
+        function checkAllChanged_ID(){
+            console.log("checkAllChanged");
+            
+            // getElementsByName이나 querySelectorAll 둘 중 아무거나 써도 됨 
+            const subjects = document.getElementsByName('subject');
+            // const subjects = document.querySelectorAll('[name=subject]');
+            
+            // 잘 가져왔는지 확인
+            console.log(subjects);
+
+            // 전체선택/해제의 요소 가져오기 
+            const checkAll = document.querySelector('#checkAll');
+
+            for(let i = 0; i < subjects.length; i++){
+                const subject = subjects[i];
+
+                // 1. 체크/체크해제 처리 
+                // 전체선택/해제의 checked => checkAll.checked
+                // 전체선택/해제의 checked가 true면(=전체선택 해라) -> subject.checked = true
+                // 전체선택/해제의 checked가 false면(=전체선택 해제해라) -> subject.checked = false
+                subject.checked = checkAll.checked;
+
+                // 2. 부모td.on 처리
+                subjectChanged(subjectt.id);
+            }
+
+        }
+
+        function checkAllChanged(){
+            // console.log("checkAllChanged");
+
+            const subjects = document.getElementsByName('subject');
+            
+            // console.log(subjects);
+
+            const checkAll = document.querySelector('#checkAll');
+
+            for(let i = 0; i < subjects.length; i++){
+                const subject = subjects[i];
+                subject.checked = checkAll.checked;
+
+                // 2. 부모td.on 처리
+                toggleClassOn(subject);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM에 접근하기</title>
+</head>
+<body>
+    <h1>DOM에 접근하기</h1>
+    <!--
+        DOM Document Object Model
+        - html의 모든 요소는 document 객체 하위에서 계층구조로 관리된다.
+        - console.dir(document)로 확인하기 // children 속성 확인
+    -->
+    <div>
+        <ul>
+            <!-- id는 태그별로 무조건 달라야 한다. -->
+            <li id = "hw1" class="group1" title="HelloWorld1">HelloWorld1</li>
+            <li id = "hw2" class="group1">HelloWorld2</li>
+            <li id = "hw3" class="group2" title="HelloWorld3">HelloWorld3</li>
+            <li id = "hw4" class="group2">HelloWorld4</li>
+            <li id = "hw5" class="group1 group2">HelloWorld5</li>
+        </ul>
+    </div>
+    <div>
+        <input type="text" name="username" id="username">
+        <br>
+        <input type="range" name="point" id="point" min="0" max="100" value="0" oninput="test6();">
+        <span id="pointView">0</span>점<br>
+        <input type="checkbox" name="fruit" id="apple" value="사과">
+        <label for="apple">사과</label>
+        <input type="checkbox" name="fruit" id="banana" value="바나나">
+        <label for="banana">바나나</label>
+        <input type="checkbox" name="fruit" id="peach" value="복숭아">
+        <label for="peach">복숭아</label>
+     </div>
+    <button onclick="test1();">getElementById</button>  <!-- 여기에 있는 Element만 s가 붙지 않음. 왜냐면 ID는 복수가 될 수 없기 때문 -->
+    <button onclick="test2();">getElementsByTagName</button>
+    <button onclick="test3();">getElementsByClassName</button>
+    <button onclick="test4();">getElementsByName</button>
+    <button onclick="test5();">사용자입력값 출력</button>
+
+    <button onclick="test7();">querySelector</button>
+    <button onclick="test8();">querySelectorAll</button>
+
+    <script>
+        
+        /**
+         * querySelector
+         *  - css 선택자를 통해 DOM 요소를 접근할 수 있다. 
+         *  - 선택자와 일치하는 하나의 요소 반환
+         *  - 즉 복수개에 해당하는 선택자여도 첫 요소만 반환한다.
+         */
+        function test7(){
+            // const elem = document.querySelector('#username');
+            const elem = document.querySelector('[name=fruit]');
+            // 위와 같이 하면 name=fruit인 요소가 3개나 있지만, 그 중 맨 처음 요소만 반환한다.
+            console.log(typeof elem, elem);
+            console.dir(elem);
+        }
+
+        /**
+         * querySelectorAll
+         *  - css 선택자를 통해 DOM 요소를 접근할 수 있다.
+         *  - 선택자와 일치하는 모든 요소 유사배열에 반환
+         */
+        function test8(){
+            const elems = document.querySelectorAll('[name=fruit]');
+            console.log(typeof elems, elems);
+            console.dir(elems);
+            
+            for(let i = 0; i < elems.length; i++){
+                console.log("%s : %s", elems[i].id, elems[i].checked);
+            }
+
+            // css 선택자 뭐든 가능함. 아래와 같이 ul 밑에 li를 지정하는 것도 가능.
+            // const elems = document.querySelectorAll('ul li');
+        }
+
+        /**
+         * input#point 이벤트핸들러(리스너)
+         *  - A 사용자값 값입력(핸들 조정)
+         *  - B span#pointView 값표시(test6 함수) 
+         *  -> A가 일어나면 B를 처리해주세요
+         */ 
+        function test6() {
+            // 먼저 값 읽어오기
+            // 아래 const point = ~ 와 const pointView = ~ 는 생략할 수 있음. 
+            // const point = document.getElementById('point');
+            const pointVal = point.value;
+
+            console.log(pointVal);
+
+            // const pointView= document.getElementById('pointView');
+            pointView.innerHTML = pointVal;
+        }
+
+
+        /**
+         * @실습문제 
+         * input#username의 사용자입력값을 alert로 출력
+         */
+        function test5(){
+            // const username = document.getElementsByName('username')[0];
+            // 위와 같이 getElementsByName은 배열을 반환하기 때문에 [0]을 뒤에 붙여줘야한다 
+            const username = document.getElementById('username');
+            alert(username.value);
+        }
+
+
+        /**
+         * getElementByName
+         *  - 해당 name을 가진 input/select 태그를 배열(가짜)로 반환
+         *  - 매칭되는 태그가 없을시 빈 배열을 반환
+         */
+        function test4() {
+            // fruit 이름을 가진 요소들을 저장함
+            const fruits = document.getElementsByName('fruit'); 
+            console.log(typeof fruits, fruits);
+            let str = "";
+            for(let i = 0; i < fruits.length; i++){
+                const fruit = fruits[i];
+                // console.dir(fruit);
+                // console.log("%s : %s", fruit.id, fruit.checked);
+                // fruit.checked = true; // setter로써 사용
+                if(fruit.checked) {
+                    str += fruit.value + " "; 
+                }
+            }
+            alert(str);
+        }
+        /**
+         * getElementsByClassName
+         *  - class 자체가 grouping 하기 위한 용도이기 때문에 해당 class를 가진 태그객체를 가짜배열로 반환한다.
+         */
+        function test3(){
+            const group1 = document.getElementsByClassName("group1");
+            console.log(typeof group1, group1);
+
+            for(let i = 0; i < group1.length; i++) {
+                const gp = group1[i];
+                gp.style.fontStyle = 'italic';
+            }
+        }
+
+        /**
+         *  getElemetnsByTagName
+         *      - 태그이름으로 조회하니까 당연히 요소가 여러개일 수 있음
+         *      - 해당 요소를 포함하는 배열객체(가짜)를 반환.
+         */
+        function test2(){
+            const list = document.getElementsByTagName("li");
+            // console.log(typeof list, list);
+
+            for(let i = 0; i < list.length; i++){
+                const li = list[i];
+                console.dir(li);
+                console.log(li.id, li.className, li.innerHTML);
+
+                // javascript에서 css 제어하기
+                // background-color가 아닌 backgroundColor라는 것!! 중간에 - 가 빠짐. 
+                li.style.backgroundColor = 'hotpink';
+                li.style.color = 'white';
+                li.style.fontSize = '32px';  
+                // javascript의 style은 다 문자열로 되어있기 때문에 숫자를 적어도 따옴표로 감싸서 문자열처리해야함. 
+            }
+        }
+
+        /**
+         *  getElemetnByID
+         */
+        function test1(){
+            const hw1 = document.getElementById('hw1');
+            console.log(typeof hw1, hw1);
+            console.dir(hw1);
+            console.log('id : ', hw1.id);
+            console.log('class : ', hw1.className);
+            console.log('title : ', hw1.title);
+            console.log('innerHTML : ', hw1.innerHTML);
+
+            const notExist = document.getElementById("dfsdfwef");
+            console.log(typeof notExist, notExist);  // object null
+            // type은 object인데 값이 없는 경우가 null
+            // undefined는 type도 undefined이고, 값도 undefined인 것. 
+
+            console.log(notExist.id);  // Uncaught TypeError : Cannot read properties of null (reading 'id')
+            // notExist.id의 위치를 의심해야함. 얘가 null이거나 undefined이거나. 
+            // 위 오류를 해결하지 않으면 그 이하 코드들이 실행이 안됨. 그래서 아래 console.log(12345);가 실행이 안됨. 
+            console.log(12345);
+        }
+    </script>
+</body>
+</html>
