@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>220414_실습문제 - 납품정보</title>
+</head>
+<style>
+    #result {
+        background-color: yellowgreen;
+        border: 1px solid #000;
+        height: 200px;
+    }
+    #productAmount {
+        width: 100px;
+    }
+</style>
+<body>
+    <h1>실습문제2</h1>
+    <form method="get" action="">
+        <fieldset>
+            <legend>납품정보</legend>
+            <ul>
+                <li>
+                    <label for="goodirum">상품명 : </label>
+                    <input type="text" id="productName" list="goodlist" required>
+                    <datalist id="goodlist">
+                        <option value="dog1004">도그1004</option>
+                        <option value="catchicken">고양이치킨</option>
+                        <option value="milk">우유</option>
+                    </datalist>
+                </li>
+                <br>
+                <li>
+                    <label for="productAmount">납품수량 : </label>
+                    <input type="number" id="productAmount" min="10" max="100" step="10" placeholder="최소10이상">
+                </li>
+                <br>
+                <li>
+                    <label for="productLevel">납품등급 : </label>
+                    <input type="range" id="productLevel" min="0" max="10" step="2" onchange="showValue();">&nbsp;
+                    <span id="pVal">0</span>
+                </li>
+                <br>
+                <li>
+                    <label for="message">기타사항 : </label>
+                    <textarea id="message" rows="5" cols="30"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="button" value="send message" onclick="printProduct();">
+    </form>
+    <br><div id="result"></div>
+<script>
+    function showValue(){
+        const pl = productLevel.value;
+        pVal.innerHTML = pl;
+    }
+
+    function printProduct(){
+        const bool = confirm('주문하시겠습니까?');
+        
+        if(bool){
+            const pname = productName.value;
+            const plevel = productLevel.value;
+            const pamount = productAmount.value;
+            const msg = message.value;
+
+            result.innerHTML = `상품명 : ${pname}<br>
+                                납품등급 : ${plevel}<br>
+                                납품수량 : ${pamount}<br>
+                                기타사항 : ${msg}<br>`;
+            
+            init();
+        }
+        else{
+            alert('취소되었습니다.');
+
+            init();
+
+            return;
+        }
+
+    }
+    
+    function init(){   
+        productName.value = "";
+        productLevel.value = "";
+        productAmount.value = "";
+        message.value = "";
+    }
+
+</script>
+</body>
+</html>
