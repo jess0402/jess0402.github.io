@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체</title>
+</head>
+<body>
+    <h1>객체</h1>
+    <button onclick="test1();">객체생성 - literal</button>
+    <button onclick="test2();">객체생성 - 생성자함수</button>
+    <script>
+        /**
+         * 객체생성 - literal
+         * 
+         * - (속성명 : 속성값)을 하나의 요소로 관리
+         *  -> 동일한 속성명으로 값을 대입하면, 이전 속성값은 대체된다.
+         *  -> 속성명 : 모든 타입이 가능하지만, 되도록이면 키워드, 문자열 사용을 추천한다.
+         *  -> 속성값 : 모든 타입이 가능하다
+         */
+        const test1 = () => {
+            const obj = {
+                id : 'honggd',
+                'name' : '홍길동',
+                married : true,
+                hobby : ['축구', '농구', '배구'],
+                // 속성값으로 또 다시 객체가 올 수도 있다.
+                pet : {
+                    name : '구리구리',
+                    breed : '푸들'
+                },
+                123 : 456,
+                'a-b' : 'ㅋㅋㅋ'
+            };
+            console.log(obj);
+
+            // 속성 접근방식
+            // 1. dot-notation : 점찍어서 접근하겠다 -> .속성명
+            // 2. bracket-notation: 대괄호로 접근하겠다 -> ['속성명'] 
+            console.log(obj.id);
+            console.log(obj.name);
+            console.log(obj.married);
+            console.log(obj.hobby);
+            console.log(obj.pet);
+            // console.log(obj.123);  // Uncaught SyntaxError: missing ) after argument list 
+            // console.log(obj.a-b); // Uncaught ReferenceError: b is not defined at test1
+
+            console.log(obj['id']); 
+            console.log(obj['name']); 
+            console.log(obj['married']); 
+            console.log(obj['hobby']); 
+            console.log(obj['pet']); 
+            console.log(obj[123]);  // 대괄호 접근은 가능함.
+            console.log(obj['a-b']); // 대괄호 접근은 가능함.
+
+            // 없는 속성을 참조해도 오류나지 않고 undefined 리턴
+            console.log(obj.abcdef); // undefined
+
+            // 뒤늦게 속성 추가도 가능함
+            obj.abcdef = 'ABCDEF';
+            console.log(obj.abcdef); // ABCDEF <- 이제는 추가했기 때문에 나옴.
+        };
+
+        /**
+         * 객체생성 - 생성자함수
+         */
+        const test2 = () => {
+            // 생성자로 객체 생성
+            const obj = new Object();
+
+            // 속성 추가
+            obj.name = '망고';
+            obj.weight = '0.3';
+            obj.price = 3000;
+            obj['origin'] = '필리핀';
+
+            // 값만 제거
+            obj.price = undefined;
+
+            // 속성 제거
+            delete obj.origin;
+
+            console.log(obj);
+        };
+    </script>
+
+    <button onclick="test3();">메서드</button>
+    <script>
+        /**
+         * 메서드
+         *  - 객체의 속성으로 등록된 함수를 메서드라고 한다.
+         *  - 주의할 점!! 메서드 작성할 때 화살표 함수 쓰지 말기.
+         *               화살표 함수의 this는 자기객체의 this가 아닌 부모환경의 this를 가져다 쓰기 때문.
+         *  -   
+         */
+        const test3 = () => {
+            const dog = {
+                name : '복실이',
+                // 메서드
+                run : function(){
+                    // this용법 4 - 메서드(객체 속성으로 등록된 함수) 안의 this는 현재 객체(dog)을 가리킨다.
+                    console.log(this.name + '가 달린다.');  
+                }, 
+
+                // 메서드문법 - 외부에서는 이렇게 쓸 수 없음. 메서드 안에서만 이렇게 작성 가능.
+                jump(){
+                    console.log(this.name + '가 점프한다.');
+                },
+                eat(food){
+                    console.log(`${this.name}가 ${food}를 먹는다.`);
+                }
+            };
+
+            console.log(typeof dog.run, dog.run); // 이렇게 하면 함수가 나옴. 실행이 되는 건 아님.
+            
+            // 실행 - dot-notation
+            dog.run();  // 복실이가 달린다.
+            dog.jump(); // 복실이가 점프한다.
+            dog.eat('갈비');  // 복실이가 갈비를 먹는다.
+
+            // 실행 - bracket-notation
+            dog['run']();
+            dog['jump']();
+            dog['eat']('개껌');
+        };
+    </script>
+
+    <button onclick="test4();">반복처리</button>
+    <script>
+        /**
+         * 반복처리 - 객체의 모든 요소 열람할 때 유용
+         *  - 방법 1: 일반 for문이 아닌 for..in문 사용(Enumerable 속성이 true인 요소) 
+         *  - 방법 2: Object.keys(객체):[속성명,...]
+         */
+        const test4 = () => {
+            const obj = {
+                name : '청국장',
+                price : 8000,
+                ingredients : ['청국장', '소금', '파', '양파', '마늘'],
+                restaurant : {
+                    name : '안동된장',
+                    addr : '서울시 강남구 역삼동'
+                },
+                recipe(){
+                    console.log(this);
+                    console.log(this.ingredients); // undefined
+                    console.log('물을 끓인다');
+                    console.log(this.ingredients[0] + '를 넣는다.');
+                    console.log(this.ingredients[1] + '를 넣는다.');
+                }
+            };
+
+            // Losing this 확인
+            // obj.recipe(); // this를 잘 기억하고 잘 나옴
+            // const foo = obj.recipe; // 객체 안에 있던 recipe함수를 끄집어내서 단독으로 실행하기 위해 foo에 집어넣음.
+            // // foo(); // 그래서 확인해보면 this가 window가 되어버림. this를 losing 했다.
+
+            // // 해결법 - this binding -> 현재 객체를 지정해서 호출하는 방법
+            // foo.call(obj);  // this를 obj로 binding. (=this는 obj야.) -> 이제 잘 나옴
+
+
+            // for.. in
+            // for(let key in obj){ // key는 각 속성들을 받음
+            //     if(typeof obj[key] !== 'function')
+            //         console.log(key, obj[key]);
+            //     else {
+            //         console.log(key);   // 여기부분 노션에 적을 때 설명 적기
+            //         obj[key]();
+            //     }
+            // }
+
+            // Object.keys() - 키만 모아서 
+            // const keys = Object.keys(obj);
+            // console.log(typeof keys, keys); // 배열로 나옴
+            // keys.forEach((key, index) => {
+            //     const value = obj[key];
+            //     console.log(key, value);
+            // });
+
+            // Object.values() - value만 모아서
+            const values = Object.values(obj);
+            // console.log(typeof values, values);
+            values.forEach((value,index) => {
+                // console.log(typeof value, value);
+
+                // 배열인 경우, 모든 요소를 /로 연결해 출력
+                // 함수인 경우, 호출처리
+                // 그 외는 단순 출력
+                // if(typeof value == 'object'){
+                //     for(let n of value){
+                //         console.log(value.join('/'));
+                //     };
+                // }
+                // else if(typeof value == 'function'){
+                //     console.log(value()); // 이새끼 에러남
+                // }
+                // else {
+                //     console.log(value);
+                // }
+
+                // 강사님 코드
+                switch(typeof value){
+                    case "object" :
+                        // type이 object라고 무조건 배열이 아님. 객체일수도 있음. 그래서 구분을 해줘야 함.
+                        // 위 객체 obj의 경우 배열인 ingredients도 type이 object라고 나오고, 객체인 restaurant도 object라고 나옴.
+                        // 그래서 구분해주는 방법은 length 속성이 있는지 없는지를 따져보면 됨.
+                        // 배열인 경우엔 length속성이 있고, 객체는 없음. 
+                        if(value.length) {
+                            // 배열
+                            console.log(value.join('/'));
+                        }
+                        else {
+                            // 객체 
+                            console.log(value);
+                        }
+                        break;
+                    case "function":
+                        value.call(obj);  // this를 명시적으로 바인딩
+                        break;
+                    default: console.log(value);
+                }
+            });
+
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클로져 함수</title>
+</head>
+<body>
+    <h1>클로져 함수</h1>
+    <!-- button[onclick]-->
+    <button onclick="test1();">자유변수</button>
+    <button onclick="test2();">클로져</button>
+
+    <script>
+        /**
+         * 자유변수 free variable
+         *  - 함수 내에서 지역변수로 정의되지 않는 변수
+         */
+        const test1 = () => {
+            const hi = "안녕";
+            /**
+             * say 함수의 지역변수
+             *  - greeting
+             *  - name 매개변수도 지역변수(함수 안에서 선언되었기 때문. 매개변수는 늘 지역변수(자바도 마찬가지))
+             * 
+             *  - hi는 지역변수가 아님. 그러므로 자유변수. 
+             */
+            const say = (name) => {
+                const greeting = `${hi}, ${name}야~`;
+                alert(greeting);
+            };
+            say('영희');
+        };
+
+        /**
+         * Closure 
+         *  - 참조하는 환경을 가진 함수
+         *  - 자유변수를 가지고 외부로부터 닫힌 함수
+         */
+        const test2 = () => {
+            const num = 200; 
+            const foo = yoo();
+            console.dir(foo);
+            foo(); // num = 100
+        };
+
+        function yoo(){
+            const num = 100;
+            return () => {
+                console.log(`num = ${num}`); // 자유변수 num이 있음. 
+                                             // 그래서 리턴될 때 참조하고 있는 자유변수 num = 100도 같이 리턴됨.
+            }
+        }
+    </script>
+
+    <br>
+
+    <button onclick="test3()">global counter</button>
+    <span id="global-cnt-display">0</span>
+
+    <br>
+
+    <button onclick="test4()">closure counter</button>
+    <span id="closure-cnt-display">0</span>
+
+<script>
+        /**
+         * 전역변수 카운터
+         *  - 전역변수 카운터는 콘솔창에 cnt = 100 하고 버튼 눌러보면 앞에 값이 얼마였든 100부터 다시 시작한다.
+         *  - 전역변수라서 콘솔에서 접근할 수 있기 때문.
+         */
+        let cnt = 0;
+        const test3 = () => {
+            document.querySelector("#global-cnt-display").innerHTML = ++cnt;
+        };
+
+        /**
+         * 클로져 카운터
+         *  - 하지만 클로져 카운터는 접근할 방법이 없음.
+         *  - 콘솔에 cnt = 100 하고 버튼을 눌러도 이전 cnt값이 그대로 있음. 영향을 주지 못하는 것. 
+         *  - 즉 변수를 완벽하게 보호할 수 있다.  
+         */
+        const closureCounterMaker = () => {
+            let cnt = 0;
+            return () => {
+                document.querySelector("#closure-cnt-display").innerHTML = ++cnt;
+            };
+        };
+        const test4 = closureCounterMaker();
+    </script>
+
+    <br>
+
+    <!-- 실습문제 1 -->
+    <input type="number" id="num">
+    <button onclick="test5()">+</button>
+    <script>
+        /**
+         * 사용자 입력값을 누적해서 덧셈처리해주는 클로져 함수를 작성
+         *  - 누적합 해당변수를 외부로부터 보호할 것.
+         *  - #test5 호출시마다 누적합이 콘솔에 출력되고, #num은 초기화된다.
+         */
+        const closureSum = () => {
+            let sum = 0;
+
+            return () => {
+                let num = Number(document.querySelector('#num').value);
+                console.log(`입력값: ${num}`);
+                sum += num;
+                console.log(`누적합: ${sum}`);
+
+                document.querySelector('#num').value = null;
+
+            }
+        };
+        const test5 = closureSum();
+
+        // 강사님 코드
+        const closureAdderMaker = () => {
+            let sum = 0;
+            return () => {
+                sum += Number(num.value);
+                console.log('누적합: ', sum);
+                num.value = "";
+            };
+        };
+
+        const test5_teacher = closureAdderMaker();
+    </script>
+
+    <button onclick="aoo()();">aoo</button>       <!-- 100 -->
+    <button onclick="boo()();">boo1</button>      <!-- undefined -->
+    <button onclick="boo()(999);">boo2</button>   <!-- 999 -->
+    <button onclick="coo(3)(5);">coo1</button>  <!-- 15 -->
+    <button onclick="coo()(5);">coo2</button>  <!-- NaN -->
+
+    <!--
+        aoo() -> () => {console.log(a);};
+        aoo()() -> console.log(a);
+
+        boo() -> (b) => {console.log(b);}; 
+            - boo가 리턴하는 함수는 자유변수를 가지고 있지 않다.
+            - 단지 매개변수의 이름이 b이고, b로 들어온 매개인자를 console.log로 출력하겠다는 것.
+        boo()() -> console.log(b); 
+            - b에 들어갈 매개인자가 없으므로, console.log를 해보면 undefined가 출력됨
+        
+        boo()(999) -> console.log(999); 
+            - 매개변수 b의 자리에 999가 들어갔으므로 999가 콘솔에 출력된다.
+        
+        coo(c) -> (n) => {console.log(c * n);};
+        coo(3)(5) -> console.log(3 * 5);
+            3*5의 값인 15가 console에 출력된다.
+        coo()(5) -> console.log(undefined * 5); 
+            - c로 들어온 매개인자가 없기 때문에 c에는 undefined가 세팅이 되어 undefined * 5가 되어 NaN이 콘솔에 출력된다. 
+            - NaN = Not a Number
+    -->
+
+    <script>
+        const a = 1;
+        const aoo = () => {
+            const a = 100;
+            return () => {
+                console.log(a);
+            };
+        }; 
+
+        const b = 9;
+        const boo = () => {
+            const b = 99;
+            return (b) => console.log(b);
+        };
+
+        const coo = (c) => {
+            return (n) => {
+                console.log(c * n);
+            };
+        };
+    </script>
+</body>
+</html>

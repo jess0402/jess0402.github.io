@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수눈코딩</title>
+</head>
+<body>
+    <script>
+        //1
+        let z = 50;
+        (() => {
+            let z = 55;
+            z += 45;
+            console.log(`z = ${z}`); 
+        })();                         
+        console.log(`z = ${z}`);   
+        // z = 100
+        // z = 50
+        
+        //2
+        let y = 99;
+        (() => {
+            let x = 100;
+            let y = 9;
+            z = 1;
+            console.log(`x + y + z = ${x + y + z}`);
+        })();
+        console.log(`y + z = ${y + z}`);
+        // console.log(`x + y + z = ${x + y + z}`);
+
+        // x + y + z = 110
+        // y + z = 100
+        // x is not defined
+        
+        //3
+        for (let i = 1; i <= 10; i++) {
+            console.log(i); // 1~10까지 출력
+        }
+        (() => {
+            console.log(`i = ${i}`);
+        })();
+
+        // i is not defined
+        
+        //4 closer 예습문제
+        function foo(){
+            const num = 100;
+            return () => {
+                console.log(`num = ${num}`);
+            }
+        }
+        const num = 200;
+        const too = foo();  // num = 100
+        too();
+
+        </script>
+</body>
+</html>

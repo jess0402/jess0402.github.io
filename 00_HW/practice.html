@@ -7,30 +7,28 @@
     <title>노션용</title>
 </head>
 <body>
-    <button onclick="test15()">@실습문제</button>
-    <ul id="drink">
-        <li>juice</li>
-        <li>coffee</li>
-        <li>cocktail</li>
-        <li>beer</li>
-        <li>whiskey</li>
-    </ul>
-    <script>
-        function test15(){
 
-            // 강사님 코드 2 
-            const list2 = document.querySelectorAll("ul#drink li");
-            document.querySelector('#drink').innerHTML =
-                Array.from(list2)
-                    .map(function(li, index){
-                        return li.innerText.toUpperCase();
-                    })
-                    .sort()
-                    .reduce(function(html, drink, index){
-                        return `${html}<li>${drink}</li>`;
-                    }, "");
-
-        }
+    Timer
+    <p id="demo">흔한이름은 아이디로 안쓰는것이 좋다</p>
+    <br><br>
+    
+    <input type="text" id="_id" size="50">
+    <br><br>
+    
+    <script type="text/javascript">
+    function displayDate() {
+        document.getElementById("demo").innerHTML = Date(); 
+        document.getElementById("_id").value = Date(); 
+        
+        
+    }
+    displayDate();
+    
+    // setInterval("호출할 함수명", 몇 초마다 호출할지 지정) : 정해진 시간간격으로  함수 호출
+    setInterval("displayDate()", 1000);	// 시간이 정해	진 간격마다 실시간으로 바뀜
+    
+    
+    
     </script>
-</body>
+    </body>
 </html>
