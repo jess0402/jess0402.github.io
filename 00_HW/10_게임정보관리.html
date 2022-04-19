@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@실습문제-게임정보관리</title>
+</head>
+<body>
+    <fieldset>
+        <legend>@실습문제 : 게임</legend>
+        <button onclick="start();">게임시작</button>
+        <button onclick="end();">게임종료</button>
+        <table id="info">
+            <tbody>
+                <tr>
+                    <th>게임명</th>
+                    <td id="gameTitle"></td>
+                </tr>
+                <tr>
+                    <th>시작시각</th>
+                    <td id="gameStart"></td>
+                </tr>
+                <tr>
+                    <th>소요시간</th>
+                    <td id="gameUptime"></td>
+                </tr>
+                <tr>
+                    <th>종료시각</th>
+                    <td id="gameEnd"></td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <script>
+        /**
+         * @실습문제 - game 정보 관리
+         *  - start함수 : 사용자로부터 게임명을 입력받고 게임시작.
+         *      - #gameStart의 현재시각정보를 hh:mm:ss 형식으로 출력  
+         *      - 동시에 #gameUptime 게임소요시각을 hh:mm:ss 형식으로 보여지도록(시간이 계속 가도록) 
+         *          -> setInterval 사용해서 1초마다 출력 (intervalId를 알고있어야 종료할 수 있음))         
+         *  - end함수 : 게임종료
+         *      - #gameEnd에 현재 시각정보를 hh:mm:ss 형식으로 출력
+         *      - #setInterval을 종료 (intervalId)
+         */
+        let intervalId;
+
+        const addzero = (n) => {
+                    return n < 10 ? "0" + n : n;
+                }
+
+        const start = () => {
+            // 이전 게임 종료시각 지우기
+            gameEnd.innerHTML = '';
+
+            // 1. 게임명 입력받기
+            const name = prompt('게임명을 입력하세요');
+            gameTitle.innerHTML = name;
+            game.title = name;
+
+            // 2. game 객체 startUp() 메서드 호출
+            game.startUp(name);
+        };
+        const end = () => {
+            game.shutDown();
+        };
+        const game = {
+            title : undefined,
+            startUp(title){
+                // 3. #info 테이블에 게임정보 기록
+                const today = new Date();
+                const startTime = today.getTime();
+                info.start = startTime;
+
+                const hour = addzero(today.getHours()); 
+                const min = addzero(today.getMinutes());
+                const seconds = addzero(today.getSeconds());
+
+                gameStart.innerHTML = `${hour}:${min}:${seconds}`;
+
+                // 4. 소요시간 interval 처리
+                gameUptime.innerHTML = '00:00:00';
+                let time = 0;
+                let hh = 0;
+                let mm = 0;
+                let ss = 0;
+                let count = 0;
+                
+                intervalId = setInterval(function(){
+                    time++;
+                    mm = Math.floor(time/60);
+                    hh = Math.floor(mm/60);
+                    ss = time % 60;
+                    mm = mm % 60;
+
+                    let th = addzero(hh);
+                    let tm = addzero(mm);
+                    let ts = addzero(ss);
+
+                    gameUptime.innerHTML = th + ":" + tm + ":" + ts;
+                    
+                }, 1000);
+            },
+            shutDown(){
+                const today = new Date();
+                const endTime = today.getTime();
+                info.end = endTime;
+
+                const hour = addzero(today.getHours()); 
+                const min = addzero(today.getMinutes());
+                const seconds = addzero(today.getSeconds());
+
+                gameEnd.innerHTML = `${hour}:${min}:${seconds}`;
+                
+                clearInterval(intervalId);
+            },
+            info : {
+                start : undefined,  // 게임 시작 시각(millis)
+                end : undefined  // 게임 종료 시각(millis)
+            }
+        };
+    </script>
+</body>
+</html>
