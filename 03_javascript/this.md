@@ -22,7 +22,7 @@
     }
 ```
 
-1. 객체 안의 일반함수 
+4. 객체 안의 일반함수(=메서드)안에서 this는 현재객체를 가리킨다.
 ```js
     // 객체 obj
     const obj = {
@@ -36,4 +36,18 @@
         }
     }
     console.log(obj.getId());
+```
+
+5. 생성자함수에서 this는 현재객체를 가리킨다. (new 연산자 호출 필수)
+```js
+    function Pet(name, breed, weight, age, color){
+        this.name = name;
+        this.breed = breed;
+        this.weight = weight;
+        this.age = age;
+        this.color = color;
+        this.bark = function(){
+            console.log(this.weight < 10 ? '왈왈' : '멍멍');
+        }
+    }
 ```

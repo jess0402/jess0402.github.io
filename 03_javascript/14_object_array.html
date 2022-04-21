@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체배열</title>
+</head>
+<body>
+    <h1>객체배열</h1>
+    <button onclick="test1();">객체배열</button>
+    <button onclick="test2();">생성자함수</button>
+    <button onclick="test3();">생성자함수 - prototype - 객체</button>
+    <button onclick="test4();">static</button>
+    <script>
+        const test1 = () => {
+            const pets = [];
+            pets.push({
+                name: '구리구리',
+                breed: '푸들',
+                weight: 3,
+                age: 10,
+                color: ["white"],
+                bark(){
+                    console.log(this.weight < 10 ? '왈왈' : '멍멍');
+                }
+            });
+            pets.push({
+                name: '둘리',
+                breed: '말티즈',
+                weight: 6,
+                age: 5,
+                color: ["white"],
+                bark(){
+                    console.log(this.weight < 10 ? '왈왈' : '멍멍');
+                }
+            });
+            pets.push({
+                name: '사랑이',
+                breed: '코카스파니엘',
+                weight: 13,
+                age: 7,
+                color: ["white", "brown"],
+                bark(){
+                    console.log(this.weight < 10 ? '왈왈' : '멍멍');
+                }
+            });
+
+            console.log(pets);
+
+            // 반복문처리
+            // ??가 짖습니다. 왈왈!
+            // 방법 1 - for of 사용
+            for(let dog of pets){
+                console.log(`${dog.name}가 짓습니다.`);
+                dog.bark();
+            }
+            // 방법 2 - for each 사용
+            pets.forEach((pet, index) => {
+                const {name} = pet;
+                console.log(`${name}이 짖습니다.`);
+                bark();
+            });
+
+        };
+
+        /**
+         * 생성자 함수를 통한 객체 생성
+         */
+        const test2 = () => {
+            const pets = [];
+            pets.push(new Pet('구리구리', '푸들', 3, 10, ['white']));
+            pets.push(new Pet('둘리', '말티즈', 6, 5, ['white']));
+            pets.push(new Pet('사랑이', '코카스파니엘', 13, 5, ['white', 'brown']));
+            // 위와 같이 쓰기 위해선 생성자함수가 만들어져 있어야 한다. - 아래 function Pet!!
+
+            // 확인
+            console.log(pets);
+
+            pets.forEach((pet, index) => {
+                const info = `반려동물정보
+            ------------------------------
+            이름: ${pet.name}
+            종: ${pet.breed}
+            몸무게: ${pet.weight}
+            나이: ${pet.age}
+            색깔: ${pet.color}
+            짖는 소리: ${pet.bark()}     
+            ------------------------------           
+            `;
+            alert(info);
+            console.log(info);
+            });
+
+
+        };
+
+        /**
+         * 생성자함수 
+         *  - 생성자함수는 관례상(일반함수와 구분하기 위해) 대문자로 시작하는 이름을 갖는다.
+         * 
+         * this 용법 5
+         *  - 생성자함수에서 this는 현재객체를 가리킨다.  
+         */
+        function Pet(name, breed, weight, age, color){
+            this.name = name;
+            this.breed = breed;
+            this.weight = weight;
+            this.age = age;
+            this.color = color;
+            // this.bark = function(){
+            //     return this.weight < 10 ? '왈왈' : '멍멍';
+            // } // 이렇게 생성자 안에 하면 객체마다 모두 메서드를 새로 작성해야 하기 때문에
+                 // 아래처럼 공통메서드를 부모에 작성하고 자식객체들이 참조할 수 있게 하는 것. 
+        }
+
+        // 공통메서드를 prototype객체(부모)에 작성하고, 자식객체들이 공유하게 할 것.
+        // 공통메서드 prototype객체(부모)에 작성
+        Pet.prototype.bark = function(){
+                return this.weight < 10 ? '왈왈' : '멍멍';
+            } 
+
+        function Duck(firstName, lastName){
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+        /**
+         * 자바스크립트 프로토타입 기반 상속모델을 가진 객체지향언어
+         *  - 생성된 객체는 prototype과 연결된 프로토타입을 가진다.
+         *  - Object.prototype이 프로토타입 최상위에 위치한다.
+         * 
+         * 생성자 함수 => Duck 
+         * prototype 객체(부모객체) => 우리가 생성자함수를 만들면  
+         * 생성 객체 => new Duck()
+         */
+        const test3 = () => {   
+            const lee = new Duck('효리', '이');
+
+            console.log('Duck: ', Duck); // 생성자함수
+            console.log('Duck.prototype: ', Duck.prototype) // 프로토타입 객체
+            console.log('Duck.prototype.constructor: ', Duck.prototype.constructor) // 생성자함수
+            console.log('Duck.prototype.constructor === Duck: ', Duck.prototype.constructor === Duck); // true
+
+            console.log('lee.__proto__ === Duck.prototype: ', lee.__proto__ === Duck.prototype); // 프로토타입객체
+            console.log('lee: ', lee); // 자식객체
+            console.log('lee.toString: ', lee.toString);
+        };
+
+        function A(){
+            this.username = 'Al pacino';
+            this.hello = function(){
+                console.log('hello');
+            };
+        }
+
+        // A의 속성 static
+        A.username = '홍길동';
+        A.hello = function(){
+            console.log('안녕');
+        }
+
+        // A.prototype의 속성
+        A.prototype.username = 'kh';
+        A.prototype.hello = function(){
+            console.log('hello kh');
+        }
+
+        /**
+         * static
+         * 생성자함수.~~~ -> static 속성
+         */
+        const test4 = () => {
+            const x = new A();
+            console.log(x.username);  // Al pacino
+            x.hello();  // hello 
+
+            console.log(A.username);  // 홍길동
+            A.hello();  // 안녕
+
+            console.log(A.prototype.username);  // kh
+            console.log(x.__proto__.username);  // kh
+            A.prototype.hello();  // hello kh
+            x.__proto__.hello();  // hello kh
+
+            console.dir(A);           // 생성자 함수
+            console.dir(A.prototype); // 프로토타입
+            console.dir(x);           // 생성된 객체 
+        };
+    </script>
+
+</body>
+</html>
