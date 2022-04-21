@@ -51,7 +51,7 @@
             this.type = type;
         };  
         // 2. 자식.prototype으로 - 부모.prototype 지정(Object.create)
-        // Object.create 전달한 객체를 cloning해서 새로운 객체를 반환 
+        // Object.create 전달한 객체를 cloning해서(그대로 본따서) 새로운 객체를 반환 
         Novel.prototype = Object.create(Book.prototype);
         // 3. 새로 생성된 부모.prototype객체에 생성자함수 재지정
         // 즉 cloning한 객체의 생성자 함수를 재지정해줌.
@@ -90,12 +90,16 @@
             const obj = {
                 id : 'qwerty1234'
             };
-            foo.call(obj, 10, 20);  // qwerty1234가 나옴. 왜냐면 여기서 this는 obj라서 obj의 id인 qwerty1234를 읽어낸 것. 
+            foo.call(obj, 10, 20);  // .call도 호출하는 것.
+            // 첫 번째 인자가 this 객체를 지정해줌.  
+            // qwerty1234가 나옴. 왜냐면 여기서 this는 obj라서 obj의 id인 qwerty1234를 읽어낸 것. 
+            
             foo.apply(obj, [10, 20]); // qwerty1234
             // call은 매개인자를 그냥 하나씩 주면 되는데, apply는 매개인자를 배열로 줘야 함. call과 apply의 차이는 이 차이 뿐.
 
-            const bar = foo.bind(obj);  // 호출하지않고, this바인딩후에 리턴
-            bar(); // 다시 호출 - qwerty1234
+            const bar = foo.bind(obj);  
+            // bind는 호출하지않고, this를 바인딩후에 리턴만해줌.
+            bar(); // 그래서 다시 호출해줘야함 - qwerty1234
         };
     </script>
 
@@ -113,8 +117,8 @@
             
             console.log(typeof Person, Person);  // function
 
-            hong.sayHi();
-            hong.callMe();
+            hong.sayHi();  // 프로토타입 객체에 존재
+            hong.callMe(); // 현재 객체에 존재(hong)
 
             // static 자원
             console.log(Person.x);
@@ -134,12 +138,12 @@
                 this.phone = phone;
             }
 
-            // Person.prototype에 작성 : 메서드 단축문법
+            // Person.prototype에 작성 : 메서드 단축문법으로 작성
             sayHi(){
                 console.log(`안녕하세요, ${this.name}입니다.`);
             }
 
-            // 현재객체에 기록
+            // 현재객체에 기록하고싶으면 아래와 같이
             callMe = function(){
                 console.log(`제 번호는, ${this.phone}입니다. 전화주세요~ `);
             };
@@ -155,7 +159,7 @@
              * Override
              */
             sayHi(){
-                super.sayHi();
+                super.sayHi();  // 부모 sayHi() 호출! 
                 console.log(`저는 ${this.lang}개발자 입니다.`)
             }
         }

@@ -48,6 +48,29 @@
    * Food - id:string, name:string, price:number, type:string
    * Drink - id:string, name:string, price:number, adultOnly:boolean
    */
+
+  class Menu {
+    constructor(id, name, price){
+      this.id = id; 
+      this.name = name;
+      this.price = price;
+    }
+  };
+
+  class Food extends Menu {
+    constructor(id, name, price, type){
+      super(id, name, price);
+      this.type = type;
+    }
+  }
+  
+  class Drink extends Menu {
+    constructor(id, name, price, adultOnly) {
+      super(id, name, price);
+      this.adultOnly = adultOnly;
+    }
+  }
+
   const menuData = {
     foodMenu : [
       new Food('food101','잡채밥', 8000, '밥'),
@@ -64,9 +87,42 @@
       new Drink('drink205','소주', 4000, true),
     ]
   };
+
   const init = () => {
     console.log('init : 페이지로딩 완료!');
+    render();
   };
+  
+  const render = () => {
+    const foods = menuData.foodMenu.map(function(food){
+      const{id, name, price, type} = food;
+
+      return `<tr>
+        <td>${id}</td>
+        <td>${name}</td>
+        <td>${price}</td>
+        <td>${type}</td>
+        </tr>`;
+    });
+    foods.forEach((food) => document.querySelector("#menu-food tbody").innerHTML += food);
+
+    const drinks = menuData.drinkMenu.map(function(drink){
+      let{id, name, price, adultOnly} = drink;
+      ck = adultOnly == true ? 'checked' : '';
+
+      return `<tr>
+        <td>${id}</td>
+        <td>${name}</td>
+        <td>${price}</td>
+        <td><input type="checkbox" id="adultOnly" value="${adultOnly}" ${ck}></td>
+        </tr>`;
+    });
+    drinks.forEach((drink) => document.querySelector("#menu-drink tbody").innerHTML += drink);
+  };
+
+
+
+
   </script>
 
 
