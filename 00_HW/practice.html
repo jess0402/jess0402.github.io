@@ -4,68 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>노션용</title>
+    <title>Test</title>
 </head>
 <body>
-    <button onclick="test4()">class 상속</button>
-    <script>
-        class Person {
-            // Person 생성자함수 속성으로 작성
-            static x = 100;
-            static y = function(){
-                console.log('yyyyyyyyyyyyyyyyyy');
-            };
-
-            // 생성자함수 : new Person() 했을 때 호출될 함수 
-            constructor(name, phone) {
-                this.name = name;
-                this.phone = phone;
-            }
-
-            // Person.prototype에 작성 : 메서드 단축문법
-            sayHi(){
-                console.log(`안녕하세요, ${this.name}입니다.`);
-            }
-
-            // 현재객체에 기록
-            callMe = function(){
-                console.log(`제 번호는, ${this.phone}입니다. 전화주세요~ `);
-            };
-        }
-        
-        class Dev extends Person {  // Dev는 Person을 상속받았다 
-            constructor(name, phone, lang){
-                super(name, phone);  // 부모생성자 호출
-                this.lang = lang;
-            }
-
-            /**
-             * Override
-             */
-            sayHi(){
-                super.sayHi();
-                console.log(`저는 ${this.lang}개발자 입니다.`)
-            }
-        }
-
-        /**
-         * 클래스 상속
-         */
-        const test4 = () => {
-            const devs = [
-                new Dev('홍길동', '01012341234', 'js'),
-                new Dev('신사임당', '01033334444', 'java'),
-                new Dev('장영실', '01078787878', 'c++')
-            ];
-            devs.forEach((dev, index) => {
-                // console.log(index, dev);
-                // dev.sayHi();
-                // dev.callMe();
-                
-                // 오버라이드
-                dev.sayHi();
-            })
-        };
-    </script>
+    <h1>HTML List</h1>
+    <ol type="a" start="5">
+        <li>html</li>
+        <li>css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ol>
 </body>
 </html>

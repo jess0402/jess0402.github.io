@@ -4,15 +4,190 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>miniproject-ehunsungJang</title>
+    <style>
+        @font-face {
+            font-family: 'LeferiPoint-BlackA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 140px;
+        }
+        header img {
+            transform: translateY(86px);
+        }
+        section {
+            width: 100%;
+            height: 78vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+        section>div {
+            margin: 20px;
+        }
+        section span {
+            /* margin: 2px; */
+            font-family: 'LeferiPoint-BlackA', sans-serif;
+            font-size: 30px;
+            color: white;
+        }
+        .name_left, .name_right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 309px;
+            justify-content: space-around;
+        }
+        .name_left {
+            margin-right: 34px;
+        }
+        .name_right {
+            margin-left: 34px;
+        }
+        ul {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li {
+            list-style: none;
+        }
+        section img {
+            width: 150px;
+            height: 150px;
+        }
+        #upper, #lower {
+            display: flex;
+        }
+        #upper img, #lower img {
+            margin: 0 3px;
+            transition: all 0.3s ease-out;
+        }
+        /* #upper img:hover, #lower img:hover {
+            transform: scale(2.1, 2.1);
+        } */
+        .mouseover {
+            transform: scale(1.3, 1.3);
+        }
+        /* .page_name {
+            color: black;
+        } */
+        #member:hover {
+            /* transform-origin: top left; */
+        }
+        #me:hover {
+            /* transform-origin: top right; */
+        }
+        #gajae:hover {
+            /* transform-origin: bottom left; */
+        }
+        #coding:hover {
+            /* transform-origin: bottom right; */
+        }
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            /* overflow: hidden; */
+        }
+    </style>
 </head>
 <body>
-    <h1>miniproject-ehunsungJang</h1>
-    <ul>
-        <li><a href="aboutme.html">aboutme</a></li>
-        <li><a href="tour.html">tour</a></li>
-        <li><a href="loadmap.html">loadmap</a></li>
-        <li><a href="member.html">member</a></li>
-    </ul>
+    <header>
+        <img src="./images/index/welcome1.jpg" alt="welcome">
+    </header>  
+    <section>
+        <div class="name_left">
+            <span class="">회원가입 페이지</span>
+            <span class="">가재소개 페이지</span>
+        </div>
+        <ul>
+            <div class="wrapper">
+                <div id="upper">
+                    <li>
+                        <a href="member.html">
+                            <img src="./images/index/join.png" class="" id="member" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="aboutme.html">
+                            <img src="./images/index/sea.jpg" class="" id="me" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        </a>
+                    </li>
+                </div>
+                <div id="lower">
+                    <li>
+                        <a href="gajae.html">
+                            <img src="./images/index/medium9.jpg" class="" id="gajae" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="loadmap.html">
+                            <img src="./images/index/coding.jpg" class="" id="coding" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </ul>
+        <div class="name_right">
+            <span class="">자기소개 페이지</span>
+            <span class="">로드맵 페이지</span>
+        </div>
+        <script>
+            function mouse_over(image){
+                document.getElementById(image.getAttribute('id')).classList.add("mouseover");
+                const img_name = image.getAttribute('id');
+                let text;
+                switch(img_name){
+                    case "member": 
+                        document.querySelectorAll('.name_left span')[0].style.color = "black";
+                        break;
+                    case "me": 
+                        document.querySelectorAll('.name_right span')[0].style.color = "black";
+                        break;
+                    case "gajae":
+                    document.querySelectorAll('.name_left span')[1].style.color = "black";
+                        break;
+                    case "coding": 
+                        document.querySelectorAll('.name_right span')[1].style.color = "black";
+                        break;
+                }
+                // document.querySelector('section span').innerHTML += text;
+                
+            }
+            function mouse_out(image){
+                document.getElementById(image.getAttribute('id')).classList.remove("mouseover");
+                const img_name = image.getAttribute('id');
+                let text;
+                switch(img_name){
+                    case "member": 
+                        document.querySelectorAll('.name_left span')[0].style.color = "white";
+                        break;
+                    case "me": 
+                        document.querySelectorAll('.name_right span')[0].style.color = "white";
+                        break;
+                    case "gajae":
+                        document.querySelectorAll('.name_left span')[1].style.color = "white";
+                        break;
+                    case "coding": 
+                        document.querySelectorAll('.name_right span')[1].style.color = "white";
+                        break;
+                }
+                // document.querySelector('section span').innerHTML = '';
+            }
+        </script>
+    </section>
 </body>
 </html>

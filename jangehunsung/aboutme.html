@@ -32,6 +32,7 @@
             top: 0;
             justify-content: center;
             align-items: center;
+            z-index: 2;
         }
         .logo {
             /* margin-right: 100px; */
@@ -39,11 +40,11 @@
             letter-spacing: 0.5px;
             transform: translate(-300px, -7px);
             font-family: 'Ubuntu Mono', sans-serif;
+            color: black;
         }
         nav {
             width: 380px;
             transform: translate(-96px);
-
         }
         nav ul {
             display: flex;
@@ -52,6 +53,9 @@
             font-size: 20px;
             letter-spacing: 0.4px;
             font-family: 'Ubuntu Mono', sans-serif;
+        }
+        nav a {
+            color: black;
         }
         /*여기가지 네비게이션 부분*/
         /*아래부터 첫페이지 사진+글씨부분*/
@@ -71,12 +75,13 @@
             width: 300px;
             border-radius: 15%;
             margin-top: 50px;
+            z-index: 1;
         }
         .text1 {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 5px;
+            margin-top: 46px;
         }
         .home h1 {
             font-size: 50px;
@@ -87,11 +92,11 @@
         .text1 h1 {
             font-family: 'Ubuntu Mono', sans-serif;
             /* font-family: 'Dongle', sans-serif; */
-            font-size: 50px;
+            font-size: 45px;
         }
         .text1 h3 {
             font-family: 'Dongle', sans-serif;
-            font-size: 40px;
+            font-size: 30px;
         }
         /*여기까지가 첫 페이지*/
         /*아래부터 두 번째 페이지*/
@@ -105,15 +110,64 @@
 
         }
         .about img {
-            height: 600px;
+            height: 400px;
             transform: translateY(40px);
         }
         .about #about_window1_text {
             margin-left: 30px;
             font-family: 'Dongle', sans-serif;
-            font-size: 30px;
+            font-size: 25px;
             transform: translateY(40px);
         }
+        #about_window1_text a {
+            color: indianred;
+        }
+        /*여기까지가 두 번째 페이지*/
+        /*아래부터 사진 페이지*/
+        .pic_div {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            /* background-color: red; */
+            align-items: center;
+            justify-content: center;
+        }
+        .pic_play, .pic_crawfish {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+        }
+        .craw_first, .craw_second, .craw_third, .play_first, .play_second {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 240px;
+        }
+        .pic_div img {
+            height: 50%;
+            margin: 4.5px;
+        }
+        .pic_mbti img {
+            height: 40%;
+        }
+        .craw_first img {
+            height: 92%;
+        }
+        .craw_second span {
+            font-size: 30px;
+            font-style: oblique;
+            font-family: 'Dongle', sans-serif;
+        }
+        .pic_play img {
+            width: 220px;
+            height: 220px;
+        }
+        .play_second img {
+            transform: translateY(-12px);
+        }
+        
+
         
     </style>
 </head>
@@ -138,35 +192,88 @@
         </section>
             
         <section class="about">
+            <!-- 🥳 🦞🦞 📺 📚 🎫-->
             <img src="./images/aboutme/me/hangang.jpg" alt="img">
             <div id="about_window1_text">
                 <p>안녕하세요! 저는 
-                    <a href="#pic_me"><span>장은성</span></a>
-                    이예요</p>
+                    <a href="#about_me"><span>장은성</span></a>
+                    이에요</p>
                 <p>2022년, 저는 
-                    <a href="#pic_age"><span>24살</span></a>
-                    이예요!</p>
+                    <a href="#about_age"><span>24살</span></a>
+                    이에요!</p>
                 <p>저는
-                    <a href="#pic_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
+                    <a href="#about_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
                     을 공부했고</p>
                 <p>올해 
-                    <a href="#pic_grad"><span>🥳졸업🥳</span></a>
+                    <a href="#about_grad"><span>졸업</span></a>
                     했답니다~</p>
                 <p>제 mbti는 
-                    <a href="#pic_istp"><span>istp</span></a>
-                    이구요,
-                    <a href="#about_crawfish"><span>가재 두마리🦞🦞</span></a>
+                    <a href="#about_istp"><span>istp</span></a>
+                    에요.
+                </p>
+                <p>그리고
+                    <a href="#about_crawfish"><span>가재 두마리</span></a>
                     를 키우고 있어요!</p> 
                 <p>저는 주로 집에서 
-                    <a href="#about_dramabook"><span>드라마나📺 책📚</span></a>
+                    <a href="#about_dramabook"><span>드라마나 책</span></a>
                     보는 걸 좋아하는 집순이지만</p>
                 <p>가끔씩 
-                    <a href="#about_play"><span>연극🎫</span></a>
+                    <a href="#about_play"><span>연극</span></a>
                     보러 가는 것도 좋아해요 :D </p>
             </div>
         </section>
         <section class="pic">
 
+            <a name="about_age">
+                <div class="pic_div pic_age">
+                    <img src="./images/aboutme/age.png" alt="나이1">
+                </div>
+            </a>
+            <a name="about_major">
+                <div class="pic_div pic_major">
+                </div>
+            </a>
+            <a name="about_grad">
+                <div class="pic_div pic_grad">
+                    <img src="./images/aboutme/grad/grad.jpg" alt="졸업1">
+                    <img src="./images/aboutme/grad/grad2.gif" alt="졸업2">
+                </div>
+            </a>
+            <a name="about_istp">
+                <div class="pic_div pic_mbti">
+                    <img src="./images/aboutme/ispt.jpg" alt="mbti">
+                    <img src="./images/aboutme/park.jpg" alt="park">
+                </div>
+            </a>
+            <a name="about_crawfish">
+                <div class="pic_div pic_crawfish">
+                    <div class="craw_first">
+                        <img src="./images/aboutme/medium9.jpg" alt="가재1">
+                        <img src="./images/aboutme/medium11.jpg" alt="가재3">
+                        <img src="./images/aboutme/medium10.jpg" alt="가재2">
+                    </div>
+                    <div class="craw_second">
+                        <span>가재에 대해 더 알고싶다면?</span>
+                    </div>
+                </div>
+            </a>
+            <a name="about_dramabook">
+                <div class="pic_div pic_dramabook">
+    
+                </div>
+            </a>
+            <a name="about_play">
+                <div class="pic_div pic_play">
+                    <div class="play_first">
+                        <img src="./images/aboutme/play/play.jpg" alt="연극1">
+                        <img src="./images/aboutme/play/timetaxi.jpg" alt="연극2">
+                    </div>
+                    <div class="play_second">
+                        <img src="./images/aboutme/play/ticket2.jpg" alt="연극4">
+                        <img src="./images/aboutme/play/timetaxi2.jpg" alt="연극5">
+                    </div>
+                </div>
+            </a>
         </section>
         <section class="contact">
                 

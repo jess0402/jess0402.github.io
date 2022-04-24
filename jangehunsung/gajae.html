@@ -42,19 +42,15 @@
             width: 100%;
             padding: 0;
             margin: 10px;
-            height: 95px;
-        }
-        nav ul a {
-            /* z-index: 99999; */
         }
 
         /* section */
         .container {
             position: relative;
             overflow: hidden;
-            width: auto;
+            width: 100%;
             height: 100vh;
-            /* z-index: -1; */
+            /* background-color: #142850; */
         }
         .slide_container {
             position: absolute;
@@ -65,15 +61,15 @@
 
             background-color: red;
             text-align: center;
-            z-index: -2;
+            z-index: -1;
         }
         .slide {
             position: absolute;
             /* width: 100%; */
-            /* height: 100vh; */
+            height: 100vh;
             /* padding: 0 10%; */
             box-sizing: border-box;
-            top: 38%;
+            top: 55%;
             transform: translateY(-50%);
             text-align: center;
             overflow: hidden;
@@ -82,7 +78,7 @@
             display: inline-block;
             /* background-color: #142850; */
             width: 90%;
-            height: 80%;
+            height: 75vh;
             margin: 20px 20px 30px 50px;
             box-shadow: 7px 7px 10px black;
         }
@@ -141,37 +137,29 @@
 <body>
     <header>
         <a class="logo">가재</a>
-    </header>
-    <div class="container">
         <nav>
             <ul class="nav">
-                <li><a href="#slide1">소개</a></li>
-                <li><a href="#slide2">매력1</a></li>
-                <li><a href="#slide3">매력2</a></li>
-                <li><a href="#slide4">매력3</a></li>
+                <li>소개</li>
+                <li>매력1</li>
+                <li>매력2</li>
+                <li>매력3</li>
             </ul>
         </nav>
+    </header>
+    <div class="container">
         <ul class="slide_container">
-            <a name="slide1">
-                <li class="slide" id="slide1">
-                    <p>가재</p>
-                </li>
-            </a>
-            <a name="slide2">
-                <li class="slide" id="slide2">
-                    <p>가재의 특징 </p>
-                </li>
-            </a>
-            <a name="num3">
-                <li class="slide" id="slide3">
-                    <p>가재의 특징 2</p>
-                </li>
-            </a>
-            <a name="num4">
-                <li class="slide" id="slide4">
-                    <p>주의사항</p>
-                </li>
-            </a>
+            <li class="slide" id="slide1">
+                <p>가재</p>
+            </li>
+            <li class="slide" id="slide2">
+                <p>가재의 특징 </p>
+            </li>
+            <li class="slide" id="slide3">
+                <p>가재의 특징 2</p>
+            </li>
+            <li class="slide" id="slide4">
+                <p>주의사항</p>
+            </li>
         </ul>
         
         <a href="#" id="prev">
