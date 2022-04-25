@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노션용</title>
 </head>
 <body>
-    <h1>HTML List</h1>
-    <ol type="a" start="5">
-        <li>html</li>
-        <li>css</li>
-        <li>javascript</li>
-        <li>jquery</li>
-    </ol>
+  <h1>DOM</h1>
+  <button onclick="test8();">@실습문제 - 자식요소의 TextNode변경</button>
+  <div class="wrapper">
+    <p id="p1">Hello world1</p>
+    <p id="p2">Hello world2</p>
+    <p id="p3">Hello world3</p>
+    <p id="p4">Hello world4</p>
+    <p id="p5">Hello world5</p>
+  </div>
+  <script>
+
+    /**
+     * 실습문제 - div.wrapper>p 의 Hello world를 DOM으로 바꾸기
+     */
+    const test8 = () => {
+      const src = document.querySelector("div.wrapper");
+      console.log(src.children);
+
+      // const arr = Array.from(src.children);
+      const arr = [...src.children]; // 전개연산자 사용하는법
+
+      arr.forEach((child, index) => {
+        console.log(index, child);
+        const text = document.createTextNode(`DOM${index + 1}`);
+        // 원래 들어있던 내용 삭제 먼저 한 후에
+        // child.removeChild(child.firstChild); // firstChild는 text노드 포함해서 자식요소 찾음
+        // 새로 추가해준다.
+        // child.appendChild(text);
+
+        // 삭제하고 추가하는 거 말고 한번에 교체하는 방법 => replaceChild(newNode, oldNode);
+        child.replaceChild(text, child.firstChild);
+      });
+
+    }
+  </script>
 </body>
 </html>

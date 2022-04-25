@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Window</title>
+</head>
+<body onload="init();"> <!-- 페이지 로딩이 끝나면 init()함수를 호출해라 -->
+  <h1>Window</h1>
+  <!--
+    윈도우 객체
+    - 웹페이지의 모든 자원을 관리하는 최상위 객체
+    - window, this, globalThis 키워드를 통해 접근이 가능하다. 
+    - BOM - Browser Object Model(navigator, location, history, screen, XMLHttpRequest, frames...)
+    - DOM - Document Ojbect Model(document)
+    - javascript(Object, Array, String, ...)
+    
+  -->
+  <button onclick="test1();">open</button>
+  <button onclick="test2();">close</button>
+
+  <script>
+    /**
+     * open
+     *  - 새로운 탭 또는 팝업창을 여는 메서드
+     *  - open(주소, 윈도우명, 스펙) : 새윈도우객체가 리턴됨.
+     *  - 윈도우명 사용목적: 브라우저의 탭들을 관리. 
+     *        - 기존에 열려있는 탭중에 해당 이름이 존재하면 그 탭에 오픈한다. 
+     *        - 존재하지 않으면 새로 생성.
+     *        - "_self" <- 이렇게 쓰면 현재탭에 해당 페이지를 open하게 됨.
+     *    
+     */
+    const test1 = () => {
+      // const newWindow = open('index.html', 'newWindow', "");
+      // console.log(newWindow);
+
+      // setTimeout(() => {
+      //   newWindow.alert("안녕!!!!");
+      // }, 3000); // 이렇게 하면 새로 생겨난 newWindow에 "안녕!!!!"이 alert 됨.
+
+      // 윈도우명에 '_self'를 넣으면 현재탭에 해당 페이지가 open 됨.
+      // const newWindow = open('index.html', '_self', "");
+
+      // 스펙은 윈도우가 열리는 창의 크기와 위치를 설정하는 것.
+      // 스펙을 안쓰면 그냥 새 창으로 열림
+      // const newWindow = open('index.html', 'popup', "width=500, height=300, top=300, left=200");
+
+      newWindow = open('index.html', 'popup', "width=500, height=300, top=300, left=200"); // 전역변수로 설정
+    };
+
+    const test2 = () => {
+      newWindow.close();  // 이렇겧면 윈도우가 닫김.
+    }
+  </script>
+
+  <h2>Timer API</h2>
+  <button onclick="test3();">setTimeout</button>
+  <button onclick="test4();">clearTimeout</button>
+
+  <fieldset>
+    <legend>타이머 폼</legend>
+    <input type="text" id="message" placeholder="타이머 메세지를 작성하세요...">
+    <br>
+    <input type="number" id="sec" min="0" step="10" placeholder="타이머 초를 작성하세요...">
+    <br>
+    <input type="button" value="타이머 생성" onclick="test5();">
+    <input type="button" value="타이머 취소" onclick="test6();">
+  </fieldset>
+
+  <script>
+    /**
+     * 타이머관련 API 
+     *  - setTimeout(callbackFunction, millis):timeoutId
+     *      - millis초 뒤에 callbackFunction 실행해주세요.
+     *  - clearTimeout(timeoutId) 
+     */
+    let timeoutId;
+    const test3 = () => {
+      timeoutId = setTimeout(() => {
+        alert("Foooooooooooooooooo!!");
+      }, 2000);
+      console.log("tieoutId: ", timeoutId);
+    }
+
+    const test4 = () => {
+      clearTimeout(timeoutId);
+      console.log(`${timeoutId}번 타이머 취소`);
+    }
+    
+    /**
+     * 실습문제 1 - 타이머 생성폼
+     */
+    let userTimeoutId;
+    const test5 = () => {
+      if(!message.value || !sec.value)
+      return;
+      
+      const _message = message.value;
+      userTimeoutId = setTimeout(() => {
+        alert(_message);
+      }, sec.value*1000)
+
+      alert(`${sec.value}초 후 타이머가 생성되었습니다.`);
+      sec.value = '';
+    }
+
+    const test6 = () => {
+      clearTimeout(userTimeoutId);
+      alert('타이머가 취소되었습니다.')
+    }
+
+  </script>
+
+  <button onclick="test7();">setInterval</button>
+  <button onclick="test8();">clearInterval</button>
+  <h3 id="counter"></h3>
+  
+  <script>
+    /**
+     * setInterval(callbackFunction, millis);
+     *  - 단발성이 아닌, 지정한 millis 이후부터 millis 간격으로 계속 callbackFunction을 호출하는 것.
+     */
+    let intervalId;
+    const test7 = () => {
+      let initNum = 10;
+
+      // intervalId는 임의로 부여되는 것.
+      intervalId = setInterval(() => {
+        counter.innerHTML = --initNum;
+
+        // 0이 되면 중지하고 싶다면
+        if(initNum === 0) {
+          clearInterval(intervalId);
+        }
+      }, 1000);
+
+      console.log('intervalId: ', intervalId);
+    }
+
+    const test8 = () => {
+      clearInterval(intervalId);
+      console.log(`${intervalId} 인터벌 중지`);
+    }
+
+    /**
+     * 페이지 로딩이 끝나면 시계를 작동시켜 주세요
+     *  -> 페이지 로딩이 끝나면: <body onload="init();"> => 페이지 로딩이 끝나면 init()함수를 호출해주세요
+     */
+    function displayClock(date) {
+      const f = function (n) {
+        return n < 10
+            ? "0" + n
+            : n;
+      }
+
+      const yyyy = date.getFullYear();
+      const MM = f(date.getMonth() + 1);
+      const dd = date.getDate();
+      const hh = date.getHours();
+      const mm = date.getMinutes();
+      const ss = date.getSeconds();
+
+      const str = `${yyyy}/${MM}/${dd} ${hh}:${mm}:${ss}`;
+      clock.innerHTML = str;
+
+    }
+
+    // displayClock(new Date()); // #clock이 DOM 등록전이라 찾을 수 없어 오류!!
+
+    // 하지만 아래와 같이 displayClock(new Date())를 init()안에 넣게 되면
+    // body태그가 다 읽혀지고 나서 init()이 실행되기 때문에 <h3 id="clock"></h3>가 script 아래에 있어도 실행이 잘 된다.  
+    const init = () => {  
+      // 별도로 멈출 생각이 없다면 아이디값을 관리하지 않아도 됨. 
+      setInterval(() => {
+        displayClock(new Date());
+      }, 1000);
+    }
+
+  </script>
+  <h3 id="clock"></h3>
+</body>
+</html>

@@ -4,261 +4,283 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script scr="js/gajae.js"></script> -->
-</head>
-<title>🦞Gajae</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Sunflower:wght@300;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <title>🌼EhunSung Jang</title>
+    <!-- <link rel="stylesheet" href="./css/style_aboutme.css">   -->
     <style>
-        body {
+        * {
             margin: 0;
-            background-color: yellow;
+            box-sizing: border-box;
+            list-style-type: none;
+            text-decoration: none;
         }
-        /* navigation */
-        header {
-            height: 145px;
+        body {
             width: 100%;
-            position: fixed;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
         }
-        header a {
+        #container {
+            width: 80%;
+            height: 100%;
+            /* margin: 50px; */
+            box-shadow: 0px 4px 13px 3px black;
+            transform: translateY(-30px);
+        }
+        header {
+            width: 70%;
+            height: 140px;
             display: flex;
-            height: 70%;
+            position: fixed;
+            top: 0;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+        .logo {
+            font-size: 30px;
+            letter-spacing: 0.5px;
+            transform: translateY(-10px);
+            font-family: 'Ubuntu Mono', sans-serif;
+            color: black;
+        }
+        nav {
+            width: 380px;
+        }
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            letter-spacing: 0.4px;
+            font-family: 'Ubuntu Mono', sans-serif;
+        }
+        nav a {
+            color: black;
+        }
+        /*여기가지 네비게이션 부분*/
+        /*아래부터 첫페이지 사진+글씨부분*/
+        section {
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .home {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .home img {
+            width: 300px;
+            border-radius: 15%;
+            margin-top: 50px;
+            z-index: 1;
+        }
+        .text1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 46px;
+        }
+        .home h1 {
+            font-size: 50px;
+            font-weight: bolder;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .text1 h1 {
+            font-family: 'Ubuntu Mono', sans-serif;
+            /* font-family: 'Dongle', sans-serif; */
+            font-size: 45px;
+        }
+        .text1 h3 {
+            font-family: 'Dongle', sans-serif;
+            font-size: 30px;
+        }
+        /*여기까지가 첫 페이지*/
+        /*아래부터 두 번째 페이지*/
+        .about {
+            /* border-top: 2px solid #cacaca;; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            height: 100vh;
+
+        }
+        .about img {
+            height: 400px;
+            transform: translateY(40px);
+        }
+        .about #about_window1_text {
+            margin-left: 30px;
+            font-family: 'Dongle', sans-serif;
+            font-size: 25px;
+            transform: translateY(40px);
+        }
+        #about_window1_text a {
+            color: indianred;
+        }
+        /*여기까지가 두 번째 페이지*/
+        /*아래부터 사진 페이지*/
+        .pic_div {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            /* background-color: red; */
             align-items: center;
             justify-content: center;
         }
-        header nav{
-            /* background-color: aquamarine; */
-            position: relative;
-            z-index: -1;
-            width: 100%;
+        .pic_play, .pic_crawfish {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
         }
-        nav ul {
-            list-style: none;
+        .craw_first, .craw_second, .craw_third, .play_first, .play_second {
             display: flex;
-            align-items: flex-end;
-            justify-content: space-evenly;
-            width: 100%;
-            padding: 0;
-            margin: 10px;
-            height: 95px;
+            align-items: center;
+            justify-content: center;
+            height: 240px;
         }
-        nav ul a {
-            /* z-index: 99999; */
+        .pic_div img {
+            height: 50%;
+            margin: 4.5px;
         }
+        .pic_mbti img {
+            height: 40%;
+        }
+        .craw_first img {
+            height: 92%;
+        }
+        .craw_second span {
+            font-size: 30px;
+            font-style: oblique;
+            font-family: 'Dongle', sans-serif;
+        }
+        .pic_play img {
+            width: 220px;
+            height: 220px;
+        }
+        .play_second img {
+            transform: translateY(-12px);
+        }
+        
 
-        /* section */
-        .container {
-            position: relative;
-            overflow: hidden;
-            width: auto;
-            height: 100vh;
-            /* z-index: -1; */
-        }
-        .slide_container {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            padding: 0;
-            margin: 0;
-
-            background-color: red;
-            text-align: center;
-            z-index: -2;
-        }
-        .slide {
-            position: absolute;
-            /* width: 100%; */
-            /* height: 100vh; */
-            /* padding: 0 10%; */
-            box-sizing: border-box;
-            top: 38%;
-            transform: translateY(-50%);
-            text-align: center;
-            overflow: hidden;
-            list-style: none;
-
-            display: inline-block;
-            /* background-color: #142850; */
-            width: 90%;
-            height: 80%;
-            margin: 20px 20px 30px 50px;
-            box-shadow: 7px 7px 10px black;
-        }
-        .slide_container.animated {
-            -webkit-transition: left .3s ease-in;
-            transition: left .3s ease-in;
-        }
-        #slide1 {
-            /* display: flex; */
-            /* justify-content: center; */
-            /* background-color: #142850; */
-            background-color: #27496D;
-        }
-        #slide2 {
-            background-color: #486e96;
-        }
-        #slide3 {
-            background-color: #0C7B93;
-        }
-        #slide4 {
-            background-color: #00A8CC;
-        }
-        /* 화살표 */
-        #prev,
-        #next {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%);
-            z-index: 999999;
-            display: inline-block;
-            height: 3em;
-            width: 5em;
-            border-radius: 50%;
-            background-position: center center;
-            background-repeat: no-repeat;
-            -webkit-transition: all .3s ease-in;
-            transition: all .3s ease-in;
-        }
-        #prev.disabled, #next.disabled { display:none; }
-
-        #prev { 
-            margin-left: -500px; 
-            background-image: url('./images/gajae/left.png');
-            background-size: 100px;
-        }
-
-        #next { 
-            margin-left: 400px; 
-            background-image: url('./images/gajae/right.png');
-            background-size: 100px;
-        }
-
+        
     </style>
 </head>
 <body>
     <header>
-        <a class="logo">가재</a>
-    </header>
-    <div class="container">
+        <a href="" class="logo">🌼EhunSung</a>
         <nav>
-            <ul class="nav">
-                <li><a href="#slide1">소개</a></li>
-                <li><a href="#slide2">매력1</a></li>
-                <li><a href="#slide3">매력2</a></li>
-                <li><a href="#slide4">매력3</a></li>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <ul class="slide_container">
-            <a name="slide1">
-                <li class="slide" id="slide1">
-                    <p>가재</p>
-                </li>
-            </a>
-            <a name="slide2">
-                <li class="slide" id="slide2">
-                    <p>가재의 특징 </p>
-                </li>
-            </a>
-            <a name="num3">
-                <li class="slide" id="slide3">
-                    <p>가재의 특징 2</p>
-                </li>
-            </a>
-            <a name="num4">
-                <li class="slide" id="slide4">
-                    <p>주의사항</p>
-                </li>
-            </a>
-        </ul>
+    </header>
+    <div id="container">
+            <section class="home">
+                <img src="./images/aboutme/me/sea4.jpg" alt="img">
+                <div class="text1">
+                    <h1>Hey, I'm EhunSung!</h1>
+                    <h3>만나서 반가워요! 저에 대해 더 알고싶으시다면, 스크롤을 내려보세요 :)</h3>
+                </div>
+            </section>
+                
+            <section class="about">
+                <!-- 🥳 🦞🦞 📺 📚 🎫-->
+                <img src="./images/aboutme/me/hangang.jpg" alt="img">
+                <div id="about_window1_text">
+                    <p>안녕하세요! 저는 
+                        <a href="#about_me"><span>장은성</span></a>
+                        이에요</p>
+                    <p>2022년, 저는 
+                        <a href="#about_age"><span>24살</span></a>
+                        이에요!</p>
+                    <p>저는
+                        <a href="#about_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
+                        을 공부했고</p>
+                    <p>올해 
+                        <a href="#about_grad"><span>졸업</span></a>
+                        했답니다~</p>
+                    <p>제 mbti는 
+                        <a href="#about_istp"><span>istp</span></a>
+                        에요.
+                    </p>
+                    <p>그리고
+                        <a href="#about_crawfish"><span>가재 두마리</span></a>
+                        를 키우고 있어요!</p> 
+                    <p>저는 주로 집에서 
+                        <a href="#about_dramabook"><span>드라마나 책</span></a>
+                        보는 걸 좋아하는 집순이지만</p>
+                    <p>가끔씩 
+                        <a href="#about_play"><span>연극</span></a>
+                        보러 가는 것도 좋아해요 :D </p>
+                </div>
+            </section>
+            <section class="pic">
+    
+                <a name="about_age">
+                    <div class="pic_div pic_age">
+                        <img src="./images/aboutme/age.png" alt="나이1">
+                    </div>
+                </a>
+                <a name="about_major">
+                    <div class="pic_div pic_major">
+                    </div>
+                </a>
+                <a name="about_grad">
+                    <div class="pic_div pic_grad">
+                        <img src="./images/aboutme/grad/grad.jpg" alt="졸업1">
+                        <img src="./images/aboutme/grad/grad2.gif" alt="졸업2">
+                    </div>
+                </a>
+                <a name="about_istp">
+                    <div class="pic_div pic_mbti">
+                        <img src="./images/aboutme/ispt.jpg" alt="mbti">
+                        <img src="./images/aboutme/park.jpg" alt="park">
+                    </div>
+                </a>
+                <a name="about_crawfish">
+                    <div class="pic_div pic_crawfish">
+                        <div class="craw_first">
+                            <img src="./images/aboutme/medium9.jpg" alt="가재1">
+                            <img src="./images/aboutme/medium11.jpg" alt="가재3">
+                            <img src="./images/aboutme/medium10.jpg" alt="가재2">
+                        </div>
+                    </div>
+                </a>
+                <a name="about_dramabook">
+                    <div class="pic_div pic_dramabook">
         
-        <a href="#" id="prev">
-            <!-- <img src="./images/gajae/left.png"> -->
-        </a>
-        <a href="#" id="next">
-            <!-- <img src="./images/gajae/right.png"> -->
-        </a>
+                    </div>
+                </a>
+                <a name="about_play">
+                    <div class="pic_div pic_play">
+                        <div class="play_first">
+                            <img src="./images/aboutme/play/play.jpg" alt="연극1">
+                            <img src="./images/aboutme/play/timetaxi.jpg" alt="연극2">
+                        </div>
+                        <div class="play_second">
+                            <img src="./images/aboutme/play/ticket2.jpg" alt="연극4">
+                            <img src="./images/aboutme/play/timetaxi2.jpg" alt="연극5">
+                        </div>
+                    </div>
+                </a>
+            </section>
+            <section class="contact">
+                    
+            </section>
+                
+        </section>
     </div>
-    
-    
-    <script>
-        // 변수 지정 
-        /**
-         * 클래스명: container -> 변수명: $slideWrap
-         * 클래스명: slider-container -> 변수명 $slideContainer
-         * 클래스명: slide -> 변수명: $slide
-         * 이전버튼: $navPrev
-         * 다음버튼: $navNext
-         */
-        const $slideWrap = document.querySelector('.container');
-        const $slideContainer = document.querySelector('.slide_container');
-        const $slide = document.querySelectorAll('.slide');
-        const $navPrev = document.getElementById('prev');
-        const $navNext = document.getElementById('next');
-        let $currentIndex = 0;
-        const $slideCount = $slide.length;
-        // let $slideHeight = 0;
-
-        // 슬라이드의 높이 확인하여 부모의 높이로 지정하기 - 대상.offsetHeight
-        // for(let i = 0; i < $slide.length; i++){
-        //     if($slideHeight < $slide[i].offsetHeight){
-        //         $slideHeight = $slide[i].offsetHeight;
-        //     }
-        // };
-        // $slideWrap.style.height = $slideHeight + 'px';
-        // $slideContainer.style.height = $slideHeight + 'px';
-
-        // 슬라이드가 있으면 가로로 배열하기
-        $slide[0].style.left = 0 + '%';
-        for(let i = 0; i < $slide.length; i++){
-            $slide[i].style.left = i*100 + '%';
-        };
-
-        // 첫번째 슬라이드에서는 화살표 안보이도록
-        if($currentIndex==0){
-            $navPrev.classList.add('disabled');
-        }
-
-        // 슬라이드 이동함수
-        function goToSlide(idx){
-            $slideContainer.style.left = -100 * idx + '%';
-            $slideContainer.classList.add('animated');
-            $currentIndex = idx;
-        };
-
-        // 버튼기능 업데이트 함수(끝까지 가면 다음버튼이 사라지도록)
-
-        // 버튼을 클릭하면 슬라이드 이동시키기
-        // 다음버튼을 클릭하면 할 일, 이전 버튼을 클릭하면 할 일.
-        $navPrev.addEventListener('click', function(){
-            goToSlide($currentIndex - 1);
-            if($currentIndex == 0){
-                $navPrev.classList.add('disabled');
-            }
-            else if($currentIndex != ($slideCount - 1)){
-                $navNext.classList.remove('disabled');
-            }
-
-        });
-        $navNext.addEventListener('click', function(){
-            goToSlide($currentIndex + 1);
-            // console.log('bye');
-            /**
-             * 마지막슬라이드라면 $navNext안보이도록, 아니라면 $navNext 다시 나타나도록
-             */
-            if($currentIndex == $slideCount - 1){ // 마지막슬라이드라면
-                $navNext.classList.add('disabled');
-            }
-            else if($currentIndex != 0){
-                $navPrev.classList.remove('disabled');
-            }
-
-            
-        }); 
-
-
-    </script>
 </body>
 </html>
