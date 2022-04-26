@@ -51,3 +51,14 @@
         }
     }
 ```
+
+6. 이벤트핸들러함수(일반함수)안의 this는 이벤트발생객체를 가리킨다.
+```js
+    btn5.onclick = function(e){
+      console.log(e);
+      const {target} = e;
+      console.log('target: ', target); // 이벤트 발생객체 #btn5
+      console.log('this: ', this)
+      console.log(target === this);
+    };
+```
