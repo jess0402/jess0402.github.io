@@ -172,6 +172,383 @@
     };
   </script>
 
+  <!-- 여기서부터 4/27 강의 -->
+  <br>
+  <button id="btn6">[]</button>
+  <div class="area" id="area6"></div>
+  <script>
+  /**
+   * []
+   *  - 한 글자를 의미한다.
+   *  - 괄호 안에는 한 글자의 값목록을 제시
+   *  -  ^로 시작하면, 제시한 값의 반전을 의미 : 전체에대한 반전이라 맨 앞에서밖에 사용하지 못함. 중간에 넣을 수 없음.
+   */    
+    btn6.onclick = () => {
+      
+      // const SUBSTITUTE = '<mark>$&</mark>';
+      const str = 'Javascript jQuery Ajax 12345 안녕 ㄱㄴㄷ ㅏㅓ cjcjcj';
 
+      // a또는 j에 해당하는 글자를 찾아서 SUBSTITUDE로 바꿔라
+      area6.innerHTML = `${str.replace(/[aj]/gi, SUBSTITUTE)}<br>`;
+
+      area6.innerHTML = `${str.replace(/^[aj]/gi, SUBSTITUTE)}<br>`;
+
+      area6.innerHTML = `${str.replace(/[aj]$/gi, SUBSTITUTE)}<br>`;
+      
+      // a나 j가 아닌 한글자
+      area6.innerHTML = `${str.replace(/[^aj]/gi, SUBSTITUTE)}<br>`;
+      
+      // 숫자만 찾아줌
+      area6.innerHTML = `${str.replace(/[0123456789]/gi, SUBSTITUTE)}<br>`;
+      area6.innerHTML = `${str.replace(/[0-9]/gi, SUBSTITUTE)}<br>`; // 아스키코드상의 범위로 지정
+      
+      area6.innerHTML = `${str.replace(/[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]/gi, SUBSTITUTE)}<br>`;
+      area6.innerHTML = `${str.replace(/[A-Za-z]/gi, SUBSTITUTE)}<br>`; // 아스키코드상의 범위로 지정
+
+      area6.innerHTML = `${str.replace(/[가-힣]/gi, SUBSTITUTE)}<br>`; // 온전한 한글자 - 아스키코드상의 범위로 지정
+
+      area6.innerHTML = `${str.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/gi, SUBSTITUTE)}<br>`; // 자음모음포함
+
+      area6.innerHTML = `${str.replace(/^[a-z]/g, SUBSTITUTE)}<br>`; // 알파벳소문자로 시작하는지 검사하는 정규식
+
+      // 숫자 4자리인지 검사하는 정규식
+      console.log(/^[0-9][0-9][0-9][0-9]$/g.test('1234'));  // true
+      console.log(/^[0-9][0-9][0-9][0-9]$/g.test('123456')); // false
+      console.log(/^[0-9][0-9][0-9][0-9]$/g.test('12ab')); // false
+    };
+  </script>
+
+  <button id="btn7">단축문자</button>
+  <div class="area" id="area7"></div>
+  <script>
+    /**
+     * \d - 숫자 한글자
+     * \w - 문자(영문자/숫자/_) 한글자 (한글/공백 포함되지 않음.)
+     * \s - 공백/개행/탭문자 한글자
+     * 
+     * \D [^\d] - 숫자가 아닌 한글자
+     * \W [^\w] - 문자가 아닌 한글자 
+     * \S [^\s] - 공백/개행/탭문자 아닌 한글자
+     */
+    btn7.onclick = () => {
+      const str = `A1 B2 c3 d_4 e:5 fG12345 -@!@#$%
+안녕      잘가
+水`;
+      area7.innerHTML = `${str.replace(/\d/g, SUBSTITUTE)}<br>`;  // 숫자인 애들
+      area7.innerHTML += `${str.replace(/\w/g, SUBSTITUTE)}<br>`; // 문자인 애들
+      area7.innerHTML += `${str.replace(/\s/g, SUBSTITUTE)}<br>`; // 공백/개행/탭문자인 애들
+
+      area7.innerHTML += `${str.replace(/\D/g, SUBSTITUTE)}<br>`; // 숫자가 아닌 애들 
+      area7.innerHTML += `${str.replace(/\W/g, SUBSTITUTE)}<br>`; // 문자가 아닌 애들 
+      area7.innerHTML += `${str.replace(/\S/g, SUBSTITUTE)}<br>`; // 공백/개행/탭문자가 아닌 애들 
+
+      // 대괄호 표현식으로 변환
+      // 0~9 5 제외-> [01234^56789] X / [012346789] O
+      area7.innerHTML += `${str.replace(/[0-9]/g, SUBSTITUTE)}<br>`;  // 숫자인 애들
+      area7.innerHTML += `${str.replace(/[0-9A-Za-z_]/g, SUBSTITUTE)}<br>`; // 문자인 애들
+      area7.innerHTML += `${str.replace(/[ \n\t]/g, SUBSTITUTE)}<br>`; // 공백/개행/탭문자인 애들
+      area7.innerHTML += `${str.replace(/[^0-9]/g, SUBSTITUTE)}<br>`; // 숫자가 아닌 애들 
+      area7.innerHTML += `${str.replace(/[^0-9A-Za-z_]/g, SUBSTITUTE)}<br>`; // 문자가 아닌 애들 
+      area7.innerHTML += `${str.replace(/[^ \n\t]/g, SUBSTITUTE)}<br>`; // 공백/개행/탭문자가 아닌 애들 
+    };
+  </script>
+
+  <button id="btn8">() |</button>
+  <div class="area" id="area8"></div>
+  <script>
+    /**
+     * () 
+     *  - grouping
+     * 
+     * | 
+     *  - or 연산
+     */
+    btn8.onclick = () => {
+      const str = '월요일에는 월요병, 화가 부르르르 화요일 홧병, 수수술한잔 하는 수요일, 목이 컥~ 목요일, 금방 오지 않는 금요일, 그리고 오늘은 수요일';
+      
+      // 아래와 같이 하면 한글자밖에 하지 못함.
+      area8.innerHTML = `${str.replace(/[수목금]요일/g, SUBSTITUTE)}<br>`
+      
+      // 여러 글자로 하려면 아래와 같이 해야함.
+      area8.innerHTML += `${str.replace(/(수요일|목요일|금요일)/g, SUBSTITUTE)}<br>`
+
+      // str에서 내가 지정한 것과 매칭되는 것들을 배열에 담아서 돌려줌 (g flag 필수)
+      const arr = str.match(/(수요일|목요일|금요일)/g);
+      console.log(arr); // ['수요일', '목요일', '금요일', '수요일']
+
+    };
+  </script>
+
+  <button id="btn9">escaping</button>
+  <div class="area" id="area9"></div>
+  <script>
+    /**
+     * escaping
+     *  - \와 와일드카드를 합쳐서 escaping처리할 수 있다.
+     *  - (문자그대로 사용가능)
+     */
+    btn9.onclick = () => {
+      const str = '3.4$';
+
+      // 내가 $를 검색하고 싶을 때
+      area9.innerHTML = `${str.replace(/\$/, SUBSTITUTE)}<br>`;
+
+      // 내가 .을 검색하고 싶을 때
+      area9.innerHTML += `${str.replace(/\./, SUBSTITUTE)}<br>`;
+      
+      // 대괄호 안에서는 escaping이 불필요. []안에 들어간 순간 와일드카드는 그냥 아무 의미가 없는 문자가 됨.
+      area9.innerHTML += `${str.replace(/[$.]/g, SUBSTITUTE)}<br>`;
+
+    };
+  </script>
+  
+  <button id="btn10">수량자 * + ?</button>
+  <button id="btn11">수량자 {}</button>
+  <button id="btn12">게으른 수량자 ?</button>
+  <div class="area" id="area10"></div>
+  <script>
+    /**
+     * 수량자 Quantifier - 수량을 체크해줌
+     *  - a* : a가 0개 이상인 경우
+     *  - a+ : a가 1개 이상인 경우
+     *  - a? : a가 0, 1개
+     */
+    btn10.onclick = () => {
+      const str = "aabc abc bc"; 
+
+      // /a*b/ -> a가 0개 이상 있고 b가 나오니? = b앞에 a가 0개 이상 있니?
+      area10.innerHTML = `${str.replace(/a*b/g, SUBSTITUTE)}<br>`;
+
+      // /a+b/ -> a가 1개 이상 있고 b가 나오니?
+      area10.innerHTML += `${str.replace(/a+b/g, SUBSTITUTE)}<br>`;
+
+      // /a?b/ -> a가 0개 또는 1개가 나오고 b가 나오니? = 앞에 a가 2개가 있든 3개가 있든 b 바로 직전에 있는 a 하나만 인정
+      area10.innerHTML += `${str.replace(/a?b/g, SUBSTITUTE)}<br>`
+
+      // 알파벳이 하나라도 있니?(알파벳 포함여부)
+      console.log(/[A-Za-z]+/g.test("안녕"));   // false
+      console.log(/[A-Za-z]+/g.test("Hello")); // true
+
+      // a로 시작하고, z로 끝나는 문자열인지 검사
+      // ^a -> a로 시작하고
+      // .* -> 임의의 한글자가 0개 이상 있고
+      // z$ -> z로 끝난다.
+      console.log(/^a.*z$/.test("abcxyz"));  // true
+      console.log(/^a.*z$/.test("a*z"));     // true
+      console.log(/^a.*z$/.test("az"));      // true
+      console.log(/^a.*z$/.test("abc"));     // false 
+      console.log(/^a.*z$/.test("xyz"));     // false
+      console.log(/^a.*z$/.test("안a하이z녕"));     // false
+
+      // const regexp = /^a.+z$/; // a로 시작, z로 끝나되, 중간에 글자가 1개 이상 있음
+    };
+    
+    /**
+     * 수량자 {}
+     *  - a{5} : a가 딱 5개
+     *  - a{2,5} : a가 2개 ~ 5개 (2도 포함 5도 포함)
+     *  - a{2, } : a가 2개 이상
+     * 
+     * 주의!!
+     *  - a{, 5} -> (a가 5개 이하 XX) 이런 표현은 없음!!
+     */
+    btn11.onclick = () => {
+      const str = "aa aba abba abbba";
+
+      // a로 시작하고 그 다음에 b가 0개 이상이고 a로 끝나야 함
+      area10.innerHTML = `${str.replace(/ab*a/g, SUBSTITUTE)}<br>`
+      area10.innerHTML += `${str.replace(/ab{0,}a/g, SUBSTITUTE)}<br>`
+
+      // a로 시작하고 b가 1개 이상 나오고 a로 끝나야 함 
+      area10.innerHTML += `${str.replace(/ab+a/g, SUBSTITUTE)}<br>`
+      area10.innerHTML += `${str.replace(/ab{1,}a/g, SUBSTITUTE)}<br>`
+
+      // a로 시작하고 b가 0개이거나 1개가 나와야 하고 다시 a로 끝나야 함.
+      area10.innerHTML += `${str.replace(/ab?a/g, SUBSTITUTE)}<br>`
+      area10.innerHTML += `${str.replace(/ab{0,1}a/g, SUBSTITUTE)}<br>`
+
+
+      // 비밀번호가 숫자 4자리인지 확인하는 정규식 (자리수가 고정이라면 ^와 $는 필수이다!)
+      const regexp = /^[0-9]{4}$/;
+      // const regexp = /^\d{4}$/; 얘도 가능
+      console.log(regexp.test("1234"));   // true
+      console.log(regexp.test("123456")); // false
+      console.log(regexp.test("abcd"));   // false 
+      console.log(regexp.test("ab12"));   // false
+
+      // 숫자로 시작하고, 영문자가 3개 이상 나오고, .(마침표)로 끝나는 문자열 검사 정규식
+      // 참: 1abc안녕.  3xyzkkk.  1ABC.
+      // 거짓: 100  1cb캬캬캬.  1아아아.  1가나다abc.  123abc다나가.
+      // const regexp2 = /^\d[A-Za-z]{3,}.*\.$/
+      const regexp2 = /^\d[a-z]{3,}.*\.$/i;
+      console.log(regexp2.test("1abc안녕."));     // true
+      console.log(regexp2.test("3xyzkkk."));      // true
+      console.log(regexp2.test("1ABC."));         // true
+      console.log(regexp2.test("100"));           // false
+      console.log(regexp2.test("1cb캬캬캬."));     // false
+      console.log(regexp2.test("1아아아."));       // false
+      console.log(regexp2.test("1가나다abc."));    // false
+      console.log(regexp2.test("123abc다나가."));  // false
+    };
+
+    /**
+     * 
+     *  - 정규식에서 수량자는 기본적으로 greedy하게 작동한다.
+     *  - a* : a가 0개 이상(0개도 되고, 1개도 되고, 2개도 되고...) -> 최대한 큰 수량을 매칭시키는 성질
+     *  - a+ : a가 1개 이상(1개도 되고, 2개도 되고, 3개도 되고...) -> 최대한 큰 수량을 매칭시키는 성질
+     *        => 즉 3개가 가능하다면 1개가 존재하는 걸 무시함.
+     *  - a? : a가 0, 1개 가능 -> 그럼 0개가 아닌 1개를 선택
+     * 
+     * 그래서 게으른 수량자란?
+     *  - 원래는 선택지가 여러개이면 최대수량인 선택지를 선택하는데, 게으른 수량자는 최소수량을 매칭하도록 하는 것.
+     *  - a*? : a가 0개
+     *  - a+? : a가 1개
+     *  - a?? : a가 0개
+     */
+    btn12.onclick = () => {
+      const str = "internationalization";
+
+      // 게으른 수량자를 붙이지 않았을 때
+      // i로 시작하고 n으로 끝나는 문자열 찾고싶다. 그리고 그 사이에 영단어가 0개이상 올 수 있다. 
+      area10.innerHTML = `${str.replace(/i\w*n/g, SUBSTITUTE)}<br>`;
+      // 해당되는 것: in, intern, ion, ionalization, internation, ization, internationalization
+      // 결과: internationalization
+      // 즉 해당되는 결과가 많은 경우에 최대로 큰 수를 매칭시키는 것.
+      
+      // i로 시작하고 n으로 끝나는 문자열 찾고싶다. 그리고 그 사이에 영단어가 1개이상 올 수 있다.
+      area10.innerHTML += `${str.replace(/i\w+n/g, SUBSTITUTE)}<br>`;
+      // 해당되는 것: intern, ion, ionalization, internation, ization, internationalization
+      // 결과: internationalization
+      // 역시 해당되는 결과가 많은 경우 가장 큰 수를 매칭시킴
+
+      // i로 시작하고 n으로 끝나는 문자열 찾고싶다. 그리고 그 사이에 영단어가 0개 또는 1개이상 올 수 있다.
+      area10.innerHTML += `${str.replace(/i\w?n/g, SUBSTITUTE)}<br><br>`;
+      // 결과: in, ion, ion
+      // 여러개가 해당되어도 맥시멈을 찾는다는 것!! 
+
+
+      // 게으른 수량자 적용
+      area10.innerHTML += `${str.replace(/i\w*?n/g, SUBSTITUTE)}<br>`;
+      area10.innerHTML += `${str.replace(/i\w+?n/g, SUBSTITUTE)}<br>`;
+      area10.innerHTML += `${str.replace(/i\w??n/g, SUBSTITUTE)}<br>`;
+    };
+  </script>
+
+  <button id="btn13">grouping | back-reference</button>
+  <div class="area" id="area13"></div>
+  <script>
+    /**
+     * grouping | back-reference
+     *  - () : 소괄호로 묶은 것이 하나의 그룹으로 넘버링이 됨. 
+     *  - 그래서 만약 정규표현식 안에 괄호가 두 개 () () 있다면, 그룹1, 그룹2가 됨.
+     *  - \숫자로 그룹값을 참조할 수 있음. (ex. \1, \2)
+     *  - replace시에는 $숫자로 참조함(ex. $1, $2) 
+     */
+    btn13.onclick = () => {
+      const str = "hello123";
+      area13.innerHTML = `${str.replace(/hello(\d+)/, `안녕$1`)}<br>`
+      // 123부분만 그룹핑을 해서 replace될 때 $1자리에 들어가도록 함. -> 결과: 안녕123
+      
+      const str2 = "hello123hello456";
+      area13.innerHTML += `${str2.replace(/hello(\d+)/g, `안녕$1`)}<br>`
+
+
+      // // 비밀번호에 동일한 문자가 연속으로 2개 이상 나오는지 검사
+      // // 2개이상 있으면 false처리
+      const regexp2 = /(.)\1+/; // 임의의 한글자가 하나 또 나와서 연속된다.
+      console.log(!regexp2.test("abcdef"));  // true
+      console.log(!regexp2.test("122345"));  // false 
+      console.log(!regexp2.test("abccba"));  // false 
+      
+
+      const text = `script java
+    script type
+    script x`;
+    // java script
+    // type script
+    // x script 가 나오도록 하기. 
+    area13.innerHTML += `${text.replace(/(script) (\w+)/g, '$2 $1').replace(/\n/g, '<br>')}`;
+    };
+  </script>
+
+  <button id="btn14">Look Around</button>
+  <div class="area" id="area14"></div>
+  <script>
+    /**
+     * Look Around
+     *  - Look Around안의 구문은 조회만 되고 최종매칭에는 포함되지 않는다.
+     * 
+     *  - Look Ahead
+     *    -> a(?=b) : a 이후에 b가 나오는 것 매칭. 즉 a이후에 b가 뒤따르는 a를 조회 (b는 조회만 하고 최종매칭되지 않는다.)
+     *    -> a(?!b) : b가 뒤따르지 않는 a를 조회 (b는 조회만 하고 최종매칭되지 않는다.)
+     * 
+     *  - Look Behind
+     *    -> (?<=b)a : 앞에 b가 있는 a를 조회 (b는 조회만 하고 최종매칭되지 않는다.)
+     *    -> (?<!b)a : 앞에 b가 없는 a를 조회 (b는 조회만 하고 최종매칭되지 않는다.)
+     */
+    btn14.onclick = () => {
+      const str1 = 'hello world hello Tom hello Jane';
+      
+      // hello 뒤에 world가 뒤따르는 hello를 찾고싶어요 
+      area14.innerHTML = `${str1.replace(/hello(?= world)/g, SUBSTITUTE)}<br>`;
+      
+      // 뒤에 world가 뒤따르지 않는 hello를 찾고 싶어요
+      area14.innerHTML += `${str1.replace(/hello(?! world)/g, SUBSTITUTE)}<br>`;
+      
+
+      const str2 = 'hello world lotte world t world';
+
+      // hello가 앞에 있는 world를 찾고 싶어요 (hello 뒤에 나오는 world)
+      area14.innerHTML += `${str2.replace(/(?<=hello )world/g, SUBSTITUTE)}<br>`;
+      area14.innerHTML += `${str2.replace(/(?<!hello )world/g, SUBSTITUTE)}<br>`;
+
+    };  
+  </script>
+
+  <fieldset>
+    <legend>비밀번호 유효성 검사</legend>
+    <input type="password" name="password" id="password" placeholder="비밀번호">
+    <input type="button" value="확인" id="btn-password">
+  </fieldset>
+  <script>
+    /**
+     * 8~12 자리의 숫자, 영문자, 특수문자(!&/\*@)가 모두 포함된 비밀번호 검사
+     */
+    document.querySelector("#btn-password").addEventListener('click', (e) => {
+      const pwVal = password.value;
+      
+      // 길이검사 - 자릿수는 꼭 ^$가 필요함!!
+      if(!/^.{8,12}$/.test(pwVal)){
+        alert('비밀번호의 길이는 8~12자리입니다.');
+        password.select(); // select는 alert에서 확인을 누르자마자 password 부분이 블록잡혀서 바로 입력이 가능하게 됨
+        return;
+      }
+      // 숫자 포함여부 (아래 답 혹은 /\d/도 가능)
+      if(!/[0-9]/.test(pwVal)){
+        alert('비밀번호에는 숫자가 1개 이상 포함되어야 합니다.');
+        password.select(); 
+        return;
+      }
+
+      // 영문자 포함여부
+      if(!/[a-z]/i.test(pwVal)){
+        alert('비밀번호에는 영문자가 1개 이상 포함되어야 합니다. ');
+        password.focus(); // focus는 alert에서 확인을 누르자마자 password 맨 끝부분에서 커서가 깜빡거리게 함.
+        return;
+      }
+
+      // 특수문자 포함여부(!&/\*@)
+      // [] 대괄호 안에서는 이스케이핑 안해도 됨. (하지만 역슬래시는 해줘야 함. 역슬래시만 해주면 됨.)
+      if(!/[!&/\\*@]/.test(pwVal)){
+        alert('비밀번호에는 특수문자(!&/\*@)가 1개 이상 포함되어야 합니다. ');
+        password.focus(); 
+        return;
+      }
+        
+      alert('유효한 비밀번호입니다.');
+    });
+  </script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

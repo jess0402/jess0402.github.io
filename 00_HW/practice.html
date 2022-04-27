@@ -7,28 +7,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노션용</title>
 </head>
+<style>
+  .area {
+    background-color: lightgray;
+    border: 2px solid #000;
+    padding: 5px;
+    margin: 10px 0;
+    min-height: 50px;
+  }
+</style>
 <body>
-  <form action="" name="usernameFrm"> <!-- onsubmit="return false" -> 폼 제출 방지코드 -->
-    <fieldset>
-      <legend>key event</legend>
-      <input type="text" name="username" id="username" placeholder="username을 입력하세요.">
-      <input type="text" name="usernameCopy" id="usernameCopy" readonly>
-      <input type="submit" value="제출">
-    </fieldset>
-  </form>
+  <fieldset>
+    <legend>비밀번호 유효성 검사</legend>
+    <input type="password" name="password" id="password" placeholder="비밀번호">
+    <input type="button" value="확인" id="btn-password">
+  </fieldset>
   <script>
-    document.usernameFrm.onsubmit = (e) => {
-      console.log(e.type);
-
-      // 입력값 검사!!
-      // 만약 아무것도 입력하지 않고 제출을 누르면 제출되지 않도록.
-      if(username.value.length == 0){
-        alert("username을 입력해주세요.");
-        // return false;  // 폼 제출 방지 방법 1 - onevent에서만 사용
-        e.preventDefault(); // 폼 제출 방지 방법 2 - onevent, addEventListener 둘 다 사용가능 
+    /**
+     * 8~12 자리의 숫자, 영문자, 특수문자(!&/\*@)가 모두 포함된 비밀번호 검사
+     */
+    document.querySelector("#btn-password").addEventListener('click', (e) => {
+      const pwVal = password.value;
+      
+      // 길이검사 - 자릿수는 꼭 ^$가 필요함!!
+      if(!/^.{8,12}$/.test(pwVal)){
+        alert('비밀번호의 길이는 8~12자리입니다.');
+        password.select(); // select는 alert에서 확인을 누르자마자 password 부분이 블록잡혀서 바로 입력이 가능하게 됨
+        return;
+      }
+      // 숫자 포함여부 (아래 답 혹은 /\d/도 가능)
+      if(!/[0-9]/.test(pwVal)){
+        alert('비밀번호에는 숫자가 1개 이상 포함되어야 합니다.');
+        password.select(); 
+        return;
       }
 
-    };
+      // 영문자 포함여부
+      if(!/[a-z]/i.test(pwVal)){
+        alert('비밀번호에는 영문자가 1개 이상 포함되어야 합니다. ');
+        password.focus(); // focus는 alert에서 확인을 누르자마자 password 맨 끝부분에서 커서가 깜빡거리게 함.
+        return;
+      }
+
+      // 특수문자 포함여부(!&/\*@)
+      // [] 대괄호 안에서는 이스케이핑 안해도 됨. (하지만 역슬래시는 해줘야 함. 역슬래시만 해주면 됨.)
+      if(!/[!&/\\*@]/.test(pwVal)){
+        alert('비밀번호에는 특수문자(!&/\*@)가 1개 이상 포함되어야 합니다. ');
+        password.focus(); 
+        return;
+      }
+        
+      alert('유효한 비밀번호입니다.');
+    });
   </script>
 </body>
 </html>
