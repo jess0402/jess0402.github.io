@@ -150,7 +150,7 @@
         //2.비밀번호 확인 검사
         const pwVal = pwd.value;
         //숫자/문자/특수문자 포함 형태의 8~15자리 이내의 암호 정규식 
-        if(!/(?).{8,15}/.test(pwd)){
+        if(!/^.{8,15}$/.test(pwd)){
           alert('비밀번호는 8~15자리여야 합니다.');
           userId.select();
           return;
