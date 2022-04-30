@@ -130,6 +130,7 @@
       // console.log(promise);
 
       // then(resolve콜백함수, reject콜백함수)
+      // then(resolve) catch(reject)
       promise
       .then((value) => {
         console.log('Consuming....')
@@ -236,74 +237,112 @@
     });
   </script>
 
-  <button id="btn8">fetch</button>
-  <button id="btn9">json</button>
-  <div id="fetch-result"></div>
+<!-- 여기서부터 4월 29일 강의 -->
+  <br><br>
+  <button id="btn8">async | await</button>
+  <button id="btn9">async | await - loadScript</button>
   <script>
-    const USER_URL = "https://asia-northeast3-focal-elf-326215.cloudfunctions.net/user";
     /**
-     * 네트워크 통신 - 비동기처리 (XMLHttpRequest 객체 사용)
-     *  - fetch : Promise 객체로 반환
+     * async
+     *  - ES2017에 추가된 문법
+     *  - 일반함수의 promise화를 지원하는 문법 
+     * 
+     * await 
+     *  - async함수안에서만 사용이 가능
+     *  - promise의 동기적처리를 지원
      */
-    btn8.addEventListener('click', () => {
-      // console.log(fetch(USER_URL)); // fetch된 결과가 바로 promise임.
-      fetch(USER_URL)
-        .then((response) => {
-          // 첫 응답메세지가 도착했을 때 resolve 실행
-          console.log(response);  // status가 200이면 정상처리
-          return response.json(); // json 데이터를 js object로 변환 후 그 값으 다음 promise에 변환
-        })
-        .then((data) => {
-          console.log('data : ', typeof data, data);
-          const container = document.querySelector('#fetch-result');
-          container.innerHTML = `<table>
-            <tr>
-              <th>id</th>
-              <td>${data.id}</td>
-            </tr>
-            <tr>
-              <th>company</th>
-              <td>${data.company}</td>
-            </tr>
-            <tr>
-              <th>classroom</th>
-              <td>${data.classroom}</td>
-            </tr>
-        </table>`;
-        })
+    btn8.addEventListener('click', async () => {
+      zoo()
+        .then((value) => console.log(value));
+
+      // qoo()
+      //   .then((value) => console.log(value));
+
+      // await 프라미스의 결과값으로 동기적으로 반환
+      const result = await qoo();  // qoo()의 결과값이 result에 담기게 됨. 
+      console.log(result);
+
+      const result2 = await xoo();  // 3초 후 resolve 실행 (promise를 일반함수처럼 쓸 수 있게 해줌 )
+      console.log(result2);
+
+    });
+    
+    const xoo = () => new Promise((resolve) => {
+      setTimeout(() => resolve(99), 3000);
+    }); // 3초 뒤에 콜백함수 실행하는 구조
+
+    const qoo = () => new Promise((resolve) => resolve(100));
+
+    // 그냥 동기적 함수에 async을 붙이면 
+    const zoo = async () => {
+      return 10;
+    }
+
+    // top-level에서 await을 사용하려는 경우
+    // (async () => {
+    //   const result = await xoo();
+    //   console.log('iife result : ', result);
+    // })();
+
+    btn9.addEventListener('click', async () => {
+      // 원래 쓰던 방식
+      // loadScriptPromise('js/1.js')
+      //   .then((src) => {
+      //     console.log(src, "로딩완료!");
+      //     const path = bar();
+      //     return loadScriptPromise(path);
+      //   })
+      //   .then((src) => {
+      //     console.log(src, "로딩완료!");
+      //     car();
+      //   });
+
+      let src = await loadScriptPromise('js/1.js');
+      console.log(src, '로딩 완료!');
+      src = bar();
+      await loadScriptPromise(src); // result를 사용하지 않는 경우 그냥 await만 붙여라. 
+      // 이 이후의 코드는 모든 로딩이 끝나고 나서 실행될 것.
+      car(); 
     });
 
-    /**
-     * json
-     *  - javascript Object Notation
-     *  - 이종간의(다른기기/다른프로그램간) 통신에서 data를 주고받기 위한 포맷(형식)언어
-     */
-    btn9.addEventListener('click', () => {
-      // javascript object/array -> json
-      const obj = {
-        name: '홍길동',
-        age: '33',
-        sns: ['instagram', 'twitter'],
-        family: {
-          father: '홍아빠',
-          mother: '홍엄마',
-        },
-        married: false
-      };
-      console.log(obj);
-
-      // 위 obj를 json형식으로 변환하면 문자열이 됨. 
-      const jsonObj = JSON.stringify(obj);
-      console.log(typeof jsonObj, jsonObj);
-      // string {"name":"홍길동","age":"33","sns":["instagram","twitter"],"family":{"father":"홍아빠","mother":"홍엄마"},"married":false}
-      
-      // json -> js object
-      // json을 다시 자바스크립트 객체로 변환
-      const other = JSON.parse(jsonObj); 
-      console.log(typeof other, other); // object {name: '홍길동', age: '33', sns: Array(2), family: {…}, married: false}
-    });
   </script>
 
+  <br><br>
+  <button id="btn10">Promise.all</button>
+  <script>
+    /**
+     * Promise API 
+     *  - Promise.all([promise1, promise2, ...])
+     *      -> 모든 promise를 병렬적으로 실행 후, 모든 promise가 완료되었을 때 then절의 callback실행
+     *      -> 모든 promise 성공시, fulfilled(이행) 처리가 됨
+     *      -> 하나라도 실패하면, 전체가 rejected(거부) 처리가 됨.
+     *  - Promise.allSettled
+     *  - Promise.race
+     *  - Promise.resolve
+     *  - Promise.reject
+     */
+    btn10.addEventListener('click', async () => {
+      const promises = [
+        loadScriptPromise('js/1.js'),
+        loadScriptPromise('js/2.js'),
+        loadScriptPromise('js/3.js'),
+      ];
+      Promise.all(promises)
+      // 모든 promise의 result 값을 배열로 넘겨줌
+        // .then(values => {
+        //   values.forEach((value) => console.log(`${value} 로딩완료!`));
+        //   bar();
+        //   car();
+        //   dar();
+        // });
+        // 위 then절을 아래와 같이 할수도 있음.
+        const values = await Promise.all(promises); // values는 배열. 
+        values.forEach((value) => console.log(`${value} 로딩완료!`));
+        bar();
+        car();
+        dar();
+      });
+  </script>
 
 </body>
 </html>

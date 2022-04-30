@@ -6,40 +6,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노션용</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    #img-wrapper, .img-wrapper {
+      width: 200px;
+      margin-top: 10px 0;
+    }
+    #img-wrapper img, .img-wrapper img {
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: 5px 5px 10px lightgrey;
+    }
+  </style>
 </head>
 <body>
-  <button id="btn9">json</button>
-  <div id="fetch-result"></div>
+  <button id="btn10">Promise.all</button>
   <script>
-    const USER_URL = "https://asia-northeast3-focal-elf-326215.cloudfunctions.net/user";
     /**
-     * json
-     *  - javascript Object Notation
-     *  - 이종간의(다른기기/다른프로그램간) 통신에서 data를 주고받기 위한 포맷(형식)언어
+     * Promise API 
+     *  - Promise.all([promise1, promise2, ...])
+     *      -> 모든 promise를 병렬적으로 실행 후, 모든 promise가 완료되었을 때 then절의 callback실행
+     *      -> 모든 promise 성공시, fulfilled(이행) 처리가 됨
+     *      -> 하나라도 실패하면, 전체가 rejected(거부) 처리가 됨.
+     *  - Promise.allSettled
+     *  - Promise.race
+     *  - Promise.resolve
+     *  - Promise.reject
      */
-     btn9.addEventListener('click', () => {
-      // javascript object/array -> json
-      const obj = {
-        name: '홍길동',
-        age: '33',
-        sns: ['instagram', 'twitter'],
-        family: {
-          father: '홍아빠',
-          mother: '홍엄마',
-        },
-        married: false
-      };
-      console.log(obj);
+     btn10.addEventListener('click', async () => {
+      const promises = [
+        loadScriptPromise('js/1.js'),
+        loadScriptPromise('js/2.js'),
+        loadScriptPromise('js/3.js'),
+      ];
+      Promise.all(promises)
+      // 모든 promise의 result 값을 배열로 넘겨줌
+        // .then(values => {
+        //   values.forEach((value) => console.log(`${value} 로딩완료!`));
+        //   bar();
+        //   car();
+        //   dar();
+        // });
+        // 위 then절을 아래와 같이 할수도 있음.
+        const values = await Promise.all(promises); // values는 배열. 
+        values.forEach((value) => console.log(`${value} 로딩완료!`));
+        bar();
+        car();
+        dar();
+      });
 
-      // 위 obj를 json형식으로 변환하면 문자열이 됨. 
-      const jsonObj = JSON.stringify(obj);
-      console.log(typeof jsonObj, jsonObj);
-      // string {"name":"홍길동","age":"33","sns":["instagram","twitter"],"family":{"father":"홍아빠","mother":"홍엄마"},"married":false}
-      
-      // json -> js object
-      // json을 다시 자바스크립트 객체로 변환
-      const other = JSON.parse(jsonObj); 
-      console.log(typeof other, other); // object {name: '홍길동', age: '33', sns: Array(2), family: {…}, married: false}
+    const loadScriptPromise = (src) => new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = () => resolve(src);
+      document.head.append(script);
     });
   </script>
 </body>

@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'ROKAFSansBold';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ROKAFSansMedium';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansMedium.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  /* background: url("./images/net5.jpg") no-repeat center; */
+  background: url("../images/net5.jpg") no-repeat center;
+  background-size: cover;
+
+}
+/* navigation */
+header {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+  align-items: center;
+}
+
+header a {
+  display: flex;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+  font-family: 'ROKAFSansBold', sans-serif;
+  font-size: 30px;
+  color: white;
+
+}
+/* header nav{
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  display: flex;
+} */
+header ul {
+  list-style: none;
+  display: flex;
+  /* align-items: flex-end; */
+  /* justify-content: space-evenly; */
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 0;
+  /* height: 40px; */
+}
+header ul li {
+margin: 12px;
+z-index: 3;
+}
+
+/* section */
+.container {
+  position: relative;
+  overflow: hidden;
+  width: auto;
+  height: 100vh;
+  /* background-image: url("./images/netflix.png"); */
+  background-size: 1024px 768px;
+  z-index: 2;
+}
+.slide_container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  /* background-color: red; */
+  text-align: center;
+  /* z-index: -2; */
+}
+.slide {
+  position: absolute;
+  box-sizing: border-box;
+  top: 53%;
+  transform: translateY(-50%);
+  text-align: center;
+  overflow: hidden;
+  list-style: none;
+
+  /* display: inline-block; */
+  display: flex;
+  width: 90%;
+  height: 86%;
+  margin: 20px 20px 30px 50px;
+  flex-direction: column;
+
+}
+.slide_container.animated {
+  -webkit-transition: left 0.3s ease-in;
+  transition: left 0.3s ease-in;
+}
+#slide1 {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  top: 50%;
+  position: relative;
+}
+#slide1_imgdiv {
+width: 100%;
+height: 100vh;
+}
+#slide1_img {
+object-fit: cover;
+width: 100%;
+height: 100vh;
+}
+#slide1_textdiv {
+position: absolute;
+box-sizing: border-box;
+top: 30%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: center;
+margin-left: 34px;
+
+}
+#slide1_textdiv img {
+width: 500px;
+} 
+#slide1_textdiv span {
+font-size: 24px;
+margin-top: 11px;
+margin-bottom: 16px;
+}
+#slide1_button a {
+text-decoration: none;
+color: white;
+background-color: rgb(229, 9, 20);
+border-radius: 5px;
+font-family: 'ROKAFSansMedium', sans-serif;
+padding: 5px;
+margin-right: 5px;
+}
+#slide1 span {
+  font-family: 'ROKAFSansMedium', sans-serif;
+  color: white;
+}
+.movie_img {
+width: 100%;
+height: 350px;
+}
+.movie_img img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+}
+.movie_info {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-top: 25px;
+}
+.movie_info span {
+font-size: 25px;
+color: black;
+font-family: 'ROKAFSansMedium', sans-serif;
+}
+
+/* 화살표 */
+#next,
+#prev {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: inline-block;
+  height: 3em;
+  width: 5em;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+#navigation.disabled,
+#next.disabled,
+#prev.disabled {
+  display: none;
+}
+
+#prev {
+  margin-left: -500px;
+  background-image: url("../images/gajae/left.png");
+  background-size: 100px;
+}
+
+#next {
+  margin-left: 400px;
+  background-image: url("../images/gajae/right.png");
+  background-size: 100px;
+}
+
+/* TEST */
+
+.circle_container {
+display: flex;
+justify-content: center;
+}
+
+.circle{
+width : 15px;
+height : 15px;
+border-radius: 50%;
+background-color: white;
+box-shadow: 3px 3px 3px black;
+z-index: 2;
+}
+
+.circle:hover {
+-webkit-transform:scale(1.2); 
+-moz-transform:scale(1.2); 
+-ms-transform:scale(1.2); 
+-o-transform:scale(1.2); 
+transform:scale(2);
+background-color: white;
+}
+
+.circle_title {
+position: absolute;
+margin-top: 30px;
+display: none;
+font-family: 'ROKAFSansMedium', sans-serif;
+font-size: large;
+}
+.show {
+color: white;
+display: block;
+}

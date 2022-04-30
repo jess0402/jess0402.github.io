@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Sunflower:wght@300;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <title>🌼EhunSung Jang</title>
+    <title>🌼예제</title>
     <!-- <link rel="stylesheet" href="./css/style_aboutme.css">   -->
     <style>
         * {
@@ -23,32 +23,28 @@
             justify-content: center;
             align-items: center;
         }
-        #container {
-            width: 80%;
-            height: 100%;
-            /* margin: 50px; */
-            box-shadow: 0px 4px 13px 3px black;
-            transform: translateY(-30px);
-        }
         header {
-            width: 70%;
+            padding: 0 50px;
+            width: 100%;
             height: 140px;
             display: flex;
             position: fixed;
             top: 0;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 2;
         }
         .logo {
+            /* margin-right: 100px; */
             font-size: 30px;
             letter-spacing: 0.5px;
-            transform: translateY(-10px);
+            transform: translate(-193px, -7px);
             font-family: 'Ubuntu Mono', sans-serif;
-            color: black;
+            color: white;
         }
         nav {
             width: 380px;
+            transform: translate(-96px);
         }
         nav ul {
             display: flex;
@@ -59,7 +55,7 @@
             font-family: 'Ubuntu Mono', sans-serif;
         }
         nav a {
-            color: black;
+            color: white;
         }
         /*여기가지 네비게이션 부분*/
         /*아래부터 첫페이지 사진+글씨부분*/
@@ -74,18 +70,23 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: black;
         }
         .home img {
             width: 300px;
             border-radius: 15%;
             margin-top: 50px;
             z-index: 1;
+            /* box-shadow: -1px 1px 30px 0px grey; */
+
         }
+
         .text1 {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 46px;
+            color: white;
         }
         .home h1 {
             font-size: 50px;
@@ -170,9 +171,6 @@
         .play_second img {
             transform: translateY(-12px);
         }
-        
-
-        
     </style>
 </head>
 <body>
@@ -186,101 +184,99 @@
             </ul>
         </nav>
     </header>
-    <div id="container">
-            <section class="home">
-                <img src="./images/aboutme/me/sea4.jpg" alt="img">
-                <div class="text1">
-                    <h1>Hey, I'm EhunSung!</h1>
-                    <h3>만나서 반가워요! 저에 대해 더 알고싶으시다면, 스크롤을 내려보세요 :)</h3>
+
+        <section class="home">
+            <img src="../images/aboutme/me/sea4.jpg" alt="img">
+            <div class="text1">
+                <h1>Hey, I'm EhunSung!</h1>
+                <h3>만나서 반가워요! 저에 대해 더 알고싶으시다면, 스크롤을 내려보세요 :)</h3>
+            </div>
+        </section>
+            
+        <section class="about">
+            <!-- 🥳 🦞🦞 📺 📚 🎫-->
+            <img src="../images/aboutme/me/hangang.jpg" alt="img">
+            <div id="about_window1_text">
+                <p>안녕하세요! 저는 
+                    <a href="#about_me"><span>장은성</span></a>
+                    이에요</p>
+                <p>2022년, 저는 
+                    <a href="#about_age"><span>24살</span></a>
+                    이에요!</p>
+                <p>저는
+                    <a href="#about_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
+                    을 공부했고</p>
+                <p>올해 
+                    <a href="#about_grad"><span>졸업</span></a>
+                    했답니다~</p>
+                <p>제 mbti는 
+                    <a href="#about_istp"><span>istp</span></a>
+                    에요.
+                </p>
+                <p>그리고
+                    <a href="#about_crawfish"><span>가재 두마리</span></a>
+                    를 키우고 있어요!</p> 
+                <p>저는 주로 집에서 
+                    <a href="#about_dramabook"><span>드라마나 책</span></a>
+                    보는 걸 좋아하는 집순이지만</p>
+                <p>가끔씩 
+                    <a href="#about_play"><span>연극</span></a>
+                    보러 가는 것도 좋아해요 :D </p>
+            </div>
+        </section>
+        <section class="pic">
+
+            <a name="about_age">
+                <div class="pic_div pic_age">
+                    <img src="../images/aboutme/age.png" alt="나이1">
                 </div>
-            </section>
-                
-            <section class="about">
-                <!-- 🥳 🦞🦞 📺 📚 🎫-->
-                <img src="./images/aboutme/me/hangang.jpg" alt="img">
-                <div id="about_window1_text">
-                    <p>안녕하세요! 저는 
-                        <a href="#about_me"><span>장은성</span></a>
-                        이에요</p>
-                    <p>2022년, 저는 
-                        <a href="#about_age"><span>24살</span></a>
-                        이에요!</p>
-                    <p>저는
-                        <a href="#about_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
-                        을 공부했고</p>
-                    <p>올해 
-                        <a href="#about_grad"><span>졸업</span></a>
-                        했답니다~</p>
-                    <p>제 mbti는 
-                        <a href="#about_istp"><span>istp</span></a>
-                        에요.
-                    </p>
-                    <p>그리고
-                        <a href="#about_crawfish"><span>가재 두마리</span></a>
-                        를 키우고 있어요!</p> 
-                    <p>저는 주로 집에서 
-                        <a href="#about_dramabook"><span>드라마나 책</span></a>
-                        보는 걸 좋아하는 집순이지만</p>
-                    <p>가끔씩 
-                        <a href="#about_play"><span>연극</span></a>
-                        보러 가는 것도 좋아해요 :D </p>
+            </a>
+            <a name="about_major">
+                <div class="pic_div pic_major">
                 </div>
-            </section>
-            <section class="pic">
+            </a>
+            <a name="about_grad">
+                <div class="pic_div pic_grad">
+                    <img src="../images/aboutme/grad/grad.jpg" alt="졸업1">
+                    <img src="../images/aboutme/grad/grad2.gif" alt="졸업2">
+                </div>
+            </a>
+            <a name="about_istp">
+                <div class="pic_div pic_mbti">
+                    <img src="../images/aboutme/ispt.jpg" alt="mbti">
+                    <img src="../images/aboutme/park.jpg" alt="park">
+                </div>
+            </a>
+            <a name="about_crawfish">
+                <div class="pic_div pic_crawfish">
+                    <div class="craw_first">
+                        <img src="../images/aboutme/medium9.jpg" alt="가재1">
+                        <img src="../images/aboutme/medium11.jpg" alt="가재3">
+                        <img src="../images/aboutme/medium10.jpg" alt="가재2">
+                    </div>
+                </div>
+            </a>
+            <a name="about_dramabook">
+                <div class="pic_div pic_dramabook">
     
-                <a name="about_age">
-                    <div class="pic_div pic_age">
-                        <img src="./images/aboutme/age.png" alt="나이1">
+                </div>
+            </a>
+            <a name="about_play">
+                <div class="pic_div pic_play">
+                    <div class="play_first">
+                        <img src="../images/aboutme/play/play.jpg" alt="연극1">
+                        <img src="../images/aboutme/play/timetaxi.jpg" alt="연극2">
                     </div>
-                </a>
-                <a name="about_major">
-                    <div class="pic_div pic_major">
+                    <div class="play_second">
+                        <img src="../images/aboutme/play/ticket2.jpg" alt="연극4">
+                        <img src="../images/aboutme/play/timetaxi2.jpg" alt="연극5">
                     </div>
-                </a>
-                <a name="about_grad">
-                    <div class="pic_div pic_grad">
-                        <img src="./images/aboutme/grad/grad.jpg" alt="졸업1">
-                        <img src="./images/aboutme/grad/grad2.gif" alt="졸업2">
-                    </div>
-                </a>
-                <a name="about_istp">
-                    <div class="pic_div pic_mbti">
-                        <img src="./images/aboutme/ispt.jpg" alt="mbti">
-                        <img src="./images/aboutme/park.jpg" alt="park">
-                    </div>
-                </a>
-                <a name="about_crawfish">
-                    <div class="pic_div pic_crawfish">
-                        <div class="craw_first">
-                            <img src="./images/aboutme/medium9.jpg" alt="가재1">
-                            <img src="./images/aboutme/medium11.jpg" alt="가재3">
-                            <img src="./images/aboutme/medium10.jpg" alt="가재2">
-                        </div>
-                    </div>
-                </a>
-                <a name="about_dramabook">
-                    <div class="pic_div pic_dramabook">
-        
-                    </div>
-                </a>
-                <a name="about_play">
-                    <div class="pic_div pic_play">
-                        <div class="play_first">
-                            <img src="./images/aboutme/play/play.jpg" alt="연극1">
-                            <img src="./images/aboutme/play/timetaxi.jpg" alt="연극2">
-                        </div>
-                        <div class="play_second">
-                            <img src="./images/aboutme/play/ticket2.jpg" alt="연극4">
-                            <img src="./images/aboutme/play/timetaxi2.jpg" alt="연극5">
-                        </div>
-                    </div>
-                </a>
-            </section>
-            <section class="contact">
-                    
-            </section>
+                </div>
+            </a>
+        </section>
+        <section class="contact">
                 
         </section>
-    </div>
+
 </body>
 </html>

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link
             rel="preconnect"
@@ -12,11 +13,11 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Sunflower:wght@300;500;700&family=Ubuntu+Mono&display=swap"
             rel="stylesheet">
-        <!-- <script scr="js/gajae.js"></script> -->
+        <link href="css/style_netflix.css?ver0.1" rel="stylesheet" type ="text/css">
     </head>
-    <title>NEFLIX</title>
+    <title>TEST</title>
     <style>
-        @font-face {
+        /* @font-face {
             font-family: 'ROKAFSansBold';
             src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSansBold.woff") format('woff');
             font-weight: normal;
@@ -31,22 +32,22 @@
         body {
             margin: 0;
             height: 100vh;
-            background: url("./images/netflix.png") no-repeat center;
+            background: url("./images/net5.jpg") no-repeat center;
             background-size: cover;
 
         }
         /* navigation */
-        header {
-            height: 115px;
+        /* header {
             width: 100%;
             position: fixed;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 3;
-        }
+            align-items: center;
+        } */
 
-        header a {
+        /* header a {
             display: flex;
             height: 70%;
             align-items: center;
@@ -55,52 +56,38 @@
             font-size: 30px;
             color: white;
 
-        }
-        /* header nav{
-            position: relative;
-            z-index: -1;
-            width: 100%;
-            display: flex;
         } */
-        nav ul {
+        /* header ul {
             list-style: none;
             display: flex;
-            align-items: flex-end;
-            justify-content: space-evenly;
-            width: 100%;
             padding: 0;
-            margin: 10px;
-            height: 17px;
-        }
-        nav ul a {
-            text-decoration: none;
-            font-family: 'ROKAFSansMedium', sans-serif;
-            font-size: 20px;
-            color: white;
-        }
+            margin-top: 20px;
+            margin-bottom: 0;
+        } */
+        /* header ul li {
+          margin: 12px;
+          z-index: 3;
+        } */
 
         /* section */
-        .container {
+        /* .container {
             position: relative;
             overflow: hidden;
             width: auto;
             height: 100vh;
-            /* background-image: url("./images/netflix.png"); */
             background-size: 1024px 768px;
             z-index: 2;
-        }
-        .slide_container {
+        } */
+        /* .slide_container {
             position: absolute;
             width: 100%;
             height: 100vh;
             padding: 0;
             margin: 0;
 
-            /* background-color: red; */
             text-align: center;
-            /* z-index: -2; */
-        }
-        .slide {
+        } */
+        /* .slide {
             position: absolute;
             box-sizing: border-box;
             top: 53%;
@@ -109,15 +96,14 @@
             overflow: hidden;
             list-style: none;
 
-            /* display: inline-block; */
             display: flex;
             width: 90%;
-            height: 80%;
+            height: 86%;
             margin: 20px 20px 30px 50px;
             flex-direction: column;
 
-        }
-        .slide_container.animated {
+        } */
+        /* .slide_container.animated {
             -webkit-transition: left 0.3s ease-in;
             transition: left 0.3s ease-in;
         }
@@ -171,7 +157,7 @@
         }
         .movie_img {
           width: 100%;
-          height: 57%;
+          height: 350px;
         }
         .movie_img img {
           width: 100%;
@@ -189,10 +175,10 @@
           font-size: 25px;
           color: black;
           font-family: 'ROKAFSansMedium', sans-serif;
-        }
+        } */
 
         /* 화살표 */
-        #next,
+        /* #next,
         #prev {
             position: absolute;
             top: 50%;
@@ -224,57 +210,91 @@
             margin-left: 400px;
             background-image: url("./images/gajae/right.png");
             background-size: 100px;
-        }
+        } */
+
+        /* TEST */
+      
+      /* .circle_container {
+        display: flex;
+        justify-content: center;
+      } */
+
+      /* .circle{
+        width : 15px;
+        height : 15px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: 3px 3px 3px black;
+        z-index: 2;
+      } */
+/* 
+      .circle:hover {
+        -webkit-transform:scale(1.2); 
+        -moz-transform:scale(1.2); 
+        -ms-transform:scale(1.2); 
+        -o-transform:scale(1.2); 
+        transform:scale(2);
+        background-color: white;
+      } */
+
+      /* .circle_title {
+        position: absolute;
+        margin-top: 30px;
+        display: none;
+        font-family: 'ROKAFSansMedium', sans-serif;
+        font-size: large;
+      } */
+      /* .show {
+        color: white;
+        display: block;
+      }  */
     </style>
 </head>
 <body onload="init();">
     <header id="navigation" class="">
-        <!-- <a class="logo">가재</a> -->
-        <nav>
-            <ul class="nav">
-                <li>
-                    <a href="#slide1">소개</a>
-                </li>
-                <li>
-                    <a href="#slide2">매력1</a>
-                </li>
-                <li>
-                    <a href="#slide3">매력2</a>
-                </li>
-                <li>
-                    <a href="#slide4">매력3</a>
-                </li>
-            </ul>
-        </nav>
+      <ul class="nav" id="nav_container">
+        <!-- <li>
+          <div class="circle_container">
+            <a href="#" class="circle" id="circle2" onmouseover=show(this); onmouseout="hide(this);" onclick="moving(this);"></a>
+            <span class="circle_title" id="title2">지니 앤 조지아</span>
+          </div>
+        </li>
+        <li>
+          <div class="circle_container">
+            <a href="#" class="circle" id="circle3" onclick="moving(this);"></a>
+            <span class="circle_title" id="title3">슈퍼키드 디온</span>
+          </div>
+        </li>
+        <li>
+          <div class="circle_container">
+            <a href="#" class="circle" id="circle4" onclick="moving(this);"></a>
+            <span class="circle_title" id="title4">지니 앤 조지아</span>
+          </div>
+        </li>
+        <li>
+          <div class="circle_container">
+            <a href="#" class="circle" id="circle5" onclick="moving(this);"></a>
+            <span class="circle_title" id="title5">슈퍼키드 디온</span>
+          </div>
+        </li> -->
+      </ul>
     </header>
     <div class="container">
         <ul class="slide_container" id="movie_container">
-                <li class="slide slide11" id="slide1">
-                  <div id="slide1_imgdiv">
-                    <img src="./images/netflix/first_page.png" id="slide1_img">
-                  </div>
-                  <div id="slide1_textdiv">
-                    <img src="./images/netflix/logo.png">
-                    <span>추천작을 보려면 오른쪽 화살표를 눌러주세요!</span>
-                    <div id="slide1_button">
-                      <a href="https://www.netflix.com">넷플릭스 바로가기</a>
-                      <a href="">내 추천작 추가하기</a>
+          <div class="slide slide11" id="slide1">
+            <div id="slide1_imgdiv">
+              <img src="./images/netflix/first_page.png" id="slide1_img">
+            </div>
+            <div id="slide1_textdiv">
+              <img src="./images/netflix/logo.png">
+                <span>추천작을 보려면 오른쪽 화살표를 눌러주세요!</span>
+                <div id="slide1_button">
+                  <a href="https://www.netflix.com">넷플릭스 바로가기</a>
+                  <a href="">내 추천작 추가하기</a>
+                </div>
+            </div>
+          </div>
 
-                    </div>
-                  </div>
-                </li>
-                <li class="slide">
-                  <div class="movie_img">
-                    <img src="./images/netflix/dion.jpg">
-                  </div>
-                  <div class="movie_info">
-                    <span>슈퍼키드 디온</span>
-                    <span>12세</span>
-                    <span>만화책 원작 TV 프로그램</span>
-                    <span>얼리샤 웨인라이트</span>
-                    <span>모두 제 자식이 특별하겠지만, 내 아들은 정말 특별해! 어린 디온을 홀로 키우는 니콜.</span>
-                  </div>
-                </li>
         </ul>
 
         <a href="#" id="prev">
@@ -284,8 +304,9 @@
             <!-- <img src="./images/gajae/right.png"> -->
         </a>
     </div>
+    <script src="js/js_netflix.js"></script> 
 
-    <script>
+    <!-- <script>
       /**
        * 제목, 연령, 장르, 출연진, 줄거리
        */
@@ -303,14 +324,23 @@
                             '자유분방한 조지아가 북부로 이사 온다. 두 아이, 지니와 오스틴을 데리고. 애들을 위해 부유한 동네에서 새 출발을 하는거야! 하지만 그 길은 생각만큼 순탄하지 않다.'));
       dramas.push(new Drama('./images/netflix/dion.jpg', '슈퍼키드 디온', 12, '만화책 원작 TV 프로그램, 가족이 함께 보는 시리즈' , '얼리샤 웨인라이트, 저사이어 영',
                             '모두 제 자식이 특별하겠지만, 내 아들은 정말 특별해!\n 어린 디온을 홀로 키우는 니콜.\n 설명할 수 없는 이상하고 무서운 힘이 아들에게 있다는 것을 알고 두려움에 빠진다.'));
-    
+      dramas.push(new Drama('./images/aboutme/medium9.jpg', 'ㅎㅎ', 13, '가족이 함께 보는 시리즈' , '저사이어 영',
+                            '설명할 수 없는 이상하고 무서운 힘이 아들에게 있다는 것을 알고 두려움에 빠진다.'));
+      dramas.push(new Drama('./images/aboutme/medium11.jpg', 'zz', 18, '만화책 원작 TV 프로그램' , '얼리샤 웨인라이트',
+                            '모두 제 자식이 특별하겠지만, 내 아들은 정말 특별해!\n '));
+      let index = 2;                      
       movie_container.innerHTML += dramas.reduce((html, drama) => {
         let {img, title, age, genre, cast, story} = drama;
         story = story.replace(/\n/g, '<br>');
-        console.log(story);
 
-        console.log(drama);
-        return html + `<li class="slide">
+        nav_container.innerHTML += `<li>
+          <div class="circle_container">
+            <a href="#" class="circle" id="circle${index}" onmouseover=show(this); onmouseout="hide(this);" onclick="moving(this);"></a>
+            <span class="circle_title" id="title${index}">${title}</span>
+          </div>
+        </li>`;
+
+        return html + `<li class="slide" id="slide${index++}">
             <div class="movie_img">
               <img src=${img}>
             </div>
@@ -324,8 +354,9 @@
           </li>`;
       }, "")
 
-
-
+      // for(let i = 0; i < dramas.length; i++){
+      //   nav_container.innerHTML += `<li><div class="circle"><a href="#" id="circle${i+2}" onclick="moving(this);"></a></div></li>`;
+      // }
 
         // 변수 지정
         /**
@@ -368,32 +399,79 @@
         // 클릭하면 할 일.
         $navPrev.addEventListener('click', function () {
             goToSlide($currentIndex - 1);
+
+            // if ($currentIndex == 0) {
+            //     $navPrev.classList.add('disabled');
+            //     navigation.classList.add('disabled');
+            // } else if ($currentIndex != ($slideCount - 1)) {
+            //     $navNext
+            //         .classList
+            //         .remove('disabled');
+            // }
+
+            ckPrev();
+
+        });
+
+        const ckPrev = () => {
             if ($currentIndex == 0) {
                 $navPrev.classList.add('disabled');
                 navigation.classList.add('disabled');
             } else if ($currentIndex != ($slideCount - 1)) {
-                $navNext
-                    .classList
-                    .remove('disabled');
+                $navNext.classList.remove('disabled');
             }
-        });
+        }
+
         $navNext.addEventListener('click', function () {
             goToSlide($currentIndex + 1);
-            // console.log('bye');
+
             /**
              * 마지막슬라이드라면 $navNext안보이도록, 아니라면 $navNext 다시 나타나도록
              */
-            if ($currentIndex == $slideCount - 1) { // 마지막슬라이드라면
+            // if ($currentIndex == $slideCount - 1) { // 마지막슬라이드라면
+            //     $navNext.classList.add('disabled');
+            // } else if ($currentIndex != 0) {
+            //     $navPrev.classList.remove('disabled');
+            //     navigation.classList.remove('disabled');
+            // }
+
+            ckNext();
+
+        });
+
+        const ckNext = () => {
+          if ($currentIndex == $slideCount - 1) { // 마지막슬라이드라면
                 $navNext.classList.add('disabled');
             } else if ($currentIndex != 0) {
                 $navPrev.classList.remove('disabled');
                 navigation.classList.remove('disabled');
-            }
-        });
+            };
+        };
 
         const init = () => {
           navigation.classList.add('disabled');
-        }
-    </script>
+        };
+
+      const moving = function(selectedA){
+        let leftVal = (selectedA.id.charAt(6) - 1) * -100 + '%'
+
+        $currentIndex = selectedA.id.charAt(6) - 1;
+        ckPrev();
+        ckNext();
+        $slideContainer.style.left = leftVal;
+
+      };
+
+      const show = function(selectedA){
+        let idx = selectedA.id.charAt(6);
+        document.getElementById(`title${idx}`).classList.add('show');
+      };
+
+      const hide = function(selectedA){
+        let idx = selectedA.id.charAt(6);
+        document.getElementById(`title${idx}`).classList.remove('show');
+      };
+
+    </script> -->
 </body>
 </html>
