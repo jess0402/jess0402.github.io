@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>filter</title>
+  <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+  <h1>filter</h1>
+  <div>
+    <p id="p1" class="group1">안녕1</p>
+    <p id="p2" class="group1">안녕2</p>
+    <p id="p3" class="group2">안녕3</p>
+    <p id="p4" class="group2">안녕4</p>
+    <p id="p5" class="group1 group2">안녕5</p>
+  </div>
+  <button id="btn1">filter</button>
+  <button id="btn2">first | last</button>
+  <button id="btn3">eq</button>
+  <button id="btn4">not</button>
+  <script>
+    /**
+     * filter(selector)
+     */
+    $(btn1).click(() => {
+      const $p = $('p');
+      // console.log($p);
+
+      // filter - 선택자
+      // $p.filter(".group1")  // #p1, #p2, #p5
+      //   .css("color", "hotpink")
+      //   .filter(":gt(0)") // 0번지보다 큰 애들만 -> #p2, #p5
+      //   .css("background-color", "blue");
+
+      // filter - callback 함수 
+      $p
+        .filter((index, p) => {
+          console.log(index, p);
+          return index % 2 == 0; // false를 반환하면 제거
+        })
+        .css("background-color", 'cyan');
+
+    });
+
+    /**
+     * first 
+     *  - 첫 번째 요소 반환(= 첫 번째 jQuery객체 반환)
+     * last
+     *  - 마지막 요소 반환(= 마지막 jQuery객체 반환)
+     */
+    $(btn2).click(() => {
+      const $p = $("p");
+
+      $p.first().css("background-color", "springgreen");
+      $p.last().css("background-color", "yellowgreen");
+    });
+
+    /**
+     * eq(index)
+     *  - index번지에 해당하는 요소만 딱 반환
+     * end
+     *  - 이전 상태로 돌아감(prevObject 속성상태)
+     */
+    $(btn3).click(() => {
+      console.log(
+        $("p") // p1 ~ p5까지 5개 있음
+          .eq(2) // 2번지 => 0부터니까 2번지는 p3
+          .css("background-color", 'magenta')
+          .end() // 이전상태로 돌아감(prevObject 속성상태)
+          .css("text-decoration", "underline") 
+      );
+    }); 
+
+    /**
+     * not(selector)
+     *  - 해당 selector가 아닌 요소만 추려내줌
+     * 
+     */
+    $(btn4).click(() => {
+      $('p')
+        .not('.group1.group2') // group1, group2 클래스를 모두 가진 요소가 아닌 것 = p1, p2, p3, p4
+        .css('text-decoration', 'underline');
+    });
+
+  </script>
+
+</body>
+</html>

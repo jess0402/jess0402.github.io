@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery</title>
+  <script src="js/jquery-3.6.0.js"></script> <!-- 방법 1 -->
+  <!-- <script <!-- 10시 15분정도부터 여기 부분 다시듣기 -->
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" 
+    integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+  </script> -->
+  <script>
+    /**
+     * jquery 방식의 window.onload 처리
+     */
+    $(document).ready(() => {
+      console.log("jQuery 사용준비 끝!")
+    });
+    
+    $(() => {
+      console.log("jQuery 사용준비 끝2!") 
+    });
+  </script>
+</head>
+<body>
+  <h1>jQuery</h1>
+
+  <ul>
+    <li><a href="01_selector.html">선택자</a></li>
+    <li><a href="02_attr_prop.html">attr | prop</a></li>
+    <li><a href="03_filter.html">filter</a></li>
+  </ul>
+</body>
+</html>

@@ -14,6 +14,7 @@
     box-sizing: border-box;
     list-style-type: none;
     text-decoration: none;
+    scroll-behavior:smooth;
 }
 header {
     padding: 0 50px;
@@ -88,9 +89,15 @@ nav li:last-child a {
     width: 100%;
     height: 100vh;
     display: flex;
-    /* background-color: red; */
     align-items: center;
     justify-content: center;
+}
+.pic_major {
+  display: flex;
+  flex-direction: column;
+}
+.pic_major img{
+  height: 160px;
 }
 .pic_crawfish,
 .pic_play {
@@ -116,19 +123,24 @@ nav li:last-child a {
     height: 240px;
 }
 .pic_div img {
-    height: 50%;
     margin: 4.5px;
 }
+.pic_grad img, .pic_age img {
+  height: 50%;
+}
 .pic_mbti img {
-    height: 40%;
+  height: 40%;
 }
 .craw_first img {
-    height: 92%;
+  height: 92%;
 }
 .craw_second span {
-    font-size: 30px;
-    font-style: oblique;
-    font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  font-style: oblique;
+  font-family: 'Dongle', sans-serif;
+}
+.pic_dramabook img {
+  height: 42%;
 }
 .pic_play img {
     width: 220px;
@@ -137,6 +149,32 @@ nav li:last-child a {
 .play_second img {
     transform: translateY(-12px);
 }
+/* 스크롤 위로 가는 화살표 */
+footer {
+  position: fixed;
+  top: 700px;
+  right: 70px;
+}
+footer button {
+  border: none;
+  background-color: white;
+  cursor:pointer;
+  position: fixed;
+  padding: 0;
+  right: 125px;
+}
+footer span {
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  position: relative;
+  bottom: 6px;
+  right: 21px;
+}
+.hide {
+  display: none;
+}
+
+
 
   </style>
 </head>
@@ -184,7 +222,6 @@ nav li:last-child a {
     </div>
   </section>
   <section class="pic">
-
     <a name="about_age">
         <div class="pic_div pic_age">
             <img src="../images/aboutme/age.png" alt="나이1">
@@ -192,6 +229,14 @@ nav li:last-child a {
     </a>
     <a name="about_major">
         <div class="pic_div pic_major">
+          <div id="pic_ebiz">
+            <img src="../images/aboutme/major/R.jpg">
+            <img src="../images/aboutme/major/python.png">
+          </div>
+          <div id="pic_engbiz">
+            <img src="../images/aboutme/major/eng.jpg">
+            <img src="../images/aboutme/major/biz.jpeg">
+          </div>
         </div>
     </a>
     <a name="about_grad">
@@ -217,8 +262,7 @@ nav li:last-child a {
     </a>
     <a name="about_dramabook">
         <div class="pic_div pic_dramabook">
-          <!-- <img src="../images/aboutme/drama_book/ebook1.jpg" alt="mbti"> -->
-          <img src="../images/aboutme/drama_book/ebook2.jpg" alt="mbti">
+          <img src="../images/aboutme/drama_book/books.jpg" alt="mbti">
           <img src="../images/aboutme/drama_book/ebook3.jpg" alt="mbti">
         </div>
     </a>
@@ -235,6 +279,10 @@ nav li:last-child a {
         </div>
     </a>
   </section>
+  <footer>
+    <button id="go_top" onmouseover="show();" onmouseleave="hide();">🌷</button>
+    <span id="goup" class="hide">위로</span>
+  </footer>
   <script>
     const mousein = (menu) => {
       now_menu.classList.remove('current');
@@ -245,6 +293,35 @@ nav li:last-child a {
       now_menu.classList.add('current');
       menu.classList.remove('current');
     }
+    
+    const show = () => {
+      goup.classList.remove('hide');
+    }
+    const hide = () => {
+      goup.classList.add('hide');
+    }
+    
+    const gototop = () => {
+      window.addEventListener('scroll', () => {
+        if(document.querySelector('html').scrollTop > 100) {
+          document.getElementById('go_top').style.display = "block";
+        }
+        else {
+          document.getElementById('go_top').style.display = "none";
+        }
+      });
+
+      document.getElementById('go_top').addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      })
+
+    }
+    gototop();
+
+
   </script>
 </body>
 </html>

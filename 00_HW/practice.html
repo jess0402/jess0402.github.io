@@ -6,60 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노션용</title>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <style>
-    #img-wrapper, .img-wrapper {
-      width: 200px;
-      margin-top: 10px 0;
-    }
-    #img-wrapper img, .img-wrapper img {
-      width: 100%;
-      border-radius: 50%;
-      box-shadow: 5px 5px 10px lightgrey;
-    }
-  </style>
+  <script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
-  <button id="btn10">Promise.all</button>
+  <h1>filter</h1>
+  <div>
+    <p id="p1" class="group1">안녕1</p>
+    <p id="p2" class="group1">안녕2</p>
+    <p id="p3" class="group2">안녕3</p>
+    <p id="p4" class="group2">안녕4</p>
+    <p id="p5" class="group1 group2">안녕5</p>
+  </div>
+  <button id="btn4">not</button>
   <script>
-    /**
-     * Promise API 
-     *  - Promise.all([promise1, promise2, ...])
-     *      -> 모든 promise를 병렬적으로 실행 후, 모든 promise가 완료되었을 때 then절의 callback실행
-     *      -> 모든 promise 성공시, fulfilled(이행) 처리가 됨
-     *      -> 하나라도 실패하면, 전체가 rejected(거부) 처리가 됨.
-     *  - Promise.allSettled
-     *  - Promise.race
-     *  - Promise.resolve
-     *  - Promise.reject
-     */
-     btn10.addEventListener('click', async () => {
-      const promises = [
-        loadScriptPromise('js/1.js'),
-        loadScriptPromise('js/2.js'),
-        loadScriptPromise('js/3.js'),
-      ];
-      Promise.all(promises)
-      // 모든 promise의 result 값을 배열로 넘겨줌
-        // .then(values => {
-        //   values.forEach((value) => console.log(`${value} 로딩완료!`));
-        //   bar();
-        //   car();
-        //   dar();
-        // });
-        // 위 then절을 아래와 같이 할수도 있음.
-        const values = await Promise.all(promises); // values는 배열. 
-        values.forEach((value) => console.log(`${value} 로딩완료!`));
-        bar();
-        car();
-        dar();
-      });
-
-    const loadScriptPromise = (src) => new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = src;
-      script.onload = () => resolve(src);
-      document.head.append(script);
+     $(btn4).click(() => {
+      $('p')
+        .not('.group1.group2') // group1, group2 클래스를 모두 가진 요소가 아닌 것 = p1, p2, p3, p4
+        .css('text-decoration', 'underline');
     });
   </script>
 </body>
