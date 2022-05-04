@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
+  <script src="js/jquery-3.6.0.js"></script>
+  <script
+    src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"
+    integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY="
+    crossorigin="anonymous"></script>
+  <style>
+    img{
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>css</h1>
+  <div>
+    <button id="btn1">show</button>
+    <button id="btn2">hide</button>
+    <button id="btn3">toggle</button>
+    <br><br>
+    <img src="../sample/image/river1.PNG" id="river">
+  </div>
+  <script>
+    /**
+     * show(speed, easing, callback)
+     * hide(speed, easing, callback)
+     * toggle(speed, easing, callback)
+     * 
+     *  - speed : millis초로 얼마의 시간동안 사라지고 나타나게 할 것인지를 정함
+     *  - easing : 효과 (swing(기본값), linear...)
+     *  - callback : 토글작업이 끝나면 실행할 것
+     *  
+     */
+    $(btn1).click(() => {
+      $(river).show(500);
+    });
+    $(btn2).click(() => {
+      $(river).hide(500);
+    });
+    $(btn3).click(() => {
+      // 켜져있으면 꺼지고, 꺼져있으면 켜지고
+      $(river).toggle(300, 'linear', () => alert('토글완료!'));
+    });
+
+  </script>
+
+  <div class="wrapper">
+    <!-- (div.menu+p.content)*5 -->
+    <div class="menu">HTML</div>
+    <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat dolorem qui, facere exercitationem nisi incidunt quasi! Deleniti laudantium, reiciendis, quaerat iusto, eligendi voluptatem in dolores deserunt neque architecto cupiditate amet?</p>
+    <div class="menu">CSS</div>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, repellendus error. Vero deleniti eaque quis mollitia aliquam magnam ducimus officia officiis deserunt labore doloremque, accusantium, architecto perspiciatis non. Itaque, quod.</p>
+    <div class="menu">JAVASCRIPT</div>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum saepe architecto molestiae sint magni quos repellat iusto ab numquam! Deleniti consequatur, autem sapiente ipsa iste ut at necessitatibus quibusdam! Quisquam?</p>
+    <div class="menu">JQUERY</div>
+    <p class="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi in quas saepe, rem repudiandae assumenda! Eveniet earum enim quis sed mollitia quam suscipit obcaecati accusamus. Odio nesciunt veritatis officia voluptas?</p>
+    <div class="menu">HTML5 API</div>
+    <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur excepturi numquam tempora itaque recusandae qui asperiores quo! Dolore voluptatibus illo nulla minus, nostrum cumque veniam eum, commodi ullam velit explicabo!</p>
+  </div>
+  <style>
+    .menu {
+      width: 300px;
+      height: 30px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid lightgreen;
+    }
+    .content {
+      width: 300px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      margin: 3px 0;
+      padding: 3px;
+      display: none;
+    }
+  </style>
+  <script>
+    /**
+     * slideDown(speed, easing, callback)
+     *  - 높이가 늘어나면서 보여지게 하는 효과
+     * slideUp(speed, easing, callback)
+     *  - 높이가 줄어들면서 사라지게 하는 효과
+     * slideToggle(speed, easing, callback)
+     *  - 사라져있으면 보이게, 보이면 사라지게 하는 효과
+     *
+     * 
+     * speed - 기본값: 400millis
+     */
+    $(".menu").click((e) => {
+      // $(e.target) // 현재 선택된 객체의 
+      //   .next()   // 다음타겟을 찾아서
+      //   .slideDown()
+        
+      // slideUp() 할때는 display: none 주석처리하고 하기
+      // $(e.target) // 현재 선택된 객체의 
+      //   .next()   // 다음타겟을 찾아서
+      //   .slideUp()   
+
+      // slideToggle() 할때는 display:none 다시 적용하기
+      // $(e.target) // 현재 선택된 객체의 
+      //   .next()   // 다음타겟을 찾아서
+      //   .slideToggle()
+
+      // 딱 하나만 열리도록 하려면? (하나가 열려진 상태에서 다른 걸 눌러서 열면 원래 열려져 있던 건 닫히도록)
+      $(e.target)
+        .next().slideToggle()
+        .siblings('p').slideUp()
+
+    })
+  </script>
+
+<br><br>
+<div style="border: 1px solid gray">
+  <button id="btn4">fadeIn</button>
+  <button id="btn5">fadeOut</button>
+  <button id="btn6">fadeToggle</button>
+  <br><br>
+  <img src="../sample/image/river1.PNG" id="river2">
+</div>
+<script>
+  /**
+   * 투명도 관련 속성
+   *  - 단순히 opacity 값만 바뀌는 건 아님
+   * 
+   *  - fadeIn(speed, easing, callback)
+   *  - fadeOut(speed, easing, callback)
+   *  - fadeToggle(speed, easing, callback)
+   */
+  $(btn4).click(() => {
+    $(river2).fadeIn();
+  });
+  $(btn5).click(() => {
+    $(river2).fadeOut();
+  });
+  $(btn6).click(() => {
+    $(river2).fadeToggle();
+  });
+</script>
+
+<br><br>
+<button id="btn7">animate</button>
+<div class="box"></div>
+<style>
+  .box {
+    width: 200px;
+    height: 200px;
+    background-color: orangered;
+    position: relative;
+    margin: 10px 0;
+  }
+</style>
+<script>
+  /**
+   * animate(styleProps, duration, easing, callback)
+   */
+  $(btn7).click(() => {
+    const style1 = {
+      "width" : "500px",
+      "height" : "500px",
+      "border-radius" : "50%",
+      "background-color" : "#008B8B" // darkcyan 작동안함. #008B8B는 작동함!
+    };
+    const style2 = {
+      "width" : "400px",
+      "height" : "400px",
+      "background-color" : "yellow"
+    };
+
+    // 1초동안 style1으로 변하다가, 완료되면 다시 callback인 style2로 바뀜
+    $(".box").animate(style1, 1000, () => {
+      $(".box").animate(style2, 1500)
+    });
+    // 너비높이는 잘 바뀌는데 bgc는 안바뀜. 왜냐면 숫자값으로 지정할 수 있는 속성만 가능하기 때문. 
+    // bgc도 바뀌게 해주려면 맨 위 script 아래에 jquery ui 추가해주면 bgc도 바뀜.
+  });
+</script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

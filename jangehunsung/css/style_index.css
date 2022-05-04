@@ -28,7 +28,7 @@ section {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  transform: translateX(-14px);
+  transform: translateX(-10px);
 }
 section>div {
   margin: 20px;

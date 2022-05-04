@@ -14,7 +14,7 @@ body {
   margin: 0;
   height: 100vh;
   /* background: url("./images/net5.jpg") no-repeat center; */
-  background: url("../images/net5.jpg") no-repeat center;
+  background: url("../images/net4.jpg") no-repeat center;
   background-size: cover;
 
 }
@@ -171,6 +171,9 @@ font-size: 25px;
 color: black;
 font-family: 'ROKAFSansMedium', sans-serif;
 }
+.movie_info span:first-child {
+  font-size: 38px;
+}
 
 /* 화살표 */
 #next,
@@ -219,7 +222,7 @@ width : 15px;
 height : 15px;
 border-radius: 50%;
 background-color: white;
-box-shadow: 3px 3px 3px black;
+box-shadow: 5px 5px 5px black;
 z-index: 2;
 }
 
@@ -229,7 +232,7 @@ z-index: 2;
 -ms-transform:scale(1.2); 
 -o-transform:scale(1.2); 
 transform:scale(2);
-background-color: white;
+background-color: darkred;
 }
 
 .circle_title {
@@ -242,4 +245,15 @@ font-size: large;
 .show {
 color: white;
 display: block;
+}
+
+.color {
+  background-color:darkred;
+  width: 19px;
+  height: 19px;
+  /* box-shadow: none */
+}
+
+.title {
+  text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white
 }

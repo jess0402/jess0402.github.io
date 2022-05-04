@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebStorage</title>
+</head>
+<body>
+  <h1>WebStorage</h1>
+  <!--
+    window.localStorage - 특정 사이트에 대해 브라우저에 영속적으로 데이터를 저장/관리
+    window.sessionStorage - 특정 사이트에 대해 데이터를 브라우저 접속한 기간동안만 데이터를 저장/관리
+
+    - cookie 대비 차이점은 저장된 데이터를 서버로 절대 전송하지 않는다는 것. 
+  -->
+  <fieldset>
+    <legend>data crud</legend>
+    <input type="text" id="key" placeholder="key를 입력하세요.">
+    <br>
+    <input type="text" id="value" placeholder="value를 입력하세요">
+    <hr>
+    <button id="btn1">저장</button>
+    <button id="btn2">삭제</button>
+    <button id="btn3">조회</button>
+    <button id="btn4" onclick="localStorage.clear();">전체삭제</button>
+  </fieldset>
+  <script>
+    /**
+     * 저장
+     * key - 식별자, value는 문자열로 저장된다.
+     * 또한 별도의 수정메서드가 없어서 만약 수정하고 싶으면 동일한 키값으로 덮어써주는 방법을 사용해야 한다.
+     */
+    btn1.addEventListener('click', () => {
+      // 1. 유효성검사
+      if(!key.value || !value.value) // key.value가 false이거나, value.value가 false이면 하위 코드가 실행되지 않도록
+        return;
+      
+      // 2. 저장
+      // 방법 1. 메서드 사용
+      localStorage.setItem(key.value, value.value);
+      // 방법 2. localStorage가 객체이므로, 객체의 속성을 직접 등록
+      localStorage[key.value] = value.value;
+      // key든 value든 무조건 문자열로 저장된다는 것 기억하기!!
+
+      // 3. 초기화
+      key.value = "";
+      value.value = "";
+    });
+
+    /**
+     * 2. 삭제
+     */
+    btn2.addEventListener('click', () => {
+      // key.value가 없으면 리턴해라
+      if(!key.value) return;
+
+      // 삭제하려는 key값이 존재하는지 확인
+      // 방법 1. 
+      // const itemVal = localStorage[key.value];
+      // 방법 2.
+      const itemVal = localStorage.getItem(key.value);
+      // 존재하지 않으면 null값이 저장됨.
+      console.log(itemVal); // 존재하지 않으면 null을 리턴
+
+      if(itemVal){
+        // 해당 아이템을 찾아서 지워줌
+        localStorage.removeItem(key.value);
+        alert(`[${key.value}] item을 삭제했습니다.`);
+      }
+      else {
+        alert('해당 item이 존재하지 않습니다.');
+      }
+
+      // 초기화
+      key.value = "";
+      value.value = "";
+
+    }); 
+
+    /**
+     * 3. 조회
+     */
+    btn3.addEventListener('click', () => {
+      if(!key.value) return;   // key.value가 빈문자열이라면 return 해라
+
+      // 조회
+      const itemVal = localStorage.getItem(key.value);
+
+      if(itemVal){ // 존재하는 경우
+        value.value = itemVal;
+      }
+      else {
+        alert('해당 item이 존재하지 않습니다.');
+
+        // 초기화
+        key.value = "";
+        value.value = "";
+      }
+    });
+
+    /**
+     * 4. 전체삭제 
+     *  - 전체삭제는 button#btn4 인라인 속성에서 onclick=localStorage.clear(); 써주면 됨.
+     */
+  </script>
+
+  <br><br>
+  <button id="btn5">객체/배열 저장</button>
+  <script>
+    btn5.addEventListener('click', () => {
+      const user = {
+        id: 'abcde',
+        name: '홍길동',
+        married: false,
+        age: 30,
+        sns: ['instagram', 'tiktok'],
+        job: {
+          name: '개발자',
+          career: 10
+        },
+      };
+
+    // 자스 객체를 json으로 변환하기 (stringify()사용)
+    // json으로 변환 후 저장
+    // JSON.stringify js -> json
+    localStorage.setItem('user', JSON.stringify(user));
+
+    // json형태로 저장이 되어있는 문자열을 자바스크립트 객체로 변환 
+    const itemUser = JSON.parse(localStorage.getItem('user'));
+    console.log(itemUser); 
+
+    // 배열 저장
+    const arr = [1, 2, 3, ['a', 'b', 'c']];
+    localStorage.setItem('arr', JSON.stringify(arr));
+
+    // const itemArr = localStorage.getItem('arr');
+    // console.log(typeof itemArr, itemArr); // JSON.parse 안하면 문자열로 저장됨.
+
+    // 제대로된 배열로 변환하려면 아래처럼
+    const itemArr = JSON.parse(localStorage.getItem('arr'));
+    console.log(typeof itemArr, itemArr); // JSON.parse 안하면 문자열로 저장됨.
+    });
+  </script>
+
+  <!-- 방명록 관리 -->
+  <h2>방명록</h2>
+  <form name="guestbookFrm" action="javascript:saveGuestbook();">
+    <fieldset>
+      <legend>방명록 폼</legend>
+      <div>
+        <label for="username">이름 : </label>
+        <input type="text" name="username" id="username">
+      </div>
+      <div>
+        <label for="content">내용 : </label>
+        <input type="text" name="content" id="content">
+      </div>
+      <div>
+        <button type="submit">제출</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- guestbook 객체 하나당 tr태그 하나씩-->
+  <table id="tb-guestbook">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>이름</th>
+        <th>내용</th>
+        <th>작성일시</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  
+  <style>
+    table {
+      border: 1px solid #000;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    th, td {
+      border: 1px solid #000;
+    }
+  </style>
+
+  <script>
+    /**
+     * 폼 유효성검사는 submit 핸들러에서
+     *  - addEventListener를 사용할 경우엔, e.preventDefault()로만 멈출 수 있고,
+     *  - 만약 onsubmit을 사용할 경우엔, return false, e.preventDefault() 둘 다 사용할 수 있다.
+     */
+    document.guestbookFrm.addEventListener('submit', (e) => {
+    
+      const usernameVal = username.value;
+      const contentVal = content.value;
+
+      if(!usernameVal){
+        alert('이름을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!contentVal){
+        alert('내용을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+    })
+
+    /**
+     * 제출
+     */
+    const saveGuestbook = () => {
+      console.log('saveGuestbook 호출!');
+      const usernameVal = username.value;
+      const contentVal = content.value;
+
+      // 방명록 객체 생성
+      const guestbook = new Guestbook(usernameVal, contentVal);
+      console.log(guestbook);
+
+      // guestbooks 배열 관리
+      const guestbooks = JSON.parse(localStorage.getItem('guestbooks')) || []; // 있으면 가져오고 없으면 만들어라
+      // console.log(guestbooks);
+      guestbooks.push(guestbook);
+
+      localStorage.setItem('guestbooks', JSON.stringify(guestbooks));
+
+      // 폼 초기화 
+      document.guestbookFrm.reset();
+
+      // 화면 render
+      renderGuestbook(guestbooks);
+
+    };
+
+    class Guestbook {
+      // 만약 datetime이 입력되지 않으면 기본값으로 Date.now()를 줌
+      constructor(username, content, datetime = Date.now()){
+        this.username = username;
+        this.content = content;
+        this.datetime = datetime;
+      }
+    }
+
+    const renderGuestbook = (guestbooks = JSON.parse(localStorage.getItem('guestbooks'))) => {
+      
+      const tbody = document.querySelector('#tb-guestbook tbody')
+      tbody.innerHTML = "" // 이전 내용 초기화
+      
+      guestbooks.forEach((guestbook, index) => {
+        const {username, content, datetime} = guestbook;
+        const html = `<tr>
+            <td>${index + 1}</td>
+            <td>${username}</td>
+            <td>${content}</td>
+            <td>${formatDatetime(datetime)}</td>
+          </tr>`;
+          tbody.innerHTML += html; 
+      });
+    }
+
+    const formatDatetime = (millis) => {
+      // 밀리초로 Date 객체 변환
+      const d = new Date(millis);
+      
+      const f = (n) => n < 10 ? "0" + n : n; 
+
+      const MM = f(d.getMonth() + 1);
+      const dd = f(d.getDate());
+      const HH = f(d.getHours());
+      const mm = f(d.getMinutes());
+
+      return `${MM}/${dd} ${HH}:${mm}`;
+
+    }
+
+  //  console.log(JSON.parse(localStorage.getItem('guestbooks')));
+    window.addEventListener('load', () => renderGuestbook());
+  </script>
+
+</body>
+</html>

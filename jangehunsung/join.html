@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <!-- <link rel="stylesheet" href="./css/style_member.css">   -->
+</head>
+<style>
+  @font-face {
+    font-family: 'YdestreetB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YdestreetL';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetL.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    html {
+        height: 100%
+    }
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #header {
+        padding-top: 30px;
+        padding-bottom: 7px;
+        text-align: center; /* 로고 중앙정렬 해야할 때 */ 
+        font-family: 'YdestreetB', sans-serif;
+        font-size: 30px;
+    }
+
+    form {
+        position: relative; /* 부모 - relative - 요소 자기 자신을 기준으로 배치 */
+        height: 1333px;
+    }  
+    #content {
+        position: absolute; /* 자식 - absolute - 부모 요소를 기준으로 배치 */
+        left: 50%;
+        transform: translate(-50%);
+        width: 460px;
+        font-family: 'YdestreetL', sans-serif;
+        border: 1px solid black;
+        padding: 16px 28px;
+        /* box-shadow: 3px 3px 3px; */
+        box-shadow: 0 10px 30px 0 rgb(67 80 98 / 24%),
+                    0 2px 4px 0 rgb(67 80 98 / 10%);
+    }
+
+    h3 {
+        margin: 20px 0 8px;  /* 위 요소와 마진은 20px 아래요소(인풋박스)와 마진은 8px */
+        font-size: 25px;
+    }
+
+    .box {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border: 1px solid black;
+        padding: 10px 10px 10px 10px; /* 상 우 하 좌*/
+        box-sizing: border-box;
+        position: relative;
+
+    }
+    .int {
+        display: block;
+        position: relative;
+        width: 99%;
+        height: 28px;
+        border: none;
+        background-color: #FFEEEE;
+        font-size: 20px;
+        font-family: 'YdestreetL', sans-serif;
+    }
+    .box.int_id {
+        padding-right: 166px;
+    }
+    .email_tail {
+        /* @naver.com */
+        position: absolute;
+        top: 12px;
+        right: 10px;
+        font-size: 16px;
+    }
+    .bir_wrap {
+        display: table;
+        width: 100%;
+    }
+    .bir_yy {
+        display: table-cell;
+        width: 140px;
+    }
+    .bir_mm {
+        display: table-cell;
+        width: 140px;
+        vertical-align: middle;
+    }
+    .bir_dd {
+        display: table-cell;
+        width: 140px;
+    }
+    .bir_mm, .bir_dd {
+        padding-left: 10px;
+    }
+    .sel {
+        border: none;
+        width: 100%;
+        font-family: 'YdestreetL', sans-serif;
+    }
+    .pswdImg {
+    width: 18px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    margin-top: -10px;
+    }
+    .error_next_box {
+        font-size: 19px;
+        color: red;
+    }
+    #alertTxt {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    font-size: 18px;
+    color: red;
+    }
+    .hide {
+      display: none;
+    }
+
+    .btn_area {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 103%;
+    }
+    #btnJoin {
+      font-family: 'YdestreetB', sans-serif;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: transparent;
+      padding: 10px 15px;
+      transition: all 0.2s ease-out;
+    }
+    #btnJoin:hover {
+      color: white;
+      background-color: black;
+      transform: scale(1.1);
+    }
+    #header h2 {
+      margin: 10px;
+    }
+    #header a {
+      position: relative;
+      text-decoration: none;
+      color: gray;
+      left: 225px;
+      border: 2px solid gray;
+      padding: 3px;
+      font-size: 20px;
+      transition: all .2s ease-in;
+    }
+    #header a:hover {
+      color: white;
+      background-color: black;
+    }
+</style>
+<body>
+  <header>
+      <div id="header">
+          <!-- 상단 로고나 제목 부분 -->
+          <h2>회원가입</h2>
+          <a href="manager.html">관리자</a>
+      </div>
+  </header>
+
+  <form name="joinFrm" action="javascript:saveMember();">
+    <div id="content">
+    <!-- 회원가입 내용 작성 부분 -->
+        <!-- id -->
+        <div id="id">
+            <h3 class="join_title"><label for="id">아이디</label></h3>
+            <span class="box int_id">
+                <input type="text" id="join_id" class="int">
+                <span class="email_tail">@member.com</span>
+            </span>
+            <!-- <span class="error_next_box"></span> -->
+        </div>
+        <!-- password -->
+        <div>
+            <h3 class="join_title"><label for="pw">비밀번호</label></h3>
+            <span>8~12 자리로 숫자, 영문자, 특수문자(!&/\*@)를 모두 포함하시오.</span>
+            <span class="box int_pass">
+                <input type="password" id="pw" class="int">
+                <span id="alertTxt">사용불가</span>
+                <img src="images/member/notpass.png" id="pswd1_img1" class="pswdImg">
+            </span>
+            <span class="error_next_box"></span>
+        </div>
+        <!-- pw 확인-->
+        <div id="checkpw">
+            <h3 class="join_title"><label for="check_pw">비밀번호 확인</label></h3>
+            <span class="box int_pass_check">
+                <input type="password" id="check_pw" class="int">
+                <img src="images/member/cknotpass.png" id="pswd2_img1" class="pswdImg">
+            </span>
+            <span class="error_next_box" id="notSamePw">비밀번호가 일치하지 않습니다.</span>
+        </div>
+        <!-- pw 확인 질문 -->
+        <div id="pw_hint">
+            <h3 class="join_title"><label for="check_pw">비밀번호 확인 질문</label></h3>
+                <span class="box">
+                    <select class="sel hint" id="pwhint">
+                        <option value="hint_01">기억에 남는 추억의 장소는?</option>
+                        <option value="hint_02">자신의 인생 좌우명은?</option>
+                        <option value="hint_03">자신의 보물 제 1호는?</option>
+                        <option value="hint_04">가장 기억에 남는 선생님 성함은?</option>
+                        <option value="hint_05">추억하고 싶은 날짜가 있다면?</option>
+                        <option value="hint_06">내가 좋아하는 캐릭터는?</option>
+                    </select>
+                </span>    
+        </div>
+        <!-- pw 확인 답변 -->
+        <div id="pwhint_answer">
+            <h3 class="join_title"><label for="check_pw_answer">비밀번호 확인 답변</label></h3>
+            <span class="box int_pw_hint_answer">
+                <input type="text" id="check_pw_answer" class="int">
+            </span>
+        </div>
+  
+    <!-- 이름, 성별, 생년월일, 본인확인 이메일, 휴대전화, 평생회원여부 -->
+        <!-- 이름 -->
+        <div id="join_name">
+            <h3 class="join_title"><label for="name">이름</label></h3>
+            <span class="box int_name">
+                <input type="text" id="input_name" class="int">
+            </span>
+        </div> 
+        <!-- 성별 -->
+        <div id="join_gender">
+            <h3 class="input_title"><label for="gender">성별</label></h3>
+            <span class="box radio_box int_gender"> 
+                <input type="radio" class="radio_input" name="gender" id="gender_male" value="남">
+                <label for="gender_male">남</label>
+                <input type="radio" class="radio_input" name="gender" id="gender_female" value="여">
+                <label for="gender_femal" n>여</label>
+                <input type="radio" class="radio_input" name="gender" id="gender_none" value="선택안함">
+                <label for="gender_none">선택안함</label>
+            </span>
+        </div>
+        <!-- 생년월일 -->
+        <div id="join_birth">
+            <h3 class="input_title"><label for="birth">생년월일</label></h3>
+            <div class="bir_wrap">
+                <!-- 생년 -->
+                <div class="bir_yy">
+                    <span class="box">
+                        <input type="text" id="yy" class="int" placeholder="년(4자)" maxlength="4">
+                    </span>
+                </div>
+                <!-- 월 -->
+                <div class="bir_mm">
+                    <span class="box">
+                        <select id="mm" class="sel">
+                            <option value="month_choice">월</option>
+                            <option value="month1">1</option>
+                            <option value="month2">2</option>
+                            <option value="month3">3</option>
+                            <option value="month4">4</option>
+                            <option value="month5">5</option>
+                            <option value="month6">6</option>
+                            <option value="month7">7</option>
+                            <option value="month8">8</option>
+                            <option value="month9">9</option>
+                            <option value="month10">10</option>
+                            <option value="month11">11</option>
+                            <option value="month12">12</option>
+                        </select>
+                    </span>
+                </div>
+                <!-- 일 -->
+                <div class="bir_dd">
+                    <span class="box">
+                        <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- email -->
+        <div id="join_ckemail">
+            <h3 class="join_title"><label for="ckemail">본인 확인 이메일</label></h3>
+            <span class="box int_email">
+                <input type="text" id="input_email" class="int">
+            </span>
+        </div>
+        <!-- phone -->
+        <div id="join_phone">
+            <h3 class="join_title"><label for="phone">휴대전화</label></h3>
+            <span class="box int_mobile">
+                <input type="tel" id="phone" class="int" maxlength="16" placeholder="전화번호 입력">
+            </span>
+        </div>
+        <!-- 평생회원 -->
+        <div id="lifetime_mem">
+            <h3 class="join_title"><label for="lmem">평생회원여부</label></h3>
+            <span class="box radio_box">
+                <input type="radio" name="lifetime_member" id="lifetime_member_yes" value="동의">
+                <label for="l_mem_yes">동의</label>
+                <input type="radio" name="lifetime_member" id="lifetime_member_no" value="비동의">
+                <label for="l_mem_no">비동의</label>
+            </span>
+        </div>
+        <br>
+      </div>
+  
+    <!-- 가입 버튼 -->
+    <div class="btn_area">
+        <button type="submit" id="btnJoin">
+            <span>가입하기</span>
+        </button>
+    </div>
+
+  </form>
+
+    <script>
+      alertTxt.classList.add('hide');
+      $('#pw').keyup(() => {
+        const pwVal = $('#pw').val();
+
+      if($('#pw').val().length == 0){
+        alertTxt.classList.add('hide');
+        pswd1_img1.src = 'images/member/notpass.png';
+        return;
+      }
+      // 길이검사 - 자릿수는 꼭 ^$가 필요함!!
+      if(!/^.{8,12}$/.test(pwVal)){
+        alertTxt.classList.remove('hide');
+        pswd1_img1.src = 'images/member/fail.png';
+        return;
+      }
+      // 숫자 포함여부 (아래 답 혹은 /\d/도 가능)
+      if(!/[0-9]/.test(pwVal)){
+        alertTxt.classList.remove('hide');
+        pswd1_img1.src = 'images/member/fail.png';
+        return;
+      }
+
+      // 영문자 포함여부
+      if(!/[a-z]/i.test(pwVal)){
+        alertTxt.classList.remove('hide');
+        pswd1_img1.src = 'images/member/fail.png';
+        return;
+      }
+
+      // 특수문자 포함여부(!&/\*@)
+      if(!/[!&/\\*@]/.test(pwVal)){
+        alertTxt.classList.remove('hide');
+        pswd1_img1.src = 'images/member/fail.png';
+        return;
+
+      }
+      alertTxt.classList.add('hide');
+      pswd1_img1.src = 'images/member/pass.png';
+        
+    });
+
+    notSamePw.classList.add('hide');
+    
+    $('#check_pw').keyup(() => {
+      
+      const ckpw = $('#check_pw').val();
+      const pwVal = $('#pw').val();
+      
+      // console.log(ckpw.length)
+      if(ckpw.length == 0){
+        notSamePw.classList.add('hide');
+        pswd2_img1.src = 'images/member/cknotpass.png'
+      }
+      if(ckpw == pwVal){
+        pswd2_img1.src = 'images/member/ckpass.png'
+        notSamePw.classList.add('hide');
+      }
+      else {
+        pswd2_img1.src = 'images/member/cknotpass.png'
+        notSamePw.classList.remove('hide');
+      }
+    });
+
+    $('#check_pw').blur(() => {
+      if($('#check_pw').val().length == 0){
+        notSamePw.classList.add('hide');
+        pswd2_img1.src = 'images/member/cknotpass.png';
+      }
+    })
+
+
+    document.joinFrm.addEventListener('submit', (e) => {
+      const idVal = join_id.value;
+      const pwVal = pw.value;
+      const ckpwVal = check_pw.value;
+      const ckpwHint = pwhint.options[pwhint.selectedIndex].text;
+      const hintAnswer = check_pw_answer.value;
+      const nameVal = input_name.value; 
+      // 성별 값 가져오기
+      const gd = document.getElementsByName('gender');
+      let genderVal;
+      for(let i = 0; i < gd.length; i++){
+        if(gd[i].checked){
+          genderVal = gd[i].value; 
+        }
+      }
+      const yearVal = yy.value;
+      const monthVal = mm.options[mm.selectedIndex].text;
+      const dayVal = dd.value;
+      const emailVal = input_email.value;
+      const phoneVal = phone.value;
+      // 평생회원여부 
+      const lm = document.getElementsByName('lifetime_member');
+      let lmVal;
+      for(let i = 0; i < lm.length; i++){
+        if(lm[i].checked){
+          lmVal = lm[i].value; 
+        }
+      }
+
+      if(!idVal){
+        alert('아이디를 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!pwVal){
+        alert('비밀번호를 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!ckpwVal){
+        alert('비밀번호 확인을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!hintAnswer){
+        alert('비밀번호 확인 답변을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!nameVal){
+        alert('이름을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!genderVal){
+        alert('성별을 선택해주세요');
+        e.preventDefault();
+        return;
+      }
+      if(!yearVal || !monthVal || !dayVal){
+        alert('생년월일을 입력해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!emailVal){
+        alert('이메일을 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!phoneVal){
+        alert('휴대전화를 작성해주세요.');
+        e.preventDefault();
+        return;
+      }
+      if(!lmVal){
+        alert('평생회원여부를 선택헤주세요.');
+        e.preventDefault();
+        return;
+      }
+
+    });
+
+    const saveMember = () => {
+      const idVal = join_id.value;
+      const pwVal = pw.value;
+      const ckpwVal = check_pw.value;
+      const ckpwHint = pwhint.options[pwhint.selectedIndex].text;
+      const hintAnswer = check_pw_answer.value;
+      const nameVal = input_name.value; 
+      // 성별 값 가져오기
+      const gd = document.getElementsByName('gender');
+      let genderVal;
+      for(let i = 0; i < gd.length; i++){
+        if(gd[i].checked){
+          genderVal = gd[i].value; 
+        }
+      }
+      const yearVal = yy.value;
+      const monthVal = mm.options[mm.selectedIndex].text;
+      const dayVal = dd.value;
+      const emailVal = input_email.value;
+      const phoneVal = phone.value;
+      // 평생회원여부 
+      const lm = document.getElementsByName('lifetime_member');
+      let lmVal;
+      for(let i = 0; i < lm.length; i++){
+        if(lm[i].checked){
+          lmVal = lm[i].value; 
+        }
+      }
+
+      // 멤버 객체 생성
+      const mem = new Member(idVal, pwVal, ckpwHint, hintAnswer, nameVal, genderVal, yearVal, monthVal, dayVal, emailVal, phoneVal, lmVal);
+      
+      // memberbooks 배열 관리
+      const memberbooks = JSON.parse(localStorage.getItem('memberbooks')) || []; // 있으면 가져오고 없으면 만들어라
+      // console.log(guestbooks);
+      memberbooks.push(mem);
+
+      localStorage.setItem('memberbooks', JSON.stringify(memberbooks));
+
+      alert('가입이 완료되었습니다!');
+      
+      // 폼 초기화 
+      document.joinFrm.reset();
+      pswd1_img1.src = 'images/member/notpass.png';
+      pswd2_img1.src = 'images/member/cknotpass.png'
+
+      
+
+    }
+
+    class Member {
+      constructor(userId, userPw, pwHint, hintAnswer, userName, userGender, birthYY, birthMM, birthDD, userEmail, userPhone, userLm){
+        this.userId = userId;
+        this.userPw = userPw;
+        this.pwHint = pwHint;
+        this.hintAnswer = hintAnswer;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.birthYY = birthYY;
+        this.birthMM = birthMM;
+        this.birthDD = birthDD;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone;
+        this.userLm = userLm;
+      }
+    }
+
+    </script>
+</body>
+</html>

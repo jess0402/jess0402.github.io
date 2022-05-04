@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>event</title>
+  <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
+  <h1>event</h1>
+  <div class="outer">
+    <div class="inner"></div>
+  </div>
+  <style>
+    .outer {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+      padding: 50px;
+      margin: 20px auto;
+    }
+    .inner {
+      width: 100%;
+      height: 100%;
+      background-color: tomato;
+    }
+  </style>
+  <script>
+    // 이벤트명과 동일한 핸들러 바인딩메서드를 제공한다.
+
+    /**
+     * mouseover | mouseout
+     *  - 자식요소 접근시에도 이벤트핸들링된다.
+     */
+    // $('.outer')
+    //   .mouseover(() => {
+    //     console.log("mouseover");
+    //   })
+    //   .mouseout(() => {
+    //     console.log("mouseout");
+    //   })
+
+    /**
+     * mouseenter | mouseleave 
+     *  - 자식요소 접근시에도 이벤트핸들링하지 않는다.
+     */
+    // $('.outer')
+    //   .mouseenter(() => {
+    //     console.log('mouseenter');
+    //   })
+    //   .mouseleave(() => {
+    //     console.log('mouseleave');
+    //   })
+
+    /**
+     * hover(mouseenter handler, mouseleave handler)
+     *  - 편의 메서드
+     */
+     $('.outer')
+      .hover(() => {
+        console.log('mouseenter');
+      }, () => {
+        console.log('mouseleave');
+      });
+
+  </script>
+
+  <button id="btn1">클릭미!</button>
+  <button id="btn2">한번만 클릭미!</button>
+  <script>
+    /**
+     * on/off 이벤트핸들러
+     *  - on: 핸들러 바인딩 -> addEventListener
+     *  - off: 핸들러 언바인딩(제거) -> removeEventListener(이벤트핸들러를 반드시 지정해야 함 but off는 핸들러를 따로 지정할 필요가 없어서 좋음) 
+     */
+    $(btn1).on('click', (e) => {
+      console.log('#btn1 클릭!');
+      
+      // 한 번 클릭후 이벤트핸들러 제거
+      // e.target = btn1
+      $(e.target).off('click');
+    });
+
+    /**
+     * 한 번 클릭하고 바로 제거됨. 일회용
+     */
+    $(btn2).one('click', (e) => {
+      console.log('#btn2 클릭! 처음이자 마지막!');
+    })
+  </script>
+
+  <!-- div#heading-wrapper>h2{안녕} -->
+  <div id="heading-wrapper" class="heading-wrapper">
+    <h2>안녕</h2>
+  </div>
+  <div id="heading-wrapper2" class="heading-wrapper">
+    <h2>잘가</h2>
+    <h3>byebye</h3>
+  </div>
+  <style>
+    .heading-wrapper {
+      border: 1px solid gray;
+      padding: 5px;
+      margin: 5px 0;
+    }
+  </style>
+  <script>
+    // #heading-wrapper h2를 클릭하면 새로운 h2 태그 추가
+    let num = 0;
+
+    const generateH2 = () => {
+      // 새 h2태그를 추가
+      const $h2 = $(`<h2>안녕${++num}</h2>`); // html을 동적으로 생성
+      $('#heading-wrapper').append($h2);  // 자식요소로 마지막에 추가
+      
+      $h2.on('click', generateH2); 
+      // 새 요소도 핸들러바인딩 해줘야 새로 생성된 h2를 눌렀을 때도 새로운 h2가 생성됨.
+    }
+    $('#heading-wrapper > h2').on('click', generateH2);
+    
+
+
+    /**
+     * 이벤트 버블링으로 처리하기
+     * 
+     * 특정요소일때만 핸들러 작동하게 하기
+     *  on(eventName, targetSelector, handler) 
+     *    -> targetSelector일때만 handler가 호출됨.
+     */
+    $('#heading-wrapper2').on('click', 'h2', (e) => {
+      console.log('#heading-wrapper2 핸들러 호출', e.target);
+
+      // 이벤트 버블링으로 처리되었기 때문에 새 요소에 핸들러바인딩을 해주지 않아도 새로 생성된 h2를 누르면 새로운 h2가 생성됨.
+      const $h2 = $('<h2>잘가</h2>');
+      $('#heading-wrapper2').append($h2);
+    });
+
+  </script>
+  <form name="tweeterFrm" action="javascript:alert('제출성공'); document.tweeterFrm.reset();">
+    <fieldset>
+      <legend>트위터</legend>
+      <p><span id="counter">0</span>/30</p>
+      <textarea name="tweeter" id="tweeter" cols="30" rows="10"></textarea>
+      <br>
+      <input type="submit" value="제출">
+    </fieldset>
+  </form>
+
+  <script>
+    const MAX = 30;
+    $(tweeter).keyup((e) => {
+      // 실제 입력된 내용을 가져오기
+      // console.log(e.target.value);
+
+      // 입력된 내용의 글자수 가져오기 - 전자: 자스방식, 후자: 제이쿼리 방식
+      // console.log(e.target.value.length, $(e.target).val().length);
+
+      const len = $(e.target).val().length;
+      $(counter)
+        .html(len) // counter에 입력된 글자수 보여주기 
+        .css('color', len > MAX ? 'red' : 'black'); // 만약 30자가 넘어가면 #counter의 색이 빨간색으로 아니면 검정색으로
+    })
+
+    /**
+     * 폼에 대한 submit 핸들러 
+     *  - 폼 제출 전에 폼 검사하는 것
+     *  - submit handler가 먼저 실행된 뒤 그 다음에 submit이 일어난다.
+     *  - 만약 e.preventDefault() 또는 return false가 되면 제출되지 않는다.
+     */ 
+    $(document.tweeterFrm).submit((e) => {
+      // submit handler가 먼저 실행되는 것 확인
+      // alert('submit handler');
+
+      if($(tweeter).val().length > MAX){
+        alert('30글자를 초과할 수 없습니다.');
+        // return false; // 이걸 해주거나 아래처럼 e.preventDefault() 해주면 홈 제출이 안됨. 
+        e.preventDefault();
+      }
+
+
+    });
+  </script>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

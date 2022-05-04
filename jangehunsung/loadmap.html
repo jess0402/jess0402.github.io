@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>loadmap</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
       @font-face {
         font-family: 'EliceDigitalBaeum-Bd';
@@ -88,7 +90,7 @@
         }
       }
       .rec {
-        width: 2000px;
+        width: 2500px;
         height: 400px;
         box-shadow: 0px 20px 30px 0px rgb(9 21 54/ 25%);
         position: absolute;
@@ -228,7 +230,7 @@
         top: 0;
         width: 100%;
         padding: 0;
-        height: 55px;
+        height: 70px;
         z-index: 3;
         color: white;
         
@@ -237,13 +239,13 @@
         align-items: flex-start;
       }
       header div {
-        margin: 0 10px;
+        margin: 5px 20px;
       }
       .logo {
         transform: translateY(6px);
         font-family: 'EliceDigitalBaeum-Bd', sans-serif;
         font-size: 30px;
-        margin-left: 30px;
+        margin-left: 40px;
       }
       .nav li {
         transform: translateY(-3px);
@@ -273,6 +275,7 @@
         font-family: 'EliceDigitalBaeum', sans-serif;
         margin-top: 5px;
         font-size: 18px;
+        text-align: center;
       }
       .title p::after {
         position: relative;
@@ -313,9 +316,15 @@
         height: 350px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         margin: 10px;
         box-shadow: 0 10px 30px 0 rgb(67 80 98 / 24%),
                     0 2px 4px 0 rgb(67 80 98 / 10%);
+      }
+      .goal p {
+        font-size: 30px;
+        text-align: center;
+        padding: 10px;
       }
       .goal-2 {
         transform: translateY(-30px);
@@ -429,17 +438,17 @@
     </style>
 </head>
 <body>
-  <header>
+  <header id="head">
     <div class="logo">
       <span>LOAD MAP</span>
     </div>
-    <div class="nav">
+    <div class="nav" id="navigation">
       <ul>
         <li><a href="#page_first">HOME</a></li>
         <li><a href="#goal-wrapper">STUDY</a></li>
         <li><a href="#certificate-wrapper">CERTIFICATE</a></li>
         <li><a href="#book_start">BOOK</a></li>
-        <li><a href="#mind-set">MINDSET</a></li>
+        <li><a href="#advice">ADVICE</a></li>
       </ul>
     </div>
   </header>
@@ -464,13 +473,13 @@
       </div>
       <div class="goal-content">
         <div class="goal goal-1">
-          
+          <p>네트워크,<br>운영체제<br>중심의<br> CS지식 쌓기</p>
         </div>
         <div class="goal goal-2">
-  
+          <p>알고리즘,<br>자료구조<br> 공부하기</p>
         </div>
         <div class="goal goal-3">
-           
+           <p>주력언어<br>정해서<br>완벽히<br>이해하고<br>마스터하기</p>
         </div>
       </div>
     </div>
@@ -551,15 +560,127 @@
           <h3>제목: 토비의 스프링</h3>
           <p>스프링을 처음 접하거나 스프링을 경험했지만 스프링이 어렵게 느껴지는 개발자부터 스프링을 활용한 아키텍처를 설계하고 프레임워크를 개발하려고 하는 아키텍트에 이르기까지 모두 참고할 수 있는 스프링 바이블</p>
           <p>이 책을 통해 스프링의 핵심 프로그래밍 모델인 IoC/DI, PSA, AOP의 원리와 이에 적용된 다양한 디자인 패턴, 프로그래밍 기법을 이해할 수 있다.</p>
-          <button type="button" class="btn" onclick="window.open('<button type="button" class="btn" onclick="window.open('<button type="button" class="btn" onclick="window.open('<button type="button" class="btn" onclick="window.open('http://www.kyobobook.co.kr/product/detailViewEng.laf?ejkGb=ENG&mallGb=ENG&barcode=9781119586166&orderClick=LAG&Kc=#N')">MORE</button>
+          <button type="button" class="btn" onclick="window.open('http://www.kyobobook.co.kr/product/detailViewEng.laf?ejkGb=ENG&mallGb=ENG&barcode=9781119586166&orderClick=LAG&Kc=#N');">MORE</button>
         </div>
       </div>
 
     </div>
 
-    <div class="container" id="mind-set">
-
+    <div class="container advice-container" id="advice">
+      <div class="title advice-title">
+        <h3>ADVICE</h3>
+        <p>조언</p>
+      </div>
+      <ul class="slide-container">
+        <li class="slide">
+          <i class="testi-icon fa fa-3x fa-quote-left"></i>
+          <h4>내가 무엇을 만들겠다는 목표를 세워라!</h4>
+          <p>예를 들어 "Windows 용 파일 탐색기를 만들겠다" 를 먼저 정하고, 다음으로 MFC 를 공부를 하는 것입니다.
+            공부 하다가 파일 관련 기능이 있다면 "해당 기능을 탐색기에 이렇게 적용할수 있겠구나" 라고 생각 할 수 있습니다.
+          </p>
+        </li>
+        <li class="slide">
+          <i class="testi-icon fa fa-3x fa-quote-left"></i>
+          <h4>시작은 간단한 프로그램부터</h4>
+          <p>처음부터 스케일 크고 완벽한 프로그램을 만들지 않아도 됩니다. 간단한 프로그램을 만들면서 나도 프로그램을 만들 수 있다는 자신감, 성취감을 느끼는게 중요합니다. 다음으로 점점 더 큰 프로그램으로 개발 하시면 됩니다. </p>
+        </li>
+        <li class="slide">
+          <i class="testi-icon fa fa-3x fa-quote-left"></i>
+          <h4>개발과 공학의 공부시간은 9:1로</h4>
+          <p>개발 하면서 모호하고 애매했던 개념이 공부하면서 잡혔습니다. 또는 공부하면서 "이런 개념을 알아서 어디다 적용 할 수 있지?"  라고 생각한 것이 개발하면서 "아~ 이렇게 적용 할 수 있구나" 라고 느낄 수 있었던 것 같아요.</p>
+        </li>
+      </ul>
+      <div class="pager">
+        <span idx="0"></span>
+        <span idx="1"></span>
+        <span idx="2"></span>
+      </div>
     </div>
+    <style>
+      .advice-title {
+        transform: translateY(-25px);
+      }
+      .advice-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .advice-container::after {
+        background-size: cover;
+        background-image: url('./images/loadmap/bg-white.jpg');
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity : 0.5;
+        z-index: -1;
+      }
+
+      .slide-container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+
+        position: relative;
+        height: 41%;
+
+      }
+
+      .slide {
+        width: 100%;
+        height: 280px;
+        position: absolute;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .slide p {
+        margin: 0;
+        width: 50%;
+      }
+      .testi-icon {
+        color: #ff00cc;
+      }
+      .animated {
+        -webkit-transition: left 0.3s ease-in;
+        transition: left 0.3s ease-in;
+      }
+
+      .pager {
+        text-align: center;
+      }
+      .pager span {
+        width: 12px;
+        height: 12px;
+        background-blend-mode: #ccc;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 10px;
+
+        background-color: rgba(255, 0, 204, 0.3);
+        cursor: pointer;
+        transition: box-shadow 0.3s ease background-color 0.3s ease;
+      }
+
+      .pager span.active {
+        background: transparent;
+        box-shadow: 0 0 0 2px #ff00cc;
+      }
+        
+    </style>
 
 
     <!-- <div class="page" id="page_last">
@@ -567,6 +688,108 @@
         <span>Thank you!</span>
       </div>
     </div> -->
+
+    <script>
+        const slideWrap = document.querySelector('.advice-container');
+        const slideContainer = document.querySelector('.slide-container');
+        const slide = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+        const slideCount = slide.length;
+        let timer = undefined;
+
+        // 슬라이드 가로로 배열
+        slide[0].style.left = 0 + '%';
+        for (let i = 0; i < slide.length; i++) {
+            // slide[i].style.left = i * 100 + 10 + '%';
+            slide[i].style.left = i * 100 + '%';
+        };
+
+        // 슬라이드 이동함수
+        function goToSlide(idx) {
+
+          slideContainer.classList.add('animated');
+          slideContainer.style.left = -100 * idx + '%';
+
+          // slideContainer.style.left = -100 * idx - 10 + '%';
+          currentIndex = idx;
+            
+        };
+
+        // 자동 슬라이드
+        // 4초마다 goToSlide(숫자); 0, 1, 2, 3, ...5, 0
+        // setInterval(할일, 4000);
+        // 함수 = 할일 = function(){ 실제 할 일 }
+        // 실제 할 일 = goToSlide(숫자); 0, 1, 2, 3, ... 5, 0
+        const startSlide = () => {
+          timer = setInterval(function(){
+            let nextIdx = (currentIndex + 1) % slideCount;
+            goToSlide(nextIdx);
+          }, 4000);
+        }
+        startSlide();
+
+        // 사용자가 마우스 올리면 멈춤
+        $('.slide').on('mouseover', (e) => {
+          clearInterval(timer);
+        });
+        $('.slide').on('mouseout', (e) => {
+          startSlide();
+        });
+
+        
+
+        // pager
+        const pager = document.querySelectorAll('.pager span');
+        console.log(pager);
+
+        console.log($('.pager span'));
+
+
+        $('.pager span').on('click', (e) => {
+          let index = e.target.getAttribute('idx');
+          goToSlide(index);
+          });
+        
+        $('.pager span').on('mouseover', (e) => {
+          e.target.classList.add('active');
+        });
+
+        $('.pager span').on('mouseout', (e) => {
+          e.target.classList.remove('active');
+        });
+
+        let goalWrap = document.querySelector('#goal-wrapper').offsetTop;
+        let bookWrap = document.querySelector('#book_start').offsetTop;
+        let adviceWrap = document.querySelector('#advice').offsetTop;
+
+        console.log(goalWrap);
+        console.log(bookWrap);
+        console.log(adviceWrap);
+        window.addEventListener('scroll', () => {
+
+         
+
+          if(Math.round($(window).scrollTop()) < goalWrap){
+            head.style.color = 'white';
+            $('#navigation').find('a').css('color', 'white');
+          }
+          else if(Math.round($(window).scrollTop()) >= goalWrap && Math.round($(window).scrollTop()) < bookWrap){
+            head.style.color = 'black';
+            $('#navigation').find('a').css('color', 'black');
+          }
+          else if(Math.round($(window).scrollTop()) >= bookWrap && Math.round($(window).scrollTop()) < adviceWrap){
+            head.style.color = 'white';
+            $('#navigation').find('a').css('color', 'white');
+          }
+          else {
+            head.style.color = 'black';
+            $('#navigation').find('a').css('color', 'black');
+          }
+
+      });
+
+
+    </script>
 
 </body>
 </html>

@@ -13,39 +13,39 @@
     <section>
         <div class="name_left">
             <span class="">회원가입 페이지</span>
-            <span class="">넷플릭스 작품추천</span>
+            <span class="">로드맵 페이지</span>
         </div>
         <ul>
             <div class="wrapper">
                 <div id="upper">
                     <li>
-                        <a href="member.html">
-                            <img src="./images/index/join.png" class="" id="member" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        <a href="join.html">
+                            <img src="./images/index/join.png" class="" id="join" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                         </a>
                     </li>
                     <li>
-                        <a href="aboutme.html">
-                            <img src="./images/index/sea.jpg" class="" id="me" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
-                        </a>
-                    </li>
+                      <a href="netflix.html">
+                          <img src="./images/index/netflix.jpg" class="" id="netflix" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                      </a>
+                  </li>
                 </div>
                 <div id="lower">
                     <li>
-                        <a href="gajae.html">
-                            <img src="./images/index/medium9.jpg" class="" id="gajae" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        <a href="loadmap.html">
+                            <img src="./images/index/loadmap.png" class="" id="coding" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                         </a>
                     </li>
                     <li>
-                        <a href="loadmap.html">
-                            <img src="./images/index/coding.jpg" class="" id="coding" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
-                        </a>
-                    </li>
+                      <a href="./me/me_home.html">
+                          <img src="./images/index/sea.jpg" class="" id="me" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                      </a>
+                  </li>
                 </div>
             </div>
         </ul>
         <div class="name_right">
-            <span class="">자기소개 페이지</span>
-            <span class="">로드맵 페이지</span>
+          <span class="">넷플릭스 작품추천</span>
+          <span class="">자기소개 페이지</span>
         </div>
         <script>
             function mouse_over(image){
@@ -53,16 +53,16 @@
                 const img_name = image.getAttribute('id');
                 let text;
                 switch(img_name){
-                    case "member": 
+                    case "join": 
                         document.querySelectorAll('.name_left span')[0].style.color = "black";
                         break;
-                    case "me": 
+                    case "netflix":
                         document.querySelectorAll('.name_right span')[0].style.color = "black";
                         break;
-                    case "gajae":
-                    document.querySelectorAll('.name_left span')[1].style.color = "black";
-                        break;
                     case "coding": 
+                        document.querySelectorAll('.name_left span')[1].style.color = "black";
+                        break;
+                    case "me": 
                         document.querySelectorAll('.name_right span')[1].style.color = "black";
                         break;
                 }
@@ -77,13 +77,13 @@
                     case "member": 
                         document.querySelectorAll('.name_left span')[0].style.color = "white";
                         break;
-                    case "me": 
+                    case "netflix":
                         document.querySelectorAll('.name_right span')[0].style.color = "white";
                         break;
-                    case "gajae":
+                    case "coding": 
                         document.querySelectorAll('.name_left span')[1].style.color = "white";
                         break;
-                    case "coding": 
+                    case "me": 
                         document.querySelectorAll('.name_right span')[1].style.color = "white";
                         break;
                 }

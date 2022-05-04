@@ -13,13 +13,12 @@
   
   const dramas = [];
   dramas.push(new Drama('./images/netflix/gg.jpg', '지니 앤 조지아', 18, '청소년, 로맨틱 코미디', '브리앤 하위, 안토니아 젠트리', 
-                        '자유분방한 조지아가 북부로 이사 온다. 두 아이, 지니와 오스틴을 데리고. 애들을 위해 부유한 동네에서 새 출발을 하는거야! 하지만 그 길은 생각만큼 순탄하지 않다.'));
+                        '30세의 젊은 엄마 조지아와 십대 딸 지니가\n 새로운 동네에 이사오며 벌어지는 이야기'));
   dramas.push(new Drama('./images/netflix/dion.jpg', '슈퍼키드 디온', 12, '만화책 원작 TV 프로그램, 가족이 함께 보는 시리즈' , '얼리샤 웨인라이트, 저사이어 영',
-                        '모두 제 자식이 특별하겠지만, 내 아들은 정말 특별해!\n 어린 디온을 홀로 키우는 니콜.\n 설명할 수 없는 이상하고 무서운 힘이 아들에게 있다는 것을 알고 두려움에 빠진다.'));
-  dramas.push(new Drama('./images/aboutme/medium9.jpg', 'ㅎㅎ', 13, '가족이 함께 보는 시리즈' , '저사이어 영',
-                        '설명할 수 없는 이상하고 무서운 힘이 아들에게 있다는 것을 알고 두려움에 빠진다.'));
-  dramas.push(new Drama('./images/aboutme/medium11.jpg', 'zz', 18, '만화책 원작 TV 프로그램' , '얼리샤 웨인라이트',
-                        '모두 제 자식이 특별하겠지만, 내 아들은 정말 특별해!\n '));
+                        '하루아침에 초능력을 갖게 된 꼬마 디온과\n 그런 아들을 보호하기 위해 고군분투하는 싱글맘 니콜의 이야기.'));
+  dramas.push(new Drama('./images/netflix/seas.jpg', '씨스피라시', 15, '자연 & 생태 다큐멘터리' , '알리 타브리지, 킵 앤더슨',
+                        '아무런 규제 없이 무차별적으로 행해지고 있는 현시대의 수산업이\n 바다 생태계를 어떻게 망가뜨리는지 보여주는 다큐멘터리'));
+  
   let index = 2;                      
   movie_container.innerHTML += dramas.reduce((html, drama) => {
     let {img, title, age, genre, cast, story} = drama;
@@ -38,10 +37,10 @@
         </div>
         <div class="movie_info">
           <span class="title">${title}</span>
-          <span class="age">${age}세</span>
-          <span class="genre">${genre}</span>
-          <span class="cast">${cast}</span>
-          <span class="story">${story}</span>
+          <span class="age">${age}세이상 관람가</span>
+          <span class="genre">장르: ${genre}</span>
+          <span class="cast">출연: ${cast}</span>
+          <span class="story">줄거리: ${story}</span>
         </div>
       </li>`;
   }, "");
@@ -62,6 +61,8 @@
     let $currentIndex = 0;
     const $slideCount = $slide.length;
 
+    
+
     // 슬라이드가 있으면 가로로 배열하기
     $slide[0].style.left = 0 + '%';
     for (let i = 0; i < $slide.length; i++) {
@@ -75,14 +76,18 @@
 
     // 슬라이드 이동함수
     function goToSlide(idx) {
-        $slideContainer.style.left = -100 * idx + '%';
-        $slideContainer.classList.add('animated');
-        $currentIndex = idx;
+      
+      $slideContainer.style.left = -100 * idx + '%';
+      $slideContainer.classList.add('animated');
+      $currentIndex = idx;
+      if($currentIndex != 0)
+        document.querySelectorAll('#nav_container a')[$currentIndex-1].classList.add('color');
     };
 
     // 버튼기능 업데이트 함수(끝까지 가면 다음버튼이 사라지도록) 버튼을 클릭하면 슬라이드 이동시키기 다음버튼을 클릭하면 할 일, 이전 버튼을
     // 클릭하면 할 일.
     $navPrev.addEventListener('click', function () {
+      document.querySelectorAll('#nav_container a')[$currentIndex-1].classList.remove('color');
         goToSlide($currentIndex - 1);
         ckPrev();
 
@@ -98,8 +103,10 @@
     }
 
     $navNext.addEventListener('click', function () {
-        goToSlide($currentIndex + 1);
-        ckNext();
+      if($currentIndex != 0)
+        document.querySelectorAll('#nav_container a')[$currentIndex-1].classList.remove('color');
+      goToSlide($currentIndex + 1);
+      ckNext();
 
     });
 
@@ -116,7 +123,14 @@
     navigation.classList.add('disabled');
   };
 
+  const aArr = document.querySelectorAll('.circle')
+  // console.log(aArr);
   const moving = function(selectedA){
+    for(aa of aArr){
+      aa.classList.remove('color');
+    }
+    selectedA.classList.add('color');
+
     let leftVal = (selectedA.id.charAt(6) - 1) * -100 + '%'
 
     $currentIndex = selectedA.id.charAt(6) - 1;

@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>노션용</title>
   <script src="js/jquery-3.6.0.js"></script>
+  <script
+    src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"
+    integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY="
+    crossorigin="anonymous">
+  </script>
+  <style>
+    img{
+      width: 500px;
+    }
+  </style>
 </head>
 <body>
-  <h1>filter</h1>
-  <div>
-    <p id="p1" class="group1">안녕1</p>
-    <p id="p2" class="group1">안녕2</p>
-    <p id="p3" class="group2">안녕3</p>
-    <p id="p4" class="group2">안녕4</p>
-    <p id="p5" class="group1 group2">안녕5</p>
-  </div>
-  <button id="btn4">not</button>
+  <h1>css</h1>
+  <button id="btn7">animate</button>
+  <div class="box"></div>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: orangered;
+      position: relative;
+      margin: 10px 0;
+    }
+  </style>
   <script>
-     $(btn4).click(() => {
-      $('p')
-        .not('.group1.group2') // group1, group2 클래스를 모두 가진 요소가 아닌 것 = p1, p2, p3, p4
-        .css('text-decoration', 'underline');
+   $(btn7).click(() => {
+    const style1 = {
+      "width" : "500px",
+      "height" : "500px",
+      "border-radius" : "50%",
+      "background-color" : "#008B8B" // darkcyan 작동안함. #008B8B는 작동함!
+    };
+    const style2 = {
+      "width" : "400px",
+      "height" : "400px",
+      "background-color" : "yellow"
+    };
+
+    // 1초동안 style1으로 변하다가, 완료되면 다시 callback인 style2로 바뀜
+    $(".box").animate(style1, 1000, () => {
+      $(".box").animate(style2, 1500)
     });
+    // 너비높이는 잘 바뀌는데 bgc는 안바뀜. 왜냐면 숫자값으로 지정할 수 있는 속성만 가능하기 때문. 
+    // bgc도 바뀌게 해주려면 맨 위 script 아래에 jquery ui 추가해주면 bgc도 바뀜.
+  });
   </script>
 </body>
 </html>

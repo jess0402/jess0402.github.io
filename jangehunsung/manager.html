@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리지페이지</title>
+  <style>
+  @font-face {
+    font-family: 'YdestreetB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'YdestreetL';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetL.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+    body {
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      font-family: 'YdestreetL', sans-serif;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }    
+    header h2 {
+      margin-bottom: 5px;
+      font-family: 'YdestreetB', sans-serif;
+    }
+    section {
+      border: 1px solid black;
+      padding: 35px;
+    }
+    .login_wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .login {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .input_id label {
+      margin-right: 14px;
+    }
+    .input_pw label {
+      margin-right: 7px;
+    }
+    input {
+      border: 1px solid black;
+    }
+    button {
+      color: black;
+      background-color: white;
+      text-decoration: none;
+      border: 1px solid black;
+      cursor: pointer;
+      transition: all .2s linear;
+      font-family: 'YdestreetB', sans-serif;
+    }
+    button:hover {
+      color: white;
+      background-color: black;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>관리자 페이지</h2>
+    <span>*멤버조회를 하려면 로그인하세요*</span>
+  </header>
+  <section>
+    <div class="login_wrapper">
+      <div class="login input_id">
+        <label for="id">아이디</label>
+        <input type="text" id="m_id">
+      </div>
+      <br>
+      <div class="login input_pw">
+        <label for="pw">비밀번호</label>
+        <input type="password" id="m_pw">
+      </div>
+    </div>
+  </section>
+  <button id="showMember">로그인</button>
+
+  <script>
+    const managerId = 'manager';
+    const managerPw = '1234'
+
+    showMember.addEventListener('click', () => {
+      const inputId = m_id.value;
+      const inputPw = m_pw.value;
+
+      if(inputId==''){
+        alert('아이디를 입력하세요');
+        return;
+      }
+      if(inputPw == ''){
+        alert('비밀번호를 입력하세요');
+        return;
+      }
+      if(inputId != managerId){
+        alert('잘못된 아이디입니다.');
+        m_id.select();
+        return;
+      }
+      if(inputPw != managerPw){
+        alert('잘못된 비밀번호입니다.');
+        m_pw.select();
+        return;
+      }
+      window.open('member.html');
+    });
+  </script>
+</body>
+</html>
