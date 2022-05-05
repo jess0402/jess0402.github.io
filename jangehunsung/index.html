@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style_index.css">
+    <title>🚀landing page</title>
 </head>
 <body>
     <header>
-        <img src="./images/index/welcome1.jpg" alt="welcome">
+        <img src="images/index/welcome1.jpg" alt="welcome">
     </header>  
     <section>
         <div class="name_left">
@@ -19,25 +20,25 @@
             <div class="wrapper">
                 <div id="upper">
                     <li>
-                        <a href="join.html">
-                            <img src="./images/index/join.png" class="" id="join" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        <a href="join.html" target="_blank">
+                            <img src="images/index/join.png" class="" id="join" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                         </a>
                     </li>
                     <li>
-                      <a href="netflix.html">
-                          <img src="./images/index/netflix.jpg" class="" id="netflix" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                      <a href="netflix.html" target="_blank">
+                          <img src="images/index/netflix.jpg" class="" id="netflix" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                       </a>
                   </li>
                 </div>
                 <div id="lower">
                     <li>
-                        <a href="loadmap.html">
-                            <img src="./images/index/loadmap.png" class="" id="coding" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                        <a href="loadmap.html" target="_blank">
+                            <img src="images/index/loadmap.png" class="" id="coding" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                         </a>
                     </li>
                     <li>
-                      <a href="./me/me_home.html">
-                          <img src="./images/index/sea.jpg" class="" id="me" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
+                      <a href="me_home.html" target="_blank">
+                          <img src="images/index/sea.jpg" class="" id="me" onmouseover="mouse_over(this);" onmouseout="mouse_out(this);">
                       </a>
                   </li>
                 </div>
@@ -74,7 +75,7 @@
                 const img_name = image.getAttribute('id');
                 let text;
                 switch(img_name){
-                    case "member": 
+                    case "join": 
                         document.querySelectorAll('.name_left span')[0].style.color = "white";
                         break;
                     case "netflix":

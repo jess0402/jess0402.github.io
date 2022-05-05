@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Sunflower:wght@300;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+  <link href="css/style_me_aboutme.css" rel="stylesheet" type ="text/css">
+  <title>ME_ABOUTME</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="me_home.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">01 : Home</a></li>
+        <li><a href="me_about_me.html" id="now_menu" class="current">02 : About Me</a></li>
+        <li><a href="me_project.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">03 : Project</a></li>
+        <li><a href="me_contact.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">04 : Contact</a></li>
+      </ul>
+    </nav>
+    <a href="" class="logo">🌼EhunSung</a>
+  </header>
+  <section class="about">
+    <img src="images/aboutme/hangang.jpg" alt="img">
+    <div id="about_window1_text">
+        <p>안녕하세요! 저는 
+            <a href="#about_me"><span>장은성</span></a>
+            이에요</p>
+        <p>2022년, 저는 
+            <a href="#about_age"><span>24살</span></a>
+            이에요!</p>
+        <p>저는
+            <a href="#about_major"><span>영문학과 경영학 그리고 e-비즈니스학</span></a>
+            을 공부했고</p>
+        <p>올해 
+            <a href="#about_grad"><span>졸업</span></a>
+            했답니다~</p>
+        <p>제 mbti는 
+            <a href="#about_istp"><span>istp</span></a>
+            에요.
+        </p>
+        <p>그리고
+            <a href="#about_crawfish"><span>가재 두마리</span></a>
+            를 키우고 있어요!</p> 
+        <p>저는 주로 집에서 
+            <a href="#about_dramabook"><span>드라마나 책</span></a>
+            보는 걸 좋아하는 집순이지만</p>
+        <p>가끔씩 
+            <a href="#about_play"><span>연극</span></a>
+            보러 가는 것도 좋아해요 :D </p>
+    </div>
+  </section>
+  <section class="pic">
+    <a name="about_age">
+        <div class="pic_div pic_age">
+            <img src="images/aboutme/age.png" alt="나이1">
+        </div>
+    </a>
+    <a name="about_major">
+        <div class="pic_div pic_major">
+          <div id="pic_ebiz">
+            <img src="images/aboutme/major/R.jpg">
+            <img src="images/aboutme/major/python.png">
+          </div>
+          <div id="pic_engbiz">
+            <img src="images/aboutme/major/eng.jpg">
+            <img src="images/aboutme/major/biz.jpeg">
+          </div>
+        </div>
+    </a>
+    <a name="about_grad">
+        <div class="pic_div pic_grad">
+            <img src="images/aboutme/grad/grad.jpg" alt="졸업1">
+            <img src="images/aboutme/grad/grad2.gif" alt="졸업2">
+        </div>
+    </a>
+    <a name="about_istp">
+        <div class="pic_div pic_mbti">
+            <img src="images/aboutme/ispt.jpg" alt="mbti">
+            <img src="images/aboutme/park.jpg" alt="park">
+        </div>
+    </a>
+    <a name="about_crawfish">
+        <div class="pic_div pic_crawfish">
+            <div class="craw_first">
+                <img src="images/aboutme/medium9.jpg" alt="가재1">
+                <img src="images/aboutme/medium11.jpg" alt="가재3">
+                <img src="images/aboutme/medium10.jpg" alt="가재2">
+            </div>
+        </div>
+    </a>
+    <a name="about_dramabook">
+        <div class="pic_div pic_dramabook">
+          <img src="images/aboutme/books.jpg" alt="mbti">
+          <img src="images/aboutme/ebook3.jpg" alt="mbti">
+        </div>
+    </a>
+    <a name="about_play">
+        <div class="pic_div pic_play">
+            <div class="play_first">
+                <img src="images/aboutme/play/play.jpg" alt="연극1">
+                <img src="images/aboutme/play/timetaxi.jpg" alt="연극2">
+            </div>
+            <div class="play_second">
+                <img src="images/aboutme/play/ticket2.jpg" alt="연극4">
+                <img src="images/aboutme/play/timetaxi2.jpg" alt="연극5">
+            </div>
+        </div>
+    </a>
+  </section>
+  <footer>
+    <button id="go_top" onmouseover="show();" onmouseleave="hide();">🌷</button>
+    <span id="goup" class="hide">위로</span>
+  </footer>
+  <script>
+    const mousein = (menu) => {
+      now_menu.classList.remove('current');
+      menu.classList.add('current');
+    };
+
+    const mouseout = (menu) => {
+      now_menu.classList.add('current');
+      menu.classList.remove('current');
+    }
+    
+    const show = () => {
+      goup.classList.remove('hide');
+    }
+    const hide = () => {
+      goup.classList.add('hide');
+    }
+
+    window.addEventListener('load', () => {
+      go_top.style.display = "none";
+    })
+    
+    const gototop = () => {
+      window.addEventListener('scroll', () => {
+        if(document.querySelector('html').scrollTop > 100) {
+          document.getElementById('go_top').style.display = "block";
+        }
+        else {
+          document.getElementById('go_top').style.display = "none";
+        }
+      });
+
+      document.getElementById('go_top').addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      })
+
+    }
+    gototop();
+  </script>
+</body>
+</html>

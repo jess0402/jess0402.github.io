@@ -13,8 +13,7 @@
 body {
   margin: 0;
   height: 100vh;
-  /* background: url("./images/net5.jpg") no-repeat center; */
-  background: url("../images/net4.jpg") no-repeat center;
+  background: url("../images/netflix/net4.jpg") no-repeat center;
   background-size: cover;
 
 }
@@ -66,7 +65,6 @@ z-index: 3;
   overflow: hidden;
   width: auto;
   height: 100vh;
-  /* background-image: url("./images/netflix.png"); */
   background-size: 1024px 768px;
   z-index: 2;
 }
@@ -92,9 +90,9 @@ z-index: 3;
 
   /* display: inline-block; */
   display: flex;
-  width: 90%;
+  width: 100%;
   height: 86%;
-  margin: 20px 20px 30px 50px;
+  margin-top: 60px;
   flex-direction: column;
 
 }
@@ -200,13 +198,13 @@ font-family: 'ROKAFSansMedium', sans-serif;
 
 #prev {
   margin-left: -500px;
-  background-image: url("../images/gajae/left.png");
+  background-image: url("../images/netflix/left.png");
   background-size: 100px;
 }
 
 #next {
   margin-left: 400px;
-  background-image: url("../images/gajae/right.png");
+  background-image: url("../images/netflix/right.png");
   background-size: 100px;
 }
 

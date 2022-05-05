@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Sunflower:wght@300;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <link href="css/style_me_contact.css" rel="stylesheet" type ="text/css">
+  <title>ME_CONTACT</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="me_home.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">01 : Home</a></li>
+        <li><a href="me_about_me.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">02 : About Me</a></li>
+        <li><a href="me_project.html" onmouseover="mousein(this);" onmouseout="mouseout(this)">03 : Project</a></li>
+        <li><a href="me_contact.html" id="now_menu" class="current">04 : Contact</a></li>
+      </ul>
+    </nav>
+    <a href="me_home.html" class="logo">🌼EhunSung</a>
+  </header>
+
+  <section>
+    <div id="title">
+      <h1>04 : Contact me</h1>
+    </div>
+    <div class="container">
+      <div id="msg">
+        <div id="div_email" class="msg_div">
+          <input type="email" id="input_email" placeholder="이메일">
+        </div>
+        <div id="div_subject" class="msg_div">
+          <input type="text" id="input_subject" placeholder="제목">
+        </div>
+        <div id="div_content" class="msg_div">
+          <textarea id="input_textarea" rows="5" placeholder="메세지를 입력하세요"></textarea>
+        </div>
+        <button type="submit" id="btn">send</button>
+      </div>
+      <div id="info">
+        <div id="info_email">
+          <h3>Email</h3>
+          <span>jyjmjs2@naver.com</span>
+        </div>
+        <div id="info_link">
+          <div id="info_notion">
+            <h3>Notion</h3>
+            <a href="https://xilverstar42.notion.site/27493fe24a02438d9c02902c85b968d5">
+              <img src="images/aboutme/notion2.png">
+            </a>
+          </div>
+          <div id="info_git">
+            <h3>Github</h3>
+            <a href="https://github.com/jess0402">
+              <img src="images/aboutme/git.png">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const mousein = (menu) => {
+      now_menu.classList.remove('current');
+      menu.classList.add('current');
+    };
+    const mouseout = (menu) => {
+      now_menu.classList.add('current');
+      menu.classList.remove('current');
+    }
+  </script>
+</body>
+</html>

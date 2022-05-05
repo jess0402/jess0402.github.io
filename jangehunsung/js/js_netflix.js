@@ -1,4 +1,4 @@
-// window.onload = function() {
+window.onload = function() {
 
   navigation.classList.add('disabled');
 
@@ -119,35 +119,35 @@
         };
     };
 
-  const init = () => {
-    navigation.classList.add('disabled');
-  };
+    const init = () => {
+      navigation.classList.add('disabled');
+    };
+  
+    const aArr = document.querySelectorAll('.circle')
+    // console.log(aArr);
+    const moving = function(selectedA){
+      for(aa of aArr){
+        aa.classList.remove('color');
+      }
+      selectedA.classList.add('color');
+  
+      let leftVal = (selectedA.id.charAt(6) - 1) * -100 + '%'
+  
+      $currentIndex = selectedA.id.charAt(6) - 1;
+      ckPrev();
+      ckNext();
+      $slideContainer.style.left = leftVal;
+  
+    };
+  
+    const show = function(selectedA){
+      let idx = selectedA.id.charAt(6);
+      document.getElementById(`title${idx}`).classList.add('show');
+    };
+  
+    const hide = function(selectedA){
+      let idx = selectedA.id.charAt(6);
+      document.getElementById(`title${idx}`).classList.remove('show');
+    };
 
-  const aArr = document.querySelectorAll('.circle')
-  // console.log(aArr);
-  const moving = function(selectedA){
-    for(aa of aArr){
-      aa.classList.remove('color');
-    }
-    selectedA.classList.add('color');
-
-    let leftVal = (selectedA.id.charAt(6) - 1) * -100 + '%'
-
-    $currentIndex = selectedA.id.charAt(6) - 1;
-    ckPrev();
-    ckNext();
-    $slideContainer.style.left = leftVal;
-
-  };
-
-  const show = function(selectedA){
-    let idx = selectedA.id.charAt(6);
-    document.getElementById(`title${idx}`).classList.add('show');
-  };
-
-  const hide = function(selectedA){
-    let idx = selectedA.id.charAt(6);
-    document.getElementById(`title${idx}`).classList.remove('show');
-  };
-
-// }
+}
