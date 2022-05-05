@@ -432,7 +432,7 @@ header div {
 }
 .advice-container::after {
   background-size: cover;
-  background-image: url('./images/loadmap/bg-white.jpg');
+  background-image: url('../images/loadmap/bg-white.jpg');
   content : "";
   display: block;
   position: absolute;

@@ -104,7 +104,9 @@ window.onload = function() {
 
     $navNext.addEventListener('click', function () {
       if($currentIndex != 0)
-        document.querySelectorAll('#nav_container a')[$currentIndex-1].classList.remove('color');
+        document.querySelectorAll('#nav_container a')[$currentIndex-1].classList.remove('color'); // 이거 뭥미?????
+        // 위 코드는 첫 화면이 아닌 경우에(네비게이션바는 첫 화면에는 안뜨니까) next버튼을 누르면 다음 작품추천으로 넘어가니까
+        // 이전 작품 추천 페이지의 nav_container의 a에서 하이라이트 되어 있던 색깔(다크레드)을 기본 색상(흰색)으로 바꿔주는 것.
       goToSlide($currentIndex + 1);
       ckNext();
 
