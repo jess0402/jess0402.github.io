@@ -114,30 +114,38 @@
 
     renderMemberbook(memberbooks);
 
+    let idx = undefined;
+
     memberDel.addEventListener('click', () => {
       const del_id = prompt('삭제할 회원의 아이디를 입력하세요.');
+
+      if(del_id == null) return false;
+      
+
       const mm = JSON.parse(localStorage.getItem('memberbooks'));
-      console.log('삭제전: ', mm);
-      let idx;
 
       for(let i = 0; i < mm.length; i++){
-        // console.log(mm[i]);
         if(mm[i].userId === del_id){
           idx = i;
-          console.log(i);
+          mm.splice(idx, 1);
+          continue;
         }
       }
-      mm.splice(idx, 1);
 
-      localStorage.setItem('memberbooks', JSON.stringify(mm));
-
-      const tbody = document.querySelector('#tb-memberbook tbody');
-      tbody.innerHTML = "";
-
-      const memberbooks = JSON.parse(localStorage.getItem('memberbooks'));
-      renderMemberbook(memberbooks);
-
-      alert('회원 삭제가 완료되었습니다!');
+      if(idx == undefined){
+        alert('일치하는 회원이 존재하지 않습니다');
+      }
+      else{
+        localStorage.setItem('memberbooks', JSON.stringify(mm));
+  
+        const tbody = document.querySelector('#tb-memberbook tbody');
+        tbody.innerHTML = "";
+  
+        const memberbooks = JSON.parse(localStorage.getItem('memberbooks'));
+        renderMemberbook(memberbooks);
+  
+        alert('회원 삭제가 완료되었습니다!');
+      }
 
     });
   </script>

@@ -23,9 +23,11 @@ window.onload = function(){
   };
 
   // 자동 슬라이드
+  // 재사용하기 위해 함수로 만듦.
   const startSlide = () => {
     timer = setInterval(function(){
       let nextIdx = (currentIndex + 1) % slideCount;
+      //slideCount는 currentIndex보다 클 수 없음.
       goToSlide(nextIdx);
     }, 4000);
   }
