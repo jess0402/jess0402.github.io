@@ -168,6 +168,7 @@
     
   alertTxt.classList.add('hide');
 
+  // 비밀번호 유효성검사
   $('#pw').keyup(() => {
     const pwVal = $('#pw').val();
 
@@ -176,13 +177,13 @@
     pswd1_img1.src = 'images/member/notpass.png';
     return;
   }
-  // 길이검사 - 자릿수는 꼭 ^$가 필요함!!
+  // 길이검사
   if(!/^.{8,12}$/.test(pwVal)){
     alertTxt.classList.remove('hide');
     pswd1_img1.src = 'images/member/fail.png';
     return;
   }
-  // 숫자 포함여부 (아래 답 혹은 /\d/도 가능)
+  // 숫자 포함여부
   if(!/[0-9]/.test(pwVal)){
     alertTxt.classList.remove('hide');
     pswd1_img1.src = 'images/member/fail.png';
