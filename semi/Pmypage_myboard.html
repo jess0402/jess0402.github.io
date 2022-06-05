@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Pmypage - 내가 쓴 게시글</title>
+  <style>
+    #container {
+      display: flex;
+      font-family: 'Hahmlet', serif;
+      justify-content: center;
+      margin: 0 130px 0 30px;
+    }
+    .top-logo{
+      height: 180px;
+      background-color: #bbded6;
+      position: relative;
+    }
+    .top-logo span {
+      position: absolute;
+      left: 2%;
+      bottom: 7%;
+      color: white;
+      font-family: 'Hahmlet', serif;
+      font-weight: 900;
+      font-size: 320%;
+      
+    }
+    #Pmypage-submenu {
+      margin-top: 100px;
+      text-align: right;
+      width: 18%;
+    }
+    #Pmypage-submenu ul {
+      padding: 0;
+    }
+    #Pmypage-submenu li {
+      list-style: none;
+      margin: 15px 0;
+      font-weight: 500;
+      font-size: x-large;
+    }
+    #Pmypage-submenu a:hover {
+      color: #bbded6;
+    }
+    #Pmypage-submenu a {
+      color: black;
+      text-decoration: none;
+    }
+      /* 여기까지 submenu */
+
+
+    #myboard{
+      width: 80%;
+      margin-left: 4%;
+    }
+    #myboard h2 {
+      font-size: 45px;
+      padding: 10px;
+      margin: 20px 0 10px;
+    }
+    #myboard table {
+      width: 100%;
+      border-collapse: collapse
+    }
+    #list-head {
+      font-size: larger;
+      border-top: 2px solid gray;
+      border-bottom: 2px solid gray;
+    }
+    #list-head th{
+      padding-bottom: 7px;
+    }
+    #list-head th:nth-child(2){
+      width: 50%;
+    }
+    #list-content{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="top-logo">
+  <span>MYPAGE</span>
+</div>
+<section id="container">
+  <div id="Pmypage-submenu" class="submenu">
+    <ul>
+      <li><a href="#">포트폴리오</a></li>
+      <li><a href="#">내가 쓴 게시글</a></li>
+      <li><a href="#">찜목록</a></li>
+      <li><a href="#">지원한 공고</a></li>
+      <li><a href="#">회원정보 수정</a></li>
+      <li><a href="#">회원탈퇴</a></li>
+    </ul>
+  </div>
+  <div id="myboard">
+    <h2>내가 쓴 게시글</h2>
+    <table>
+      <thead id="list-head">
+        <tr>
+          <th>글번호</th>
+          <th>제목</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody id="list-content">
+        <tr>
+          <td>1</td>
+          <td>가나다</td>
+          <td>220204</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>라마바</td>
+          <td>220204</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>abc</td>
+          <td>220202</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+</body>
+</html>

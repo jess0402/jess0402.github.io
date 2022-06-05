@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Pmypage - 포트폴리오</title>
+  <script src="js/jquery-3.6.0.js"></script>
+  <style>
+    #container {
+      display: flex;
+      font-family: 'Hahmlet', serif;
+      justify-content: center;
+      margin: 0 130px 0 30px;
+    }
+    .top-logo{
+      height: 180px;
+      background-color: #bbded6;
+      position: relative;
+    }
+    .top-logo span {
+      position: absolute;
+      left: 2%;
+      bottom: 7%;
+      color: white;
+      font-family: 'Hahmlet', serif;
+      font-weight: 900;
+      font-size: 320%;
+      
+    }
+    #Pmypage-submenu {
+      margin-top: 100px;
+      text-align: right;
+      width: 18%;
+    }
+    #Pmypage-submenu ul {
+      padding: 0;
+    }
+    #Pmypage-submenu li {
+      list-style: none;
+      margin: 15px 0;
+      font-weight: 500;
+      font-size: x-large;
+    }
+    #Pmypage-submenu a:hover {
+      color: #bbded6;
+    }
+    #Pmypage-submenu a {
+      color: black;
+      text-decoration: none;
+    }
+    /* 여기까지 submenu */
+
+    #portfolio-container{
+      width: 80%;
+      margin-left: 4%;
+    }
+    #portfolio-container h2 {
+      font-size: 45px;
+      padding: 10px;
+      margin: 20px 0 10px;
+      
+    }
+    
+    /* 제목 & 수정하기 버튼 */
+    #portfolio_head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid gray;
+    }
+    .btn {
+      font-size: large;
+      font-family: 'Hahmlet', serif;
+      border: none;
+      background-color: #bbded6;
+      cursor: pointer;
+      border-radius: 0.3rem;
+      transition: all 0.3s ease 0s;
+    }
+    #update-btn {
+      margin-bottom: 13px;
+      padding: 6px 11px;
+    }
+    #plus-btn {
+      padding: 0 11px 5px;
+      transform: translateY(10px);
+    }
+
+    .btn:hover {
+      background-color: #fae3d9;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      border: none;
+      box-shadow: 1px 3px 5px rgb(0 0 0 / 20%);
+    }
+
+    /* 포트폴리오 내용 */
+    #portfolio-container form {
+      margin: 40px 0;
+    }
+    #portfolio-container table {
+      margin: 30px 30px;
+      border-collapse: separate;
+      border-spacing: 0 20px;
+    }
+    #portfolio-container table tr {
+    }
+
+    #portfolio-container table th:not(#img-th):not(#work-wrap-th):not(.work-no){
+      padding: 0 10px 0 20px;
+      text-align: right;
+      font-size: large;
+      font-weight: 400;
+    }
+    #img-th, .work-no{
+      padding: 0 20px;
+      font-size: large;
+      font-weight: 400;
+    }
+    #work-wrap-th {
+      /* 경력 */
+      padding: 0 20px;
+      text-align: left;
+      font-size: 40px;
+      font-weight: 600;
+    }
+
+    #profile-img-container{
+      width: 400px;
+      height: 500px;
+      padding: 10px;
+      overflow: hidden;
+      border: 2px dashed darkgray;
+    }
+    #profile-img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #work-img-container{
+      width: 400px;
+      height: 350px;
+      padding: 10px;
+      border: 2px dashed darkgray;
+    }
+    #work-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    #portfolio-container input:not(#height):not(#weight):not(.btn) {
+      font-family: 'Hahmlet', serif;
+      font-size: large;
+      font-weight: 500;
+      border: none;
+      width: 400px;
+    }
+    #height, #weight {
+      font-family: 'Hahmlet', serif;
+      font-size: large;
+      font-weight: 500;
+      border: none;
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+<div class="top-logo">
+  <span>MYPAGE</span>
+</div>
+<section id="container">
+  <div id="Pmypage-submenu" class="submenu">
+    <ul>
+      <li><a href="#">포트폴리오</a></li>
+      <li><a href="#">내가 쓴 게시글</a></li>
+      <li><a href="#">찜목록</a></li>
+      <li><a href="#">지원한 공고</a></li>
+      <li><a href="#">회원정보 수정</a></li>
+      <li><a href="#">회원탈퇴</a></li>
+    </ul>
+  </div>
+  <div id="portfolio-container">
+    <div id="portfolio_head">
+      <h2>포트폴리오</h2>
+      <input type="button" id="update-btn" value="수정하기" class="btn" 
+              onclick="location.href='/app/ann/annEnroll';">
+    </div>
+    <form name="portfolioFrm" method="post">
+      <table>
+        <tbody>
+          <tr>
+            <th rowspan="8" id="img-th">대표사진</th>
+            <td rowspan="8">
+              <div id="profile-img-container">
+                <img src="img/hosi2.jpg" id="profile-img">
+              </div>
+            </td>
+            <th>이름</th>
+            <td colspan="3">
+              <input type="text" name="Pname" id="Pname" value="호시">
+            </td>
+          </tr>
+          <tr>
+            <th>생년</th>
+            <td colspan="3">
+              <input type="text" name="Pbirth" id="Pbirth" value="1996-06-15">
+            </td>
+          </tr>
+          <tr>
+            <th>소속사</th>
+            <td colspan="3">
+              <input type="text" name="company" id="company" value="플레디스">
+            </td>
+          </tr>
+          <tr>
+            <th>학력</th>
+            <td colspan="3">
+              <input type="text" name="school" id="school" value="한양대학교 미래인재교육원">
+            </td>
+          </tr>
+          <tr>
+            <th>키</th>
+            <td style="width: 150px;">
+              <input type="text" name="height" id="height" value="177" style="text-align:right;">
+              <span>cm</span>
+            </td>
+            <th style="width: 80px;">체중</th>
+            <td>
+              <input type="text" name="weight" id="weight" value="60.9" style="text-align:right;">
+              <span>kg</span>
+            </td>
+          </tr>
+          <tr>
+            <th>휴대폰</th>
+            <td colspan="3">
+              <input type="tel" name="Pphone" id="Pphone" value="010-1234-124">
+            </td>
+          </tr>
+          <tr>
+            <th>이메일</th>
+            <td colspan="3">
+              <input type="email" name="Pemail" id="Pemail" value="hosi@naver.com">
+            </td>
+          </tr>
+          <tr>
+            <th>sns</th>
+            <td colspan="3">
+              <input type="text" name="Psns" id="Psns" value="instagram - @ho5hi_kwon">
+            </td>
+          </tr>
+
+          <tr>
+            <td><br></td>
+          </tr>
+          <tr>
+              <th colspan="2" id="work-wrap-th">경력</th>
+              <td colspan="4" style="text-align:right;"><button id="plus-btn" class="btn">+</button></td>
+          </tr>
+          <tr>
+            <td colspan="6" style="border-top: 1px solid grey;"></td>
+          </tr>
+
+          <tr>
+            <th rowspan="5" class="work-no">1</th>
+            <td rowspan="5">
+              <div id="work-img-container">
+                <img src="img/hosi8.jpg" id="work-img">
+              </div>
+            </td>
+            <td><br><br></td>
+          </tr>
+          <tr>
+            <th>작품명</th>
+            <td colspan="3">스파이더</td>
+          </tr>
+          <tr>
+            <th>배역</th>
+            <td colspan="3">호랑이</td>
+          </tr>
+          <tr>
+            <th>기간</th>
+            <td colspan="3">2022.04 ~ 2022.05</td>
+          </tr>
+          <tr>
+            <td><br><br></td>
+          </tr>
+
+          <tr>
+            <th rowspan="5" class="work-no">2</th>
+            <td rowspan="5">
+              <div id="work-img-container">
+                <img src="img/hosi3.jpg" id="work-img">
+              </div>
+              <td><br><br></td>
+            </td>
+          </tr>
+          <tr>
+            <th>작품명</th>
+            <td colspan="3">스파이더</td>
+          </tr>
+          <tr>
+            <th>배역</th>
+            <td colspan="3">호랑이</td>
+          </tr>
+          <tr>
+            <th>기간</th>
+            <td colspan="3">2022.04 ~ 2022.05</td>
+          </tr>
+          <tr>
+            <td><br><br></td>
+          </tr>
+
+          
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<script>
+  /**
+   * 스크롤기능 안쳐먹음ㅠㅠ
+   */
+  $(document).ready(function(){
+  let currentPosition = parseInt($(".submenu").css("top"));
+  $(window).scroll(function() {
+    let position = $(window).scrollTop(); 
+    $(".submenu").stop().animate({"top":position+currentPosition+"px"},1000);
+   });
+  });
+</script>
+
+</body>
+</html>

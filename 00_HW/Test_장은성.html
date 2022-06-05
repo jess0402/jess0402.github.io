@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KH test</title>
+  <script src="js/jquery-3.6.0.js"></script>
+  <style>
+    form {
+      position: relative;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      background-color: lightgray;
+      position: absolute;
+      left: 50%;
+      margin-top: 50px;
+      transform: translateX(-50%);
+      width: 550px;
+    }
+    .wrapper {
+      margin: 10px 18px;
+    }
+    #id-wrap {
+      margin-top: 60px;
+    }
+    label {
+      font-weight: bolder;
+    }
+    .wrapper input {
+      background: transparent;
+      border-bottom: 1px dashed black;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      width: 65%;
+      float: right;
+    }
+    .msg {
+      margin-top: 7px;
+      font-size: 13px;
+      float: right;
+      width: 65%;
+      color: red;
+      display: none;
+    }
+    #pw-rule {
+      display: none;
+      font-size: 13px;
+      color: grey;
+    }
+    .show {
+      display: block;
+    }
+    #address2 {
+      margin: 18px 0 25px 0
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      letter-spacing: 13px;
+      border: none;
+      background-color:darkseagreen;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <div id="container">
+      <div class="wrapper" id="id-wrap">
+        <span class="input-box">
+          <label for="id">아이디</label>
+          <input type="text" id="id">
+        </span>
+        <span class="msg" id="msg-id">필수 입력항목입니다.</span>
+      </div>
+      <div class="wrapper" id="pwd-wrap">
+        <span class="input-box">
+          <label for="pwd">패스워드</label>
+          <input type="password" id="pwd">
+        </span>
+          <span class="msg" id="pw-rule">영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자</span>
+          <span class="msg" id="msg-pwd">필수 입력항목입니다.</span>
+      </div>
+      <div class="wrapper" id="pwdck-wrap">
+        <span class="input-box">
+          <label for="pwdck">패스워드 확인</label>
+          <input type="password" id="pwdck">
+        </span>
+        <span class="msg" id="msg-pwdck">필수 입력항목입니다.</span>
+      </div>
+      <div class="wrapper" id="email-wrap">
+        <span class="input-box">
+          <label for="email">이메일</label>
+          <input type="email" id="email">
+        </span>
+      </div>
+      <div class="wrapper" id="address-wrap">
+        <span class="input-box">
+          <label for="address">주소</label>
+          <input type="text" id="address1">
+          <input type="text" id="address2">
+        </span>
+      </div>
+      <div class="wrapper" id="button-wrap">
+        <button type="submit">가입</button>
+      </div>
+    </div>
+  </form>
+  <script>
+    // pw 입력요소 클릭한 경우 "영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자" 메세지 나오도록
+    pwd.addEventListener('focus', () => {
+      document.getElementById('pw-rule').style.display="block";
+    });
+    pwd.addEventListener('blur', () => {
+      document.getElementById('pw-rule').style.display="none";
+    });
+
+    // 아이디, 패스워드, 패스워드 확인을 입력하지 않고 다음 입력 요소로 이동하는 경우 "필수 입력 항목입니다"라는 메시지가 나오도록
+    const keyupCheck = (type, msgType) => {
+      $(type).keyup(() => {
+        const typeVal = $(type).val();
+        hide(typeVal, msgType);
+        show(typeVal, msgType);
+      });
+    }
+
+    const checkAll = (type) => {
+      $(type).click(() => {
+        checkForward('#id', 'msg-id');
+        checkForward('#pwd', 'msg-pwd');      
+        checkForward('#pwdck', 'msg-pwdck');      
+      });
+    };
+
+    $('#pwd').click(() => {
+      checkForward('#id', 'msg-id');
+    });
+    
+    $('#pwdck').click(() => {
+      checkForward('#id', 'msg-id');
+      checkForward('#pwd', 'msg-pwd');
+    });
+
+    checkAll('#email');
+    checkAll('#address1');
+    checkAll('#address2');
+
+    
+    keyupCheck('#id', 'msg-id');
+    keyupCheck('#pwd', 'msg-pwd');
+    keyupCheck('#pwdck', 'msg-pwdck');
+
+
+    const show = (type, msgType) => {
+      if(type.length == 0) 
+        document.getElementById(msgType).style.display = "block";
+    }
+
+    const hide = (type, msgType) => {
+      if(type.length != 0) 
+        document.getElementById(msgType).style.display = "none";
+    }
+
+    const checkForward = (type, msgType) => {
+      if(!($(type).val())){
+        document.getElementById(msgType).style.display = "block";
+      }
+    }
+
+  </script>
+</body>
+</html>
